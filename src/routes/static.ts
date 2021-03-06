@@ -1,0 +1,15 @@
+import { Request, Response, Router } from 'express';
+import * as HttpStatus from 'http-status-codes';
+import * as executeController from '../controllers/execute/execute';
+function generateStaticRoutes(router: Router) {
+    //                   ----- GETs -----
+    router.get('/execute', executeController.execute);
+
+    //                   ----- POSTs -----
+    // router.post('/example', exampleController.validator, exampleController.example);
+
+    //                   ----- PATCHs -----
+    // router.patch('/example', exampleController.validator, exampleController.example);
+}
+
+export default generateStaticRoutes;
