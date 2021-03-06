@@ -1,11 +1,11 @@
 {
-  "name": "dynamic-mock-api",
+  "name": "Git-Crawler",
   "version": "1.0.1",
-  "description": "Dynamic Mock API.",
+  "description": "A crawler using GitHub Api.",
   "main": "index.ts",
   "repository": {
     "type": "git",
-    "url": "git@github.com:MateusVT/Simple-Dynamic-Mock-API.git"
+    "url": "https://github.com/MateusVT/Git-Crawler"
   },
   "author": {
     "name": "Mateus Torres",

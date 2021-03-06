@@ -16,7 +16,7 @@ A simple mock API using Node.js with Express written in Typescript.
 Clone the repository, install the dependencies.
 
 ```bash
-$ git clone https://github.com/MateusVT/Simple-Dynamic-Mock-API.git <application-name>
+$ git clone https://github.com/MateusVT/Git-Crawler <application-name>
 
 $ cd <application-name>
 
@@ -80,31 +80,3 @@ GET localhost:3000/ // Returns server infos.
 GET localhost:3000/routes // Returns all routes currently available
 ```
 
-#### Registry a new route
-
-In order to create a new route on the API you have to submit a POST request with the following body:
-
-e.g.
-```
-POST localhost:3000/new-route // Create a new route
-```
-
-```json
-// JSON File
-{
-    "url": "/clients",
-    "method": "get",
-    "httpStatus": 200,
-    "data": [
-        {
-            "clientId": 1,
-            "value": 100
-        },
-        {
-            "clientId": 2,
-            "value": 200
-        }
-    ],
-    "searchKey": "clientId" // Is optional and can be defined as `*` that means all.
-}
-```
