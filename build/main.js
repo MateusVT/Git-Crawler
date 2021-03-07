@@ -349,7 +349,7 @@ function __classPrivateFieldSet(receiver, privateMap, value) {
 /*! exports provided: name, version, description, main, repository, author, engines, scripts, husky, lint-staged, private, license, keywords, dependencies, devDependencies, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"dynamic-mock-api\",\"version\":\"1.0.1\",\"description\":\"Dynamic Mock API.\",\"main\":\"index.ts\",\"repository\":{\"type\":\"git\",\"url\":\"git@github.com:MateusVT/Simple-Dynamic-Mock-API.git\"},\"author\":{\"name\":\"Mateus Torres\",\"email\":\"mtsvtorres@gmail.com\"},\"engines\":{\"node\":\">= 12.13.0\"},\"scripts\":{\"start\":\"backpack\",\"clean\":\"rimraf build\",\"transpile\":\"backpack build\",\"build\":\"run-s clean transpile\",\"lint\":\"eslint {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\",\"lint:fix\":\"eslint --fix {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\"},\"husky\":{\"hooks\":{}},\"lint-staged\":{\"*.{ts,json}\":[\"eslint --fix {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\"]},\"private\":true,\"license\":\"MIT\",\"keywords\":[\"express\",\"typescript\",\"api\",\"es6\",\"node\",\"docker\",\"javascript\"],\"dependencies\":{\"@octokit/rest\":\"^18.3.4\",\"@types/axios\":\"^0.14.0\",\"axios\":\"^0.19.0\",\"body-parser\":\"^1.19.0\",\"cors\":\"^2.8.5\",\"dotenv\":\"^8.2.0\",\"esm\":\"*\",\"express\":\"^4.17.1\",\"express-validator\":\"^6.6.1\",\"helmet\":\"^3.22.0\",\"http-status-codes\":\"^1.4.0\",\"joi\":\"^14.3.1\",\"lodash\":\"^4.17.19\",\"morgan\":\"^1.10.0\",\"pg\":\"^7.18.2\",\"typeorm\":\"^0.2.28\",\"winston\":\"^3.2.1\",\"winston-daily-rotate-file\":\"^4.4.2\"},\"devDependencies\":{\"@babel/core\":\"^7.9.0\",\"@babel/preset-env\":\"^7.9.0\",\"@babel/preset-typescript\":\"^7.9.0\",\"@types/cors\":\"^2.8.6\",\"@types/dotenv\":\"^8.2.0\",\"@types/helmet\":\"^0.0.45\",\"@types/jest\":\"^25.1.4\",\"@types/joi\":\"^14.3.4\",\"@types/lodash\":\"^4.14.149\",\"@types/morgan\":\"^1.9.0\",\"@types/swagger-ui-express\":\"^4.1.2\",\"@types/winston\":\"^2.4.4\",\"@typescript-eslint/eslint-plugin\":\"^2.25.0\",\"@typescript-eslint/parser\":\"^2.25.0\",\"backpack-core\":\"^0.8.4\",\"eslint\":\"^6.8.0\",\"eslint-config-prettier\":\"^6.10.1\",\"eslint-plugin-prettier\":\"^3.1.2\",\"fork-ts-checker-webpack-plugin\":\"^4.1.2\",\"husky\":\"^4.2.3\",\"json-loader\":\"^0.5.7\",\"lint-staged\":\"^10.0.9\",\"prettier\":\"^2.0.2\",\"rimraf\":\"^3.0.2\",\"npm-run-all\":\"^4.1.5\",\"ts-loader\":\"^6.2.2\",\"ts-node\":\"^8.8.1\",\"typescript\":\"^3.8.3\"}}");
+module.exports = JSON.parse("{\"name\":\"Git-Crawler\",\"version\":\"1.0.1\",\"description\":\"A crawler using GitHub Api.\",\"main\":\"index.ts\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/MateusVT/Git-Crawler\"},\"author\":{\"name\":\"Mateus Torres\",\"email\":\"mtsvtorres@gmail.com\"},\"engines\":{\"node\":\">= 12.13.0\"},\"scripts\":{\"start\":\"backpack\",\"clean\":\"rimraf build\",\"transpile\":\"backpack build\",\"build\":\"run-s clean transpile\",\"lint\":\"eslint {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\",\"lint:fix\":\"eslint --fix {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\"},\"husky\":{\"hooks\":{}},\"lint-staged\":{\"*.{ts,json}\":[\"eslint --fix {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\"]},\"private\":true,\"license\":\"MIT\",\"keywords\":[\"express\",\"typescript\",\"api\",\"es6\",\"node\",\"docker\",\"javascript\"],\"dependencies\":{\"@octokit/auth\":\"^3.0.3\",\"@octokit/rest\":\"^18.3.4\",\"@types/axios\":\"^0.14.0\",\"axios\":\"^0.19.0\",\"body-parser\":\"^1.19.0\",\"cors\":\"^2.8.5\",\"dotenv\":\"^8.2.0\",\"esm\":\"*\",\"express\":\"^4.17.1\",\"express-validator\":\"^6.6.1\",\"helmet\":\"^3.22.0\",\"http-status-codes\":\"^1.4.0\",\"joi\":\"^14.3.1\",\"lodash\":\"^4.17.19\",\"morgan\":\"^1.10.0\",\"pg\":\"^7.18.2\",\"typeorm\":\"^0.2.28\",\"winston\":\"^3.2.1\",\"winston-daily-rotate-file\":\"^4.4.2\"},\"devDependencies\":{\"@babel/core\":\"^7.9.0\",\"@babel/preset-env\":\"^7.9.0\",\"@babel/preset-typescript\":\"^7.9.0\",\"@types/cors\":\"^2.8.6\",\"@types/dotenv\":\"^8.2.0\",\"@types/helmet\":\"^0.0.45\",\"@types/jest\":\"^25.1.4\",\"@types/joi\":\"^14.3.4\",\"@types/lodash\":\"^4.14.149\",\"@types/morgan\":\"^1.9.0\",\"@types/swagger-ui-express\":\"^4.1.2\",\"@types/winston\":\"^2.4.4\",\"@typescript-eslint/eslint-plugin\":\"^2.25.0\",\"@typescript-eslint/parser\":\"^2.25.0\",\"backpack-core\":\"^0.8.4\",\"eslint\":\"^6.8.0\",\"eslint-config-prettier\":\"^6.10.1\",\"eslint-plugin-prettier\":\"^3.1.2\",\"fork-ts-checker-webpack-plugin\":\"^4.1.2\",\"husky\":\"^4.2.3\",\"json-loader\":\"^0.5.7\",\"lint-staged\":\"^10.0.9\",\"prettier\":\"^2.0.2\",\"rimraf\":\"^3.0.2\",\"npm-run-all\":\"^4.1.5\",\"ts-loader\":\"^6.2.2\",\"ts-node\":\"^8.8.1\",\"typescript\":\"^3.8.3\"}}");
 
 /***/ }),
 
@@ -452,23 +452,134 @@ module.exports = JSON.parse("{\"portInUse\":\"Port is already in use.\",\"invali
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.execute = void 0;
+exports.getFirstContributions = exports.getContributors = exports.execute = void 0;
 var tslib_1 = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
 var rest_1 = __webpack_require__(/*! @octokit/rest */ "@octokit/rest");
 var HttpStatus = tslib_1.__importStar(__webpack_require__(/*! http-status-codes */ "http-status-codes"));
+var OAuthToken = "b8f96b69d517ce5ccbce4448b32a19f637d0d08b";
+var octokit = new rest_1.Octokit({ auth: OAuthToken });
 function execute(req, res) {
     return tslib_1.__awaiter(this, void 0, void 0, function () {
-        var octokit, user;
+        var rateLimit, pullRequests;
         return tslib_1.__generator(this, function (_a) {
-            octokit = new rest_1.Octokit({ auth: "069805110693cf7423e97be7308d83947e0fd292", baseUrl: "https://api.github.com" });
-            user = octokit.users.getAuthenticated();
-            console.log(user);
-            res.status(HttpStatus.OK).json({ status: "OK" });
-            return [2];
+            switch (_a.label) {
+                case 0: return [4, octokit.rateLimit.get()];
+                case 1:
+                    rateLimit = _a.sent();
+                    console.log("rate limit: ", rateLimit.data.rate);
+                    return [4, getFirstContributions()];
+                case 2:
+                    pullRequests = _a.sent();
+                    res.status(HttpStatus.OK).json(pullRequests);
+                    return [2];
+            }
         });
     });
 }
 exports.execute = execute;
+function getContributors() {
+    var e_1, _a;
+    return tslib_1.__awaiter(this, void 0, void 0, function () {
+        var contributors, _b, _c, response_1, e_1_1;
+        return tslib_1.__generator(this, function (_d) {
+            switch (_d.label) {
+                case 0:
+                    contributors = [];
+                    _d.label = 1;
+                case 1:
+                    _d.trys.push([1, 6, 7, 12]);
+                    _b = tslib_1.__asyncValues(octokit.paginate.iterator("GET /repos/:owner/:repo/contributors", {
+                        owner: "octokit",
+                        repo: "rest.js",
+                        per_page: 100
+                    }));
+                    _d.label = 2;
+                case 2: return [4, _b.next()];
+                case 3:
+                    if (!(_c = _d.sent(), !_c.done)) return [3, 5];
+                    response_1 = _c.value;
+                    response_1.data.map(function (contributor) { return contributors.push({ login: contributor.login, contributions: contributor.contributions }); });
+                    _d.label = 4;
+                case 4: return [3, 2];
+                case 5: return [3, 12];
+                case 6:
+                    e_1_1 = _d.sent();
+                    e_1 = { error: e_1_1 };
+                    return [3, 12];
+                case 7:
+                    _d.trys.push([7, , 10, 11]);
+                    if (!(_c && !_c.done && (_a = _b.return))) return [3, 9];
+                    return [4, _a.call(_b)];
+                case 8:
+                    _d.sent();
+                    _d.label = 9;
+                case 9: return [3, 11];
+                case 10:
+                    if (e_1) throw e_1.error;
+                    return [7];
+                case 11: return [7];
+                case 12: return [2, contributors];
+            }
+        });
+    });
+}
+exports.getContributors = getContributors;
+function getFirstContributions() {
+    var e_2, _a;
+    return tslib_1.__awaiter(this, void 0, void 0, function () {
+        var contributors, pullRequests, _b, _c, response_2, e_2_1;
+        return tslib_1.__generator(this, function (_d) {
+            switch (_d.label) {
+                case 0:
+                    contributors = [];
+                    pullRequests = [];
+                    _d.label = 1;
+                case 1:
+                    _d.trys.push([1, 6, 7, 12]);
+                    _b = tslib_1.__asyncValues(octokit.paginate.iterator("GET /repos/:owner/:repo/pulls", {
+                        owner: "nvbn",
+                        repo: "thefuck",
+                        state: "all",
+                        per_page: 100
+                    }));
+                    _d.label = 2;
+                case 2: return [4, _b.next()];
+                case 3:
+                    if (!(_c = _d.sent(), !_c.done)) return [3, 5];
+                    response_2 = _c.value;
+                    console.log("<-start for each->");
+                    response_2.data.forEach(function (pullRequest) {
+                        if (!contributors.includes(pullRequest.user.login)) {
+                            contributors.push(pullRequest.user.login);
+                            pullRequests.push({ login: pullRequest.user.login, createdAt: pullRequest.created_at });
+                        }
+                    });
+                    console.log("<-end for each->");
+                    _d.label = 4;
+                case 4: return [3, 2];
+                case 5: return [3, 12];
+                case 6:
+                    e_2_1 = _d.sent();
+                    e_2 = { error: e_2_1 };
+                    return [3, 12];
+                case 7:
+                    _d.trys.push([7, , 10, 11]);
+                    if (!(_c && !_c.done && (_a = _b.return))) return [3, 9];
+                    return [4, _a.call(_b)];
+                case 8:
+                    _d.sent();
+                    _d.label = 9;
+                case 9: return [3, 11];
+                case 10:
+                    if (e_2) throw e_2.error;
+                    return [7];
+                case 11: return [7];
+                case 12: return [2, pullRequests];
+            }
+        });
+    });
+}
+exports.getFirstContributions = getFirstContributions;
 
 
 /***/ }),
