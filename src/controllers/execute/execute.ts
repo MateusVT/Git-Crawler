@@ -22,11 +22,27 @@ export async function execute(req: Request, res: Response) {
 
 
   const rateLimit = await octokit.rateLimit.get()
+  octokit.repos.listPublic({})
   console.log("rate limit: ", rateLimit.data.rate)
   // const contributors = await getContributors();
-  const pullRequests = await getFirstContributions();
+  const pullRequests = await getAllFirstContributions("", "");
 
   res.status(HttpStatus.OK).json(pullRequests);
+}
+
+
+export async function getTopTenReposByLanguage(language: string) {
+  const contributors: { login: string, contributions: string }[] = []
+  for await (const response of octokit.paginate.iterator(
+    "GET /repositories",
+    {
+
+    }
+  )) {
+    // response.data.map((contributor: any) => contributors.push({ login: contributor.login, contributions: contributor.contributions }))
+  }
+
+  return contributors
 }
 
 export async function getContributors(owner: string, repo: string) {
