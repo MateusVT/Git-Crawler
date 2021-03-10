@@ -36,7 +36,7 @@ $ npm start
 By default git-crawler will run at localhost:3000.
 
 e.g.
-```
+
 GET localhost:3000/execute // Execute methods.
 
 GET localhost:3000/routes // Returns all routes currently available
