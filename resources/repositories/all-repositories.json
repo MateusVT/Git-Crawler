@@ -5,19 +5,5 @@
         "url": "http://www.github.com/Foundry376/Mailspring",
         "language": "TypeScript",
         "nameconcat": "Foundry376/Mailspring"
-    },
-    {
-        "owner": "botpress",
-        "name": "botpress",
-        "url": "http://www.github.com/botpress/botpress",
-        "language": "TypeScript",
-        "nameconcat": "botpress/botpress"
-    },
-    {
-        "owner": "grafana",
-        "name": "grafana",
-        "url": "http://www.github.com/grafana/grafana",
-        "language": "TypeScript",
-        "nameconcat": "grafana/grafana"
     }
 ]

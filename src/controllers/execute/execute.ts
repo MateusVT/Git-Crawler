@@ -19,45 +19,45 @@ const repositories = loadRepositoriesSample()//Load repositories sample
 
 export async function execute(req: Request, res: Response) {
   let limitRemaining = await getRateLimitRemaining()
-  getWeeklyDistribution()
-  // console.log("[Start] Limit Remaining: " + limitRemaining)
+  // getWeeklyDistribution()
+  console.log("[Start] Limit Remaining: " + limitRemaining)
 
-  // const promisses = await repositories.map(async repo => {
-  //   repo.script_execution = { start_at: nowLocale().format("LT L") }
-  //   let repo_first_contribuitions: Contribuition[] = []
-  //   let repo_labels: string[] = []
-  //   let repo_newcomer_labels: string[] = []
-  //   let repo_newcomer_labels_date: Label[] = []
+  const promisses = await repositories.map(async repo => {
+    repo.script_execution = { start_at: nowLocale().format("LT L") }
+    let repo_first_contribuitions: Contribuition[] = []
+    let repo_labels: string[] = []
+    let repo_newcomer_labels: string[] = []
+    let repo_newcomer_labels_date: Label[] = []
 
-  //   if (limitRemaining >= 10) {
-  //     repo_first_contribuitions = await getAllFirstContributions(repo.owner!, repo.name!);//Return a list of all contributors with the date of theirs first contributions
-  //     console.log()
+    if (limitRemaining >= 10) {
+      repo_first_contribuitions = await getAllFirstContributions(repo.owner!, repo.name!);//Return a list of all contributors with the date of theirs first contributions
+      console.log()
 
-  //     repo_labels = await getAllLabels(repo.owner!, repo.name!);//Return all labels from the given repository
-  //     console.log()
+      repo_labels = await getAllLabels(repo.owner!, repo.name!);//Return all labels from the given repository
+      console.log()
 
-  //     repo_newcomer_labels = await findNewcomerLabelsOnRepository(repo.owner!, repo.name!, repo_labels);//Find all newcomer labels on the repositorie (based on our dataset)
-  //     console.log()
+      repo_newcomer_labels = await findNewcomerLabelsOnRepository(repo.owner!, repo.name!, repo_labels);//Find all newcomer labels on the repositorie (based on our dataset)
+      console.log()
 
-  //     repo_newcomer_labels_date = await getFirstOcurrenciesNewComerLabels(repo.owner!, repo.name!, repo_newcomer_labels);//Find all newcomer labels on the repositorie (based on our dataset)
-  //     console.log()
-  //   } else {
-  //     tokenIndex++
-  //     console.log("Token Changed! - " + OAuthTokens[tokenIndex])
-  //     octokit = new Octokit({ auth: OAuthTokens[tokenIndex] })
-  //     limitRemaining = await getRateLimitRemaining()
-  //   }
+      repo_newcomer_labels_date = await getFirstOcurrenciesNewComerLabels(repo.owner!, repo.name!, repo_newcomer_labels);//Find all newcomer labels on the repositorie (based on our dataset)
+      console.log()
+    } else {
+      tokenIndex++
+      console.log("Token Changed! - " + OAuthTokens[tokenIndex])
+      octokit = new Octokit({ auth: OAuthTokens[tokenIndex] })
+      limitRemaining = await getRateLimitRemaining()
+    }
 
-  //   repo.first_contribuitions = repo_first_contribuitions
-  //   repo.labels = repo_labels
-  //   repo.newcomer_labels = repo_newcomer_labels_date
-  //   repo.script_execution.finished_at = nowLocale().format("LT L")
-  //   save(`${repo.owner}-${repo.nameconcat}`.replace(/\//g, ''), repo)
-  // })
+    repo.first_contribuitions = repo_first_contribuitions
+    repo.labels = repo_labels
+    repo.newcomer_labels = repo_newcomer_labels_date
+    repo.script_execution.finished_at = nowLocale().format("LT L")
+    save(`${repo.owner}-${repo.nameconcat}`.replace(/\//g, ''), repo)
+  })
 
-  // await Promise.all(promisses);
+  await Promise.all(promisses);
 
-  // console.log("[End] Limit Remaining: " + limitRemaining)
+  console.log("[End] Limit Remaining: " + limitRemaining)
   res.status(HttpStatus.OK).end();
 }
 
@@ -130,6 +130,7 @@ async function getFirstOcurrenciesNewComerLabels(owner: string, name: string, ne
   console.log("<-start for each {" + i + "}->")
   const promisses = await newcomer_labels.map(async (label) => {
     const issues = await octokit.issues.listForRepo({ repo: name, owner: owner, sort: "created", direction: "asc", label: label, per_page: 1 })
+    console.log("URL: " + issues.url)
     const issue = issues.data[0]
     if (issue != undefined) {
       const label_data = { name: label, created_at: issue.created_at }
