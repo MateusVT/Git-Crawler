@@ -103,37 +103,50 @@ module.exports = JSON.parse("{\"name\":\"Git-Crawler\",\"version\":\"1.0.1\",\"d
 /*!****************!*\
   !*** ./app.ts ***!
   \****************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var body_parser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! body-parser */ "body-parser");
+/* harmony import */ var body_parser__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(body_parser__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cors */ "cors");
+/* harmony import */ var cors__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(cors__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! express */ "express");
+/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var helmet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! helmet */ "helmet");
+/* harmony import */ var helmet__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(helmet__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var morgan__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! morgan */ "morgan");
+/* harmony import */ var morgan__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(morgan__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _config_config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./config/config */ "./config/config.ts");
+/* harmony import */ var _middlewares_genericErrorHandler__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./middlewares/genericErrorHandler */ "./middlewares/genericErrorHandler.ts");
+/* harmony import */ var _middlewares_notFoundHandler__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./middlewares/notFoundHandler */ "./middlewares/notFoundHandler.ts");
+/* harmony import */ var _routes_routes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./routes/routes */ "./routes/routes.ts");
+/* harmony import */ var _routes_static__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./routes/static */ "./routes/static.ts");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(/*! tslib */ "tslib");
-var body_parser_1 = tslib_1.__importDefault(__webpack_require__(/*! body-parser */ "body-parser"));
-var cors_1 = tslib_1.__importDefault(__webpack_require__(/*! cors */ "cors"));
-var express_1 = tslib_1.__importDefault(__webpack_require__(/*! express */ "express"));
-var helmet_1 = tslib_1.__importDefault(__webpack_require__(/*! helmet */ "helmet"));
-var morgan_1 = tslib_1.__importDefault(__webpack_require__(/*! morgan */ "morgan"));
-var config_1 = tslib_1.__importDefault(__webpack_require__(/*! ./config/config */ "./config/config.ts"));
-var genericErrorHandler_1 = tslib_1.__importDefault(__webpack_require__(/*! ./middlewares/genericErrorHandler */ "./middlewares/genericErrorHandler.ts"));
-var notFoundHandler_1 = tslib_1.__importDefault(__webpack_require__(/*! ./middlewares/notFoundHandler */ "./middlewares/notFoundHandler.ts"));
-var routes_1 = tslib_1.__importDefault(__webpack_require__(/*! ./routes/routes */ "./routes/routes.ts"));
-var static_1 = tslib_1.__importDefault(__webpack_require__(/*! ./routes/static */ "./routes/static.ts"));
-var name = config_1.default.name, version = config_1.default.version;
-var app = express_1.default();
+
+
+
+
+
+
+
+
+
+const { name, version } = _config_config__WEBPACK_IMPORTED_MODULE_5__["default"];
+const app = express__WEBPACK_IMPORTED_MODULE_2___default()();
 app.locals.name = name;
 app.locals.version = version;
-app.use(cors_1.default());
-app.use(helmet_1.default());
-app.use(morgan_1.default('dev'));
-app.use(body_parser_1.default.json());
-app.use(body_parser_1.default.urlencoded({ extended: true }));
-app.use('/', routes_1.default);
-static_1.default(routes_1.default);
-app.use(genericErrorHandler_1.default);
-app.use(notFoundHandler_1.default);
-exports.default = app;
+app.use(cors__WEBPACK_IMPORTED_MODULE_1___default()());
+app.use(helmet__WEBPACK_IMPORTED_MODULE_3___default()());
+app.use(morgan__WEBPACK_IMPORTED_MODULE_4___default()('dev'));
+app.use(body_parser__WEBPACK_IMPORTED_MODULE_0___default.a.json());
+app.use(body_parser__WEBPACK_IMPORTED_MODULE_0___default.a.urlencoded({ extended: true }));
+app.use('/', _routes_routes__WEBPACK_IMPORTED_MODULE_8__["default"]);
+Object(_routes_static__WEBPACK_IMPORTED_MODULE_9__["default"])(_routes_routes__WEBPACK_IMPORTED_MODULE_8__["default"]);
+app.use(_middlewares_genericErrorHandler__WEBPACK_IMPORTED_MODULE_6__["default"]);
+app.use(_middlewares_notFoundHandler__WEBPACK_IMPORTED_MODULE_7__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (app);
 
 
 /***/ }),
@@ -142,21 +155,25 @@ exports.default = app;
 /*!**************************!*\
   !*** ./config/config.ts ***!
   \**************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var dotenv__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dotenv */ "dotenv");
+/* harmony import */ var dotenv__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(dotenv__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../package.json */ "../package.json");
+var _package_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../package.json */ "../package.json", 1);
+/* harmony import */ var _errors_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./errors.json */ "./config/errors.json");
+var _errors_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./errors.json */ "./config/errors.json", 1);
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(/*! tslib */ "tslib");
-var dotenv = tslib_1.__importStar(__webpack_require__(/*! dotenv */ "dotenv"));
-var package_json_1 = tslib_1.__importDefault(__webpack_require__(/*! ../../package.json */ "../package.json"));
-var errors_json_1 = tslib_1.__importDefault(__webpack_require__(/*! ./errors.json */ "./config/errors.json"));
-dotenv.config();
-exports.default = {
-    errors: errors_json_1.default,
-    name: package_json_1.default.name,
-    version: package_json_1.default.version,
+
+
+dotenv__WEBPACK_IMPORTED_MODULE_0__["config"]();
+/* harmony default export */ __webpack_exports__["default"] = ({
+    errors: _errors_json__WEBPACK_IMPORTED_MODULE_2__,
+    name: _package_json__WEBPACK_IMPORTED_MODULE_1__.name,
+    version: _package_json__WEBPACK_IMPORTED_MODULE_1__.version,
     host: '127.0.0.1',
     environment: 'development',
     appUrl: 'http://localhost:3000',
@@ -172,7 +189,7 @@ exports.default = {
         maxFiles: process.env.LOGGING_MAX_FILES || '7d',
         datePattern: process.env.LOGGING_DATE_PATTERN || 'YYYY-MM-DD'
     }
-};
+});
 
 
 /***/ }),
@@ -192,229 +209,198 @@ module.exports = JSON.parse("{\"portInUse\":\"Port is already in use.\",\"invali
 /*!****************************************!*\
   !*** ./controllers/execute/execute.ts ***!
   \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: execute */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "execute", function() { return execute; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "tslib");
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(tslib__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _octokit_rest__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @octokit/rest */ "@octokit/rest");
+/* harmony import */ var _octokit_rest__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_octokit_rest__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var http_status_codes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! http-status-codes */ "http-status-codes");
+/* harmony import */ var http_status_codes__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(http_status_codes__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils_handleMock__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/handleMock */ "./utils/handleMock.ts");
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! fs */ "fs");
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _utils_Moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/Moment */ "./utils/Moment.ts");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getFirstOcurrenciesNewComerLabels = exports.getAllLabels = exports.getAllFirstContributions = exports.execute = void 0;
-var tslib_1 = __webpack_require__(/*! tslib */ "tslib");
-var rest_1 = __webpack_require__(/*! @octokit/rest */ "@octokit/rest");
-var HttpStatus = tslib_1.__importStar(__webpack_require__(/*! http-status-codes */ "http-status-codes"));
-var handleMock_1 = __webpack_require__(/*! ../../utils/handleMock */ "./utils/handleMock.ts");
-var OAuthToken = "116e57d4264d623d0c5ddea9a2840e0e0a4bb4a7";
-var octokit = new rest_1.Octokit({ auth: OAuthToken });
-var newcomer_labels = loadNewCommerLabels();
-function execute(req, res) {
-    return tslib_1.__awaiter(this, void 0, void 0, function () {
-        var repo, rateLimit, repo_labels, repo_newcomer_labels, repo_newcomer_labels_date;
-        return tslib_1.__generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    repo = { owner: "airbnb", name: "lottie-android" };
-                    return [4, octokit.rateLimit.get()];
-                case 1:
-                    rateLimit = _a.sent();
-                    console.log("Daily Rate Limit: ", rateLimit.data.rate);
-                    console.log();
-                    return [4, getAllLabels(repo.owner, repo.name)];
-                case 2:
-                    repo_labels = _a.sent();
-                    console.log();
-                    return [4, findNewcomerLabelsOnRepository(repo.owner, repo.name, repo_labels)];
-                case 3:
-                    repo_newcomer_labels = _a.sent();
-                    console.log();
-                    return [4, getFirstOcurrenciesNewComerLabels(repo.owner, repo.name, repo_newcomer_labels.newcomer_labels)];
-                case 4:
-                    repo_newcomer_labels_date = _a.sent();
-                    console.log();
-                    res.status(HttpStatus.OK).json(repo_newcomer_labels_date);
-                    return [2];
-            }
-        });
-    });
+
+
+
+
+
+let tokenIndex = 0;
+const OAuthTokens = ["e39c5da13998c763af72700799d11af8b4f7bd34", "aba49913a2df51e5cab4a9c663325f30ffedbd17", "cd30d422fbeaa59f3e73d632d0ffb3fe2dd68e9f"];
+let octokit = new _octokit_rest__WEBPACK_IMPORTED_MODULE_1__["Octokit"]({ auth: OAuthTokens[tokenIndex] });
+const newcomer_labels = loadNewCommerLabels();
+const repositories = loadRepositoriesSample();
+async function execute(req, res) {
+    let limitRemaining = await getRateLimitRemaining();
+    getWeeklyDistribution();
+    res.status(http_status_codes__WEBPACK_IMPORTED_MODULE_2__["OK"]).end();
 }
-exports.execute = execute;
-function getAllFirstContributions(owner, repo) {
+async function getAllFirstContributions(owner, repo) {
     var e_1, _a;
-    return tslib_1.__awaiter(this, void 0, void 0, function () {
-        var contributors, firstContributions, page, _b, _c, response, e_1_1;
-        return tslib_1.__generator(this, function (_d) {
-            switch (_d.label) {
-                case 0:
-                    contributors = [];
-                    firstContributions = [];
-                    page = 0;
-                    console.log("- COLLECTING FIRST CONTRIBUTIONS FROM PROJECT " + owner + "/" + repo + " -");
-                    _d.label = 1;
-                case 1:
-                    _d.trys.push([1, 6, 7, 12]);
-                    _b = tslib_1.__asyncValues(octokit.paginate.iterator("GET /repos/:owner/:repo/pulls", {
-                        owner: owner,
-                        repo: repo,
-                        state: "all",
-                        per_page: 100
-                    }));
-                    _d.label = 2;
-                case 2: return [4, _b.next()];
-                case 3:
-                    if (!(_c = _d.sent(), !_c.done)) return [3, 5];
-                    response = _c.value;
-                    console.log("<-start for each {" + page + "}->");
-                    response.data.forEach(function (pullRequest) {
-                        if (!contributors.includes(pullRequest.user.login)) {
-                            var pr = { login: pullRequest.user.login, createdAt: pullRequest.created_at };
-                            contributors.push(pr.login);
-                            firstContributions.push(pr);
-                            console.log(pr);
-                        }
-                    });
-                    page = page + 1;
-                    console.log("<-end for each->");
-                    _d.label = 4;
-                case 4: return [3, 2];
-                case 5: return [3, 12];
-                case 6:
-                    e_1_1 = _d.sent();
-                    e_1 = { error: e_1_1 };
-                    return [3, 12];
-                case 7:
-                    _d.trys.push([7, , 10, 11]);
-                    if (!(_c && !_c.done && (_a = _b.return))) return [3, 9];
-                    return [4, _a.call(_b)];
-                case 8:
-                    _d.sent();
-                    _d.label = 9;
-                case 9: return [3, 11];
-                case 10:
-                    if (e_1) throw e_1.error;
-                    return [7];
-                case 11: return [7];
-                case 12: return [2, firstContributions];
-            }
-        });
-    });
+    const contributors = [];
+    const firstContributions = [];
+    let page = 0;
+    console.log("- COLLECTING FIRST CONTRIBUTIONS FROM PROJECT " + owner + "/" + repo + " -");
+    try {
+        for (var _b = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__asyncValues"])(octokit.paginate.iterator("GET /repos/:owner/:repo/pulls", {
+            owner: owner,
+            repo: repo,
+            state: "all",
+            per_page: 100
+        })), _c; _c = await _b.next(), !_c.done;) {
+            const response = _c.value;
+            console.log("<-start for each {" + page + "}->");
+            response.data.forEach((pullRequest) => {
+                if (!contributors.includes(pullRequest.user.login)) {
+                    const pr = { login: pullRequest.user.login, created_at: pullRequest.created_at, issue_number: pullRequest.number };
+                    contributors.push(pr.login);
+                    firstContributions.push(pr);
+                    console.log(pr);
+                }
+            });
+            page = page + 1;
+            console.log("<-end for each->");
+        }
+    }
+    catch (e_1_1) { e_1 = { error: e_1_1 }; }
+    finally {
+        try {
+            if (_c && !_c.done && (_a = _b.return)) await _a.call(_b);
+        }
+        finally { if (e_1) throw e_1.error; }
+    }
+    return firstContributions;
 }
-exports.getAllFirstContributions = getAllFirstContributions;
-function getAllLabels(owner, name) {
+async function getAllLabels(owner, name) {
     var e_2, _a;
-    return tslib_1.__awaiter(this, void 0, void 0, function () {
-        var labels, page, _b, _c, response, e_2_1;
-        return tslib_1.__generator(this, function (_d) {
-            switch (_d.label) {
-                case 0:
-                    labels = [];
-                    page = 0;
-                    console.log("- COLLECTING LABELS FROM PROJECT " + owner + "/" + name + " -");
-                    _d.label = 1;
-                case 1:
-                    _d.trys.push([1, 6, 7, 12]);
-                    _b = tslib_1.__asyncValues(octokit.paginate.iterator("GET /repos/:owner/:repo/labels", {
-                        owner: owner,
-                        repo: name,
-                        per_page: 100
-                    }));
-                    _d.label = 2;
-                case 2: return [4, _b.next()];
-                case 3:
-                    if (!(_c = _d.sent(), !_c.done)) return [3, 5];
-                    response = _c.value;
-                    console.log("<-start for each {" + page + "}->");
-                    response.data.forEach(function (label) {
-                        labels.push(label.name);
-                        console.log(label.name);
-                    });
-                    page = page + 1;
-                    console.log("<-end for each->");
-                    _d.label = 4;
-                case 4: return [3, 2];
-                case 5: return [3, 12];
-                case 6:
-                    e_2_1 = _d.sent();
-                    e_2 = { error: e_2_1 };
-                    return [3, 12];
-                case 7:
-                    _d.trys.push([7, , 10, 11]);
-                    if (!(_c && !_c.done && (_a = _b.return))) return [3, 9];
-                    return [4, _a.call(_b)];
-                case 8:
-                    _d.sent();
-                    _d.label = 9;
-                case 9: return [3, 11];
-                case 10:
-                    if (e_2) throw e_2.error;
-                    return [7];
-                case 11: return [7];
-                case 12: return [2, labels];
-            }
-        });
-    });
+    const labels = [];
+    let page = 0;
+    console.log("- COLLECTING LABELS FROM PROJECT " + owner + "/" + name + " -");
+    try {
+        for (var _b = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__asyncValues"])(octokit.paginate.iterator("GET /repos/:owner/:repo/labels", {
+            owner: owner,
+            repo: name,
+            per_page: 100
+        })), _c; _c = await _b.next(), !_c.done;) {
+            const response = _c.value;
+            console.log("<-start for each {" + page + "}->");
+            response.data.forEach((label) => {
+                labels.push(label.name);
+                console.log(label.name);
+            });
+            page = page + 1;
+            console.log("<-end for each->");
+        }
+    }
+    catch (e_2_1) { e_2 = { error: e_2_1 }; }
+    finally {
+        try {
+            if (_c && !_c.done && (_a = _b.return)) await _a.call(_b);
+        }
+        finally { if (e_2) throw e_2.error; }
+    }
+    return labels;
 }
-exports.getAllLabels = getAllLabels;
-function getFirstOcurrenciesNewComerLabels(owner, name, newcomer_labels) {
-    return tslib_1.__awaiter(this, void 0, void 0, function () {
-        var i, data, promisses;
-        var _this = this;
-        return tslib_1.__generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    i = 0;
-                    data = { owner: owner, name: name, newcomer_labels: [] };
-                    console.log("- COLLECTING FIRST OCURRENCY OF LABELS " + newcomer_labels.toString() + " FROM PROJECT " + owner + "/" + name + " -");
-                    console.log("<-start for each {" + i + "}->");
-                    return [4, newcomer_labels.map(function (label) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
-                            var issues, issue, label_data;
-                            return tslib_1.__generator(this, function (_a) {
-                                switch (_a.label) {
-                                    case 0: return [4, octokit.issues.listForRepo({ repo: name, owner: owner, sort: "created", direction: "asc", label: label, per_page: 1 })];
-                                    case 1:
-                                        issues = _a.sent();
-                                        issue = issues.data[0];
-                                        if (issue != undefined) {
-                                            label_data = { name: label, created_at: issue.created_at };
-                                            console.log(label_data);
-                                            data.newcomer_labels.push(label_data);
-                                        }
-                                        i = i + 1;
-                                        console.log("i: " + i);
-                                        return [2];
-                                }
-                            });
-                        }); })];
-                case 1:
-                    promisses = _a.sent();
-                    console.log("<-end for each->");
-                    return [4, Promise.all(promisses)];
-                case 2:
-                    _a.sent();
-                    return [2, data];
-            }
-        });
+async function getFirstOcurrenciesNewComerLabels(owner, name, newcomer_labels) {
+    let i = 0;
+    let newcomer_labels_date = [];
+    console.log("- COLLECTING FIRST OCURRENCY OF LABELS " + newcomer_labels.toString() + " FROM PROJECT " + owner + "/" + name + " -");
+    console.log("<-start for each {" + i + "}->");
+    const promisses = await newcomer_labels.map(async (label) => {
+        const issues = await octokit.issues.listForRepo({ repo: name, owner: owner, sort: "created", direction: "asc", label: label, per_page: 1 });
+        const issue = issues.data[0];
+        if (issue != undefined) {
+            const label_data = { name: label, created_at: issue.created_at };
+            console.log(label_data);
+            newcomer_labels_date.push(label_data);
+        }
+        i = i + 1;
+        console.log("i: " + i);
     });
+    console.log("<-end for each->");
+    await Promise.all(promisses);
+    return newcomer_labels_date;
 }
-exports.getFirstOcurrenciesNewComerLabels = getFirstOcurrenciesNewComerLabels;
 function findNewcomerLabelsOnRepository(owner, name, repo_labels) {
-    var data = { owner: owner, name: name, has_newcomer_label: false, newcomer_labels: [] };
-    var page = 0;
+    const repo_newcomer_labels = [];
+    let page = 0;
     console.log("- COLLECTING LABELS FROM PROJECT " + owner + "/" + name + " -");
     console.log("<-start for each {" + page + "}->");
-    repo_labels.forEach(function (label) {
+    repo_labels.forEach(label => {
         if (newcomer_labels.includes(label.toLocaleLowerCase())) {
             console.log("newcomer label found -> " + label);
-            data.newcomer_labels.push(label);
+            repo_newcomer_labels.push(label);
         }
     });
-    if (data.newcomer_labels.length > 1) {
-        data.has_newcomer_label = true;
-    }
     console.log("<-end for each->");
-    return data;
+    return repo_newcomer_labels;
 }
 function loadNewCommerLabels() {
-    var all_newcomer_labels = handleMock_1.readMock("resources/labels/all-labels.json");
-    return all_newcomer_labels.map(function (label) { return label.toLocaleLowerCase(); });
+    const all_newcomer_labels = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_3__["readMock"])("resources/labels/all-labels.json");
+    return all_newcomer_labels.map(label => label.toLocaleLowerCase());
+}
+function loadRepositoriesSample() {
+    const all_repositories = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_3__["readMock"])("resources/repositories/all-repositories.json");
+    const temp_repositories = [];
+    temp_repositories.push(all_repositories[0]);
+    return all_repositories;
+}
+async function pingRepositories() {
+    const renamedRepos = [];
+    const notRenamedRepos = [];
+    const promisses = await repositories.map(async (repository) => {
+        const ping = await octokit.repos.get({ owner: repository.owner, repo: repository.name }).catch(error => { return undefined; });
+        if (ping == undefined) {
+            renamedRepos.push({ name: repository.name, language: repository.language });
+        }
+        else {
+            notRenamedRepos.push({ name: repository.name, language: repository.language });
+        }
+    });
+    await Promise.all(promisses);
+    save("renamed-repositories", renamedRepos);
+    save("not-renamed-repositories", notRenamedRepos);
+}
+function cleanSampleRepositories() {
+    const renamedRepos = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_3__["readMock"])("resources/output/renamed-repositories.json");
+    const names = renamedRepos.map(repo => repo.name);
+    const cleanSample = repositories.filter(repository => {
+        return !names.includes(repository.name);
+    });
+    save("all-repositories-clean", cleanSample);
+}
+function getWeeklyDistribution() {
+    const repository = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_3__["readMock"])("resources/output/Foundry376-Foundry376Mailspring.json");
+    const contribuitions = repository.first_contribuitions.map(contribuition => {
+        const date = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(contribuition.created_at);
+        return contribuition.created_at;
+    });
+    const weekGrouped = datesGroupByComponent(contribuitions, 'WW GGGG');
+}
+function datesGroupByComponent(dates, token) {
+    return dates.reduce(function (val, date) {
+        let comp = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(date).format(token);
+        (val[comp] = val[comp] || []).push(date);
+        return val;
+    }, {});
+}
+async function getRateLimitRemaining() {
+    const rateLimit = await octokit.rateLimit.get();
+    const rateLimitData = rateLimit.data;
+    return rateLimitData.rate.remaining;
+}
+function save(name, data) {
+    fs__WEBPACK_IMPORTED_MODULE_4___default.a.writeFile(`resources/output/${name}.json`, JSON.stringify(data), function (err) {
+        if (err) {
+            console.log(err);
+        }
+    });
 }
 
 
@@ -424,34 +410,34 @@ function loadNewCommerLabels() {
 /*!*******************************!*\
   !*** ./controllers/server.ts ***!
   \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: status, routes */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "status", function() { return status; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "routes", function() { return routes; });
+/* harmony import */ var http_status_codes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! http-status-codes */ "http-status-codes");
+/* harmony import */ var http_status_codes__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(http_status_codes__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _routes_routes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../routes/routes */ "./routes/routes.ts");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.routes = exports.status = void 0;
-var tslib_1 = __webpack_require__(/*! tslib */ "tslib");
-var HttpStatus = tslib_1.__importStar(__webpack_require__(/*! http-status-codes */ "http-status-codes"));
-var routes_1 = tslib_1.__importDefault(__webpack_require__(/*! ../routes/routes */ "./routes/routes.ts"));
+
 function status(req, res) {
-    res.status(HttpStatus.OK).json({
+    res.status(http_status_codes__WEBPACK_IMPORTED_MODULE_0__["OK"]).json({
         name: req.app.locals.name,
         version: req.app.locals.version,
         author: "Mateus V. Torres",
         contact: "mtsvtorres@gmail.com",
     });
 }
-exports.status = status;
 function routes(_req, res) {
-    var routes = routes_1.default.stack.map(function (route) {
+    const routes = _routes_routes__WEBPACK_IMPORTED_MODULE_1__["default"].stack.map(route => {
         if (route.route && route.route.path) {
             return { path: route.route.path, methods: route.route.methods };
         }
     });
-    res.status(HttpStatus.OK).json({ routes: routes });
+    res.status(http_status_codes__WEBPACK_IMPORTED_MODULE_0__["OK"]).json({ routes: routes });
 }
-exports.routes = routes;
 
 
 /***/ }),
@@ -460,21 +446,22 @@ exports.routes = routes;
 /*!******************!*\
   !*** ./index.ts ***!
   \******************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app */ "./app.ts");
+/* harmony import */ var _config_config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config/config */ "./config/config.ts");
+/* harmony import */ var _middlewares_nodeErrorHandler__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./middlewares/nodeErrorHandler */ "./middlewares/nodeErrorHandler.ts");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(/*! tslib */ "tslib");
-var app_1 = tslib_1.__importDefault(__webpack_require__(/*! ./app */ "./app.ts"));
-var config_1 = tslib_1.__importDefault(__webpack_require__(/*! ./config/config */ "./config/config.ts"));
-var nodeErrorHandler_1 = tslib_1.__importDefault(__webpack_require__(/*! ./middlewares/nodeErrorHandler */ "./middlewares/nodeErrorHandler.ts"));
-app_1.default
-    .listen(config_1.default.port, function () {
-    console.info("Server started at http://" + config_1.default.host + ":" + config_1.default.port);
+
+
+_app__WEBPACK_IMPORTED_MODULE_0__["default"]
+    .listen(_config_config__WEBPACK_IMPORTED_MODULE_1__["default"].port, () => {
+    console.info(`Server started at http://${_config_config__WEBPACK_IMPORTED_MODULE_1__["default"].host}:${_config_config__WEBPACK_IMPORTED_MODULE_1__["default"].port}`);
 })
-    .on('error', nodeErrorHandler_1.default);
+    .on('error', _middlewares_nodeErrorHandler__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
 
 /***/ }),
@@ -483,24 +470,25 @@ app_1.default
 /*!********************************************!*\
   !*** ./middlewares/genericErrorHandler.ts ***!
   \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return genericErrorHandler; });
+/* harmony import */ var http_status_codes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! http-status-codes */ "http-status-codes");
+/* harmony import */ var http_status_codes__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(http_status_codes__WEBPACK_IMPORTED_MODULE_0__);
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(/*! tslib */ "tslib");
-var HttpStatus = tslib_1.__importStar(__webpack_require__(/*! http-status-codes */ "http-status-codes"));
 function buildError(err) {
     if (err.isJoi) {
         return {
-            code: HttpStatus.BAD_REQUEST,
-            message: HttpStatus.getStatusText(HttpStatus.BAD_REQUEST),
+            code: http_status_codes__WEBPACK_IMPORTED_MODULE_0__["BAD_REQUEST"],
+            message: http_status_codes__WEBPACK_IMPORTED_MODULE_0__["getStatusText"](http_status_codes__WEBPACK_IMPORTED_MODULE_0__["BAD_REQUEST"]),
             data: err.details &&
-                err.details.map(function (error) { return ({
+                err.details.map((error) => ({
                     param: error.path.join('.'),
                     message: error.message
-                }); })
+                }))
         };
     }
     if (err.isBoom) {
@@ -516,15 +504,14 @@ function buildError(err) {
         };
     }
     return {
-        code: HttpStatus.INTERNAL_SERVER_ERROR,
-        message: HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR)
+        code: http_status_codes__WEBPACK_IMPORTED_MODULE_0__["INTERNAL_SERVER_ERROR"],
+        message: http_status_codes__WEBPACK_IMPORTED_MODULE_0__["getStatusText"](http_status_codes__WEBPACK_IMPORTED_MODULE_0__["INTERNAL_SERVER_ERROR"])
     };
 }
 function genericErrorHandler(err, _, res, __) {
-    var error = buildError(err);
+    const error = buildError(err);
     res.status(error.code).json(error);
 }
-exports.default = genericErrorHandler;
 
 
 /***/ }),
@@ -533,12 +520,12 @@ exports.default = genericErrorHandler;
 /*!*****************************************!*\
   !*** ./middlewares/nodeErrorHandler.ts ***!
   \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return nodeErrorHandler; });
 function nodeErrorHandler(err) {
     switch (err.code) {
         case 'EACCES':
@@ -551,7 +538,6 @@ function nodeErrorHandler(err) {
             throw err;
     }
 }
-exports.default = nodeErrorHandler;
 
 
 /***/ }),
@@ -560,23 +546,23 @@ exports.default = nodeErrorHandler;
 /*!****************************************!*\
   !*** ./middlewares/notFoundHandler.ts ***!
   \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return notFoundError; });
+/* harmony import */ var http_status_codes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! http-status-codes */ "http-status-codes");
+/* harmony import */ var http_status_codes__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(http_status_codes__WEBPACK_IMPORTED_MODULE_0__);
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(/*! tslib */ "tslib");
-var HttpStatus = tslib_1.__importStar(__webpack_require__(/*! http-status-codes */ "http-status-codes"));
 function notFoundError(_, res, __) {
-    res.status(HttpStatus.NOT_FOUND).json({
+    res.status(http_status_codes__WEBPACK_IMPORTED_MODULE_0__["NOT_FOUND"]).json({
         error: {
-            code: HttpStatus.NOT_FOUND,
-            message: HttpStatus.getStatusText(HttpStatus.NOT_FOUND)
+            code: http_status_codes__WEBPACK_IMPORTED_MODULE_0__["NOT_FOUND"],
+            message: http_status_codes__WEBPACK_IMPORTED_MODULE_0__["getStatusText"](http_status_codes__WEBPACK_IMPORTED_MODULE_0__["NOT_FOUND"])
         }
     });
 }
-exports.default = notFoundError;
 
 
 /***/ }),
@@ -585,19 +571,20 @@ exports.default = notFoundError;
 /*!**************************!*\
   !*** ./routes/routes.ts ***!
   \**************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! express */ "express");
+/* harmony import */ var express__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _controllers_server__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../controllers/server */ "./controllers/server.ts");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(/*! tslib */ "tslib");
-var express_1 = __webpack_require__(/*! express */ "express");
-var server = tslib_1.__importStar(__webpack_require__(/*! ../controllers/server */ "./controllers/server.ts"));
-var router = express_1.Router();
-router.get('/', server.status);
-router.get('/routes', server.routes);
-exports.default = router;
+
+const router = Object(express__WEBPACK_IMPORTED_MODULE_0__["Router"])();
+router.get('/', _controllers_server__WEBPACK_IMPORTED_MODULE_1__["status"]);
+router.get('/routes', _controllers_server__WEBPACK_IMPORTED_MODULE_1__["routes"]);
+/* harmony default export */ __webpack_exports__["default"] = (router);
 
 
 /***/ }),
@@ -606,18 +593,61 @@ exports.default = router;
 /*!**************************!*\
   !*** ./routes/static.ts ***!
   \**************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _controllers_execute_execute__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../controllers/execute/execute */ "./controllers/execute/execute.ts");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(/*! tslib */ "tslib");
-var executeController = tslib_1.__importStar(__webpack_require__(/*! ../controllers/execute/execute */ "./controllers/execute/execute.ts"));
 function generateStaticRoutes(router) {
-    router.get('/execute', executeController.execute);
+    router.get('/execute', _controllers_execute_execute__WEBPACK_IMPORTED_MODULE_0__["execute"]);
 }
-exports.default = generateStaticRoutes;
+/* harmony default export */ __webpack_exports__["default"] = (generateStaticRoutes);
+
+
+/***/ }),
+
+/***/ "./utils/Moment.ts":
+/*!*************************!*\
+  !*** ./utils/Moment.ts ***!
+  \*************************/
+/*! exports provided: configureMomentjs, loadAbsoluteMoment, loadDuration, loadMoment, now, nowLocale */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "configureMomentjs", function() { return configureMomentjs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadAbsoluteMoment", function() { return loadAbsoluteMoment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadDuration", function() { return loadDuration; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadMoment", function() { return loadMoment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "now", function() { return now; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "nowLocale", function() { return nowLocale; });
+/* harmony import */ var moment_locale_pt_br__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment/locale/pt-br */ "moment/locale/pt-br");
+/* harmony import */ var moment_locale_pt_br__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment_locale_pt_br__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "moment");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function configureMomentjs() {
+    moment__WEBPACK_IMPORTED_MODULE_1__["locale"]("pt-BR");
+}
+function loadAbsoluteMoment(moment, format) {
+    return moment__WEBPACK_IMPORTED_MODULE_1__["utc"](moment, format);
+}
+function loadDuration(moment) {
+    return moment__WEBPACK_IMPORTED_MODULE_1__["duration"](moment);
+}
+function loadMoment(moment, format) {
+    return moment__WEBPACK_IMPORTED_MODULE_1__["utc"](moment, format).local();
+}
+function now() {
+    return moment__WEBPACK_IMPORTED_MODULE_1__["utc"](moment__WEBPACK_IMPORTED_MODULE_1__["now"]());
+}
+function nowLocale() {
+    return moment__WEBPACK_IMPORTED_MODULE_1__["utc"](moment__WEBPACK_IMPORTED_MODULE_1__["now"]()).local();
+}
+
 
 
 /***/ }),
@@ -626,19 +656,19 @@ exports.default = generateStaticRoutes;
 /*!*****************************!*\
   !*** ./utils/handleMock.ts ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: readMock */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "readMock", function() { return readMock; });
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! fs */ "fs");
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_0__);
 
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.readMock = void 0;
-var fs_1 = __webpack_require__(/*! fs */ "fs");
 function readMock(filePath) {
-    var file = fs_1.readFileSync(filePath, 'utf8');
+    const file = Object(fs__WEBPACK_IMPORTED_MODULE_0__["readFileSync"])(filePath, 'utf8');
     return JSON.parse(file);
 }
-exports.readMock = readMock;
 
 
 /***/ }),
@@ -728,6 +758,28 @@ module.exports = require("helmet");
 /***/ (function(module, exports) {
 
 module.exports = require("http-status-codes");
+
+/***/ }),
+
+/***/ "moment":
+/*!*************************!*\
+  !*** external "moment" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("moment");
+
+/***/ }),
+
+/***/ "moment/locale/pt-br":
+/*!**************************************!*\
+  !*** external "moment/locale/pt-br" ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("moment/locale/pt-br");
 
 /***/ }),
 
