@@ -232,7 +232,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let tokenIndex = 0;
-const OAuthTokens = ["e39c5da13998c763af72700799d11af8b4f7bd34", "aba49913a2df51e5cab4a9c663325f30ffedbd17", "cd30d422fbeaa59f3e73d632d0ffb3fe2dd68e9f"];
+const OAuthTokens = ["f3cd0d299db11989d29eccafc6720394d04134ce", "cd30d422fbeaa59f3e73d632d0ffb3fe2dd68e9f", '7c262c81d42dab7f0e94c2be6745a64176009e10', 'e9342f8b22062fed28023334a786dbb81a8aa676', '69b60039acaf5583b58657284ef3cc4de6dfe04a', "e39c5da13998c763af72700799d11af8b4f7bd34", "aba49913a2df51e5cab4a9c663325f30ffedbd17"];
 let octokit = new _octokit_rest__WEBPACK_IMPORTED_MODULE_1__["Octokit"]({ auth: OAuthTokens[tokenIndex] });
 const newcomer_labels = loadNewCommerLabels();
 const repositories = loadRepositoriesSample();
@@ -245,6 +245,7 @@ async function execute(req, res) {
         let repo_labels = [];
         let repo_newcomer_labels = [];
         let repo_newcomer_labels_date = [];
+        let weekly_distribuition = [];
         if (limitRemaining >= 10) {
             repo_first_contribuitions = await getAllFirstContributions(repo.owner, repo.name);
             console.log();
@@ -254,6 +255,8 @@ async function execute(req, res) {
             console.log();
             repo_newcomer_labels_date = await getFirstOcurrenciesNewComerLabels(repo.owner, repo.name, repo_newcomer_labels);
             console.log();
+            weekly_distribuition = await getWeeklyDistribution(repo_first_contribuitions);
+            console.log();
         }
         else {
             tokenIndex++;
@@ -262,6 +265,7 @@ async function execute(req, res) {
             limitRemaining = await getRateLimitRemaining();
         }
         repo.first_contribuitions = repo_first_contribuitions;
+        repo.weekly_distribuition = weekly_distribuition;
         repo.labels = repo_labels;
         repo.newcomer_labels = repo_newcomer_labels_date;
         repo.script_execution.finished_at = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["nowLocale"])().format("LT L");
@@ -406,20 +410,27 @@ function cleanSampleRepositories() {
     });
     save("all-repositories-clean", cleanSample);
 }
-function getWeeklyDistribution() {
-    const repository = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_3__["readMock"])("resources/output/Foundry376-Foundry376Mailspring.json");
-    const contribuitions = repository.first_contribuitions.map(contribuition => {
-        const date = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(contribuition.created_at);
+function getWeeklyDistribution(first_contribuitions) {
+    const contribuitions_date = first_contribuitions.map(contribuition => {
         return contribuition.created_at;
     });
-    const weekGrouped = datesGroupByComponent(contribuitions, 'WW GGGG');
-}
-function datesGroupByComponent(dates, token) {
-    return dates.reduce(function (val, date) {
-        let comp = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(date).format(token);
-        (val[comp] = val[comp] || []).push(date);
-        return val;
-    }, {});
+    const weeklyDistribution = [];
+    contribuitions_date.forEach(date => {
+        let weekLabel = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(date).format('WW GGGG');
+        let log = weeklyDistribution.find(it => it.week == weekLabel);
+        if (log) {
+            log.dates.push(date);
+            log.total++;
+        }
+        else {
+            weeklyDistribution.push({
+                week: weekLabel,
+                dates: [date],
+                total: 1
+            });
+        }
+    });
+    return weeklyDistribution;
 }
 async function getRateLimitRemaining() {
     const rateLimit = await octokit.rateLimit.get();

@@ -2,7 +2,7 @@ import { Octokit } from '@octokit/rest';
 
 import { Request, Response } from 'express';
 import * as HttpStatus from 'http-status-codes';
-import { Contribuition, Label, Repository } from '../../types/types';
+import { Contribuition, Label, Repository, WeeklyDistribution } from '../../types/types';
 import { readMock } from '../../utils/handleMock';
 import fs from 'fs';
 import { loadAbsoluteMoment, loadMoment, now, nowLocale } from "../../utils/Moment"
@@ -11,7 +11,7 @@ import { loadAbsoluteMoment, loadMoment, now, nowLocale } from "../../utils/Mome
 
 
 let tokenIndex = 0
-const OAuthTokens = ["e39c5da13998c763af72700799d11af8b4f7bd34", "aba49913a2df51e5cab4a9c663325f30ffedbd17", "cd30d422fbeaa59f3e73d632d0ffb3fe2dd68e9f"] //My, Laplace, Wiese Token
+const OAuthTokens = ["f3cd0d299db11989d29eccafc6720394d04134ce", "cd30d422fbeaa59f3e73d632d0ffb3fe2dd68e9f", '7c262c81d42dab7f0e94c2be6745a64176009e10', 'e9342f8b22062fed28023334a786dbb81a8aa676', '69b60039acaf5583b58657284ef3cc4de6dfe04a', "e39c5da13998c763af72700799d11af8b4f7bd34", "aba49913a2df51e5cab4a9c663325f30ffedbd17"] //Laplace, Wiese, Claudia, My Token
 let octokit: Octokit = new Octokit({ auth: OAuthTokens[tokenIndex] })
 const newcomer_labels = loadNewCommerLabels()//Load dataset of newcomer labels
 const repositories = loadRepositoriesSample()//Load repositories sample
@@ -28,6 +28,7 @@ export async function execute(req: Request, res: Response) {
     let repo_labels: string[] = []
     let repo_newcomer_labels: string[] = []
     let repo_newcomer_labels_date: Label[] = []
+    let weekly_distribuition: WeeklyDistribution[] = []
 
     if (limitRemaining >= 10) {
       repo_first_contribuitions = await getAllFirstContributions(repo.owner!, repo.name!);//Return a list of all contributors with the date of theirs first contributions
@@ -41,6 +42,9 @@ export async function execute(req: Request, res: Response) {
 
       repo_newcomer_labels_date = await getFirstOcurrenciesNewComerLabels(repo.owner!, repo.name!, repo_newcomer_labels);//Find all newcomer labels on the repositorie (based on our dataset)
       console.log()
+
+      weekly_distribuition = await getWeeklyDistribution(repo_first_contribuitions);//Find all newcomer labels on the repositorie (based on our dataset)
+      console.log()
     } else {
       tokenIndex++
       console.log("Token Changed! - " + OAuthTokens[tokenIndex])
@@ -49,15 +53,18 @@ export async function execute(req: Request, res: Response) {
     }
 
     repo.first_contribuitions = repo_first_contribuitions
+    repo.weekly_distribuition = weekly_distribuition
     repo.labels = repo_labels
     repo.newcomer_labels = repo_newcomer_labels_date
     repo.script_execution.finished_at = nowLocale().format("LT L")
+
     save(`${repo.owner}-${repo.nameconcat}`.replace(/\//g, ''), repo)
   })
 
   await Promise.all(promisses);
 
   console.log("[End] Limit Remaining: " + limitRemaining)
+  // res.status(HttpStatus.OK).json(getWeeklyDistribution());
   res.status(HttpStatus.OK).end();
 }
 
@@ -213,21 +220,30 @@ function cleanSampleRepositories() {
 
 }
 
-function getWeeklyDistribution() {
-  const repository: Repository = readMock("resources/output/Foundry376-Foundry376Mailspring.json")
-  const contribuitions = repository.first_contribuitions!.map(contribuition => {
-    const date = loadAbsoluteMoment(contribuition.created_at)
+//Return the first contribuitions of newcomers from a repository grouped by week.
+function getWeeklyDistribution(first_contribuitions: Contribuition[]) {
+  const contribuitions_date = first_contribuitions!.map(contribuition => {
     return contribuition.created_at
   })
-  const weekGrouped = datesGroupByComponent(contribuitions, 'WW GGGG')
-}
 
-function datesGroupByComponent(dates: string[], token: string) {
-  return dates.reduce(function (val: any, date) {
-    let comp = loadAbsoluteMoment(date).format(token);
-    (val[comp] = val[comp] || []).push(date);
-    return val;
-  }, {});
+  const weeklyDistribution: WeeklyDistribution[] = []
+
+  contribuitions_date.forEach(date => {
+    let weekLabel = loadAbsoluteMoment(date).format('WW GGGG');
+    let log = weeklyDistribution.find(it => it.week == weekLabel)
+    if (log) {
+      log.dates.push(date)
+      log.total++
+    } else {
+      weeklyDistribution.push({
+        week: weekLabel,
+        dates: [date],
+        total: 1
+      })
+    }
+
+  })
+  return weeklyDistribution
 }
 
 //Returns the request limit remaining for a token.
@@ -245,15 +261,3 @@ function save(name: string, data: any) {
     }
   });
 }
-
-
-// array.reduce(function(res, value) {
-//   if (!res[value.Id]) {
-//     res[value.Id] = { Id: value.Id, qty: 0 };
-//     result.push(res[value.Id])
-//   }
-//   res[value.Id].qty += value.qty;
-//   return res;
-// }, {});
-
-

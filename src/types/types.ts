@@ -8,9 +8,10 @@ export type Repository = {
     labels?: string[]
     newcomer_labels?: Label[]
     first_contribuitions?: Contribuition[]
-    weeklyDistribuition?: ContribuitionHistoryByWeek[]
+    weekly_distribuition?: WeeklyDistribution[]
 }
 
-export type ContribuitionHistoryByWeek = { week: string, contribuitions: number }
+export type WeeklyDistribution = { week: string, dates: string[], total: number }
 export type Label = { name: string, created_at: string }
 export type Contribuition = { login: string, created_at: string, issue_number?: number }
+// export type WeeklyDistribution = { week: string, dates: string[], total: number }
