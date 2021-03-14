@@ -1,9 +1,9 @@
 [
     {
-        "owner": "Foundry376",
-        "name": "Mailspring",
-        "url": "http://www.github.com/Foundry376/Mailspring",
-        "language": "TypeScript",
-        "nameconcat": "Foundry376/Mailspring"
+        "owner": "expressjs",
+        "name": "express",
+        "url": "http://www.github.com/expressjs/express",
+        "language": "JavaScript",
+        "nameconcat": "expressjs/express"
     }
 ]

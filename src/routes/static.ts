@@ -7,10 +7,8 @@ function generateStaticRoutes(router: Router) {
     router.get('/graph', executeController.graph);
 
     //                   ----- POSTs -----
-    // router.post('/example', exampleController.validator, exampleController.example);
+    // router.post('/example',  exampleController.example);
 
-    //                   ----- PATCHs -----
-    // router.patch('/example', exampleController.validator, exampleController.example);
 }
 
 export default generateStaticRoutes;

@@ -2,16 +2,16 @@ import { Octokit } from '@octokit/rest';
 
 import { Request, Response } from 'express';
 import * as HttpStatus from 'http-status-codes';
-import { Contribuition, Label, Repository, WeeklyDistribution } from '../../types/types';
+import { Contribuition, Label, Repository, WeeklyDistribuition } from '../../types/types';
 import { readMock } from '../../utils/handleMock';
 import fs from 'fs';
-import { loadAbsoluteMoment, loadMoment, now, nowLocale } from "../../utils/Moment"
+import { loadAbsoluteMoment, now, nowLocale } from "../../utils/Moment"
 // import * as echarts from 'echarts'
 // const genEchart = require('fish-node-echarts');
 const { Chart } = require('echarts-ssr');
 
 let tokenIndex = 0
-const OAuthTokens = ["f3cd0d299db11989d29eccafc6720394d04134ce", "cd30d422fbeaa59f3e73d632d0ffb3fe2dd68e9f", '7c262c81d42dab7f0e94c2be6745a64176009e10', 'e9342f8b22062fed28023334a786dbb81a8aa676', '69b60039acaf5583b58657284ef3cc4de6dfe04a', "e39c5da13998c763af72700799d11af8b4f7bd34", "aba49913a2df51e5cab4a9c663325f30ffedbd17"] //Laplace, Wiese, Claudia, My Token
+const OAuthTokens = ["cd30d422fbeaa59f3e73d632d0ffb3fe2dd68e9f", '7c262c81d42dab7f0e94c2be6745a64176009e10', 'e9342f8b22062fed28023334a786dbb81a8aa676', "f3cd0d299db11989d29eccafc6720394d04134ce", '69b60039acaf5583b58657284ef3cc4de6dfe04a', "e39c5da13998c763af72700799d11af8b4f7bd34", "aba49913a2df51e5cab4a9c663325f30ffedbd17"] //Laplace, Wiese, Claudia, My Token
 let octokit: Octokit = new Octokit({ auth: OAuthTokens[tokenIndex] })
 const newcomer_labels = loadNewCommerLabels()//Load dataset of newcomer labels
 const repositories = loadRepositoriesSample()//Load repositories sample
@@ -19,7 +19,7 @@ const repositories = loadRepositoriesSample()//Load repositories sample
 
 export async function execute(req: Request, res: Response) {
   let limitRemaining = await getRateLimitRemaining()
-  // getWeeklyDistribution()
+  // getWeeklyDistribuition()
   console.log("[Start] Limit Remaining: " + limitRemaining)
 
   const promisses = await repositories.map(async repo => {
@@ -28,7 +28,7 @@ export async function execute(req: Request, res: Response) {
     let repo_labels: string[] = []
     let repo_newcomer_labels: string[] = []
     let repo_newcomer_labels_date: Label[] = []
-    let weekly_distribuition: WeeklyDistribution[] = []
+    let weekly_distribuition: WeeklyDistribuition[] = []
 
     if (limitRemaining >= 10) {
       repo_first_contribuitions = await getAllFirstContributions(repo.owner!, repo.name!);//Return a list of all contributors with the date of theirs first contributions
@@ -43,7 +43,7 @@ export async function execute(req: Request, res: Response) {
       repo_newcomer_labels_date = await getFirstOcurrenciesNewComerLabels(repo.owner!, repo.name!, repo_newcomer_labels);//Find all newcomer labels on the repositorie (based on our dataset)
       console.log()
 
-      weekly_distribuition = await getWeeklyDistribution(repo_first_contribuitions);//Find all newcomer labels on the repositorie (based on our dataset)
+      weekly_distribuition = await getWeeklyDistribuition(repo_first_contribuitions);//Find all newcomer labels on the repositorie (based on our dataset)
       console.log()
     } else {
       tokenIndex++
@@ -64,7 +64,7 @@ export async function execute(req: Request, res: Response) {
   await Promise.all(promisses);
 
   console.log("[End] Limit Remaining: " + limitRemaining)
-  // res.status(HttpStatus.OK).json(getWeeklyDistribution());
+  // res.status(HttpStatus.OK).json(getWeeklyDistribuition());
   res.status(HttpStatus.OK).end();
 }
 
@@ -221,21 +221,21 @@ function cleanSampleRepositories() {
 }
 
 //Return the first contribuitions of newcomers from a repository grouped by week.
-function getWeeklyDistribution(first_contribuitions: Contribuition[]) {
+function getWeeklyDistribuition(first_contribuitions: Contribuition[]) {
   const contribuitions_date = first_contribuitions!.map(contribuition => {
     return contribuition.created_at
   })
 
-  const weeklyDistribution: WeeklyDistribution[] = []
+  const weeklyDistribuition: WeeklyDistribuition[] = []
 
   contribuitions_date.forEach(date => {
     let weekLabel = loadAbsoluteMoment(date).format('WW GGGG');
-    let log = weeklyDistribution.find(it => it.week == weekLabel)
+    let log = weeklyDistribuition.find(it => it.week == weekLabel)
     if (log) {
       log.dates.push(date)
-      log.total++
+      log.total!++
     } else {
-      weeklyDistribution.push({
+      weeklyDistribuition.push({
         week: weekLabel,
         dates: [date],
         total: 1
@@ -243,7 +243,25 @@ function getWeeklyDistribution(first_contribuitions: Contribuition[]) {
     }
 
   })
-  return weeklyDistribution
+
+  return weeklyDistribuition.reverse()
+}
+
+
+function normalizeDistribuition(weeklyDistribuition: WeeklyDistribuition[]) {
+  const firstPR = weeklyDistribuition[0].week
+  const lastPR = weeklyDistribuition[weeklyDistribuition.length - 1].week
+  console.log(loadAbsoluteMoment(firstPR, "WW GGGG").format("L LT"))
+  console.log(loadAbsoluteMoment(lastPR, "WW GGGG").format("L LT"))
+
+  for (var m = loadAbsoluteMoment(firstPR, "WW GGGG"); m.isBefore(loadAbsoluteMoment(lastPR, "WW GGGG")); m.add(1, 'week')) {
+    const this_week = m.format('WW GGGG')
+    if (!weeklyDistribuition.some(distribution => distribution.week === this_week)) {
+      weeklyDistribuition.push({ week: this_week, total: 0, dates: [] })
+    }
+  }
+  return weeklyDistribuition
+
 }
 
 //Returns the request limit remaining for a token.
@@ -262,131 +280,108 @@ function save(name: string, data: any) {
   });
 }
 
-
-// function generateChart() {
-
-//   // var chartDom = document.getElementById('main');
-//   // // var myChart = echarts.init(chartDom);
-//   // var myChart = echarts.init();
-//   var option;
-
-
-
-//   option && myChart.setOption(option);
-
-
-//   // (new Image()).src = "http:/track.me/image.gif";
-//   // var img = new Image();
-//   // img.src = myChart.getDataURL({
-//   //   type: 'png',
-//   //   pixelRatio: 2,
-//   //   backgroundColor: '#fff'
-//   // });
-//   console.log(myChart.getDataURL({
-//     type: 'png',
-//     pixelRatio: 2,
-//     backgroundColor: '#fff'
-//   }))
-//   //   (opts: {
-//   //     // Exporting format, can be either png, or jpeg
-//   //     type?: string,
-//   //     // Resolution ratio of exporting image, 1 by default.
-//   //     pixelRatio?: number,
-//   //     // Background color of exporting image, use backgroundColor in option by default.
-//   //     backgroundColor?: string,
-//   //     // Excluded components list. e.g. ['toolbox']
-//   //     excludeComponents?: Array.<string>
-//   // }) => string
-// }
-
 export async function graph(req: Request, res: Response) {
 
-  var option = {
+  let rep: Repository = readMock("resources/output/expressjs-expressjsexpress.json")
 
-    title: {
-      text: 'Gráfico',
-      subtext: 'Repositório'
+  rep.weekly_distribuition! = normalizeDistribuition(rep.weekly_distribuition!)
+
+  if (!rep.weekly_distribuition?.find(distribuition => distribuition.week == loadAbsoluteMoment(rep.newcomer_labels!![0].created_at).format('WW GGGG'))) {
+    rep.weekly_distribuition?.push({ week: loadAbsoluteMoment(rep.newcomer_labels!![0].created_at).format('WW GGGG'), dates: [], total: null })
+  }
+  rep.weekly_distribuition?.sort((a, b) =>
+    (loadAbsoluteMoment(a.week, 'WW GGGG').valueOf() > loadAbsoluteMoment(b.week, 'WW GGGG').valueOf()) ?
+      1 :
+      ((loadAbsoluteMoment(b.week, 'WW GGGG').valueOf() > loadAbsoluteMoment(a.week, 'WW GGGG').valueOf())
+        ? -1 : 0))
+
+
+  var option = {
+    grid: {
+      top: 70,
+      bottom: 60,
+      left: '2%',
+      right: '2%',
     },
-    renderAsImage: true,
-    tooltip: {
-      trigger: 'axis'
+    title: {
+      text: 'Gráfico de Distribuição de Ingresso Semanal de Novatos',
+      subtext: rep.nameconcat,
+
+      left: 'center',
+      padding: 0
     },
     legend: {
-      data: ['Distribuição', 'Distribuição Semanal']
+      y: 'bottom',
+      icon: 'line',
+      color: 'blue'
     },
+    backgroundColor: 'white',
+    renderAsImage: true,
     toolbox: {
-      show: true,
-      feature: {
-        dataZoom: {
-          yAxisIndex: 'none'
-        },
-        dataView: { readOnly: false },
-        magicType: { type: ['line', 'bar'] },
-        restore: {},
-        saveAsImage: {}
-      }
+      show: false
     },
     xAxis: {
       type: 'category',
-      boundaryGap: false,
-      data: ['Week1', 'Week2', 'Week3', 'Week3', 'Week4', 'Week5', 'Week6']
+      boundaryGap: true,
+      data: rep.weekly_distribuition?.map(distribuition => distribuition.week),
+      markLine: {
+        data: [{ name: 'First Date Newcomer Label', yAxis: loadAbsoluteMoment(rep.newcomer_labels!![0].created_at).format('WW GGGG') }]
+      }
+
     },
     yAxis: {
       type: 'value',
       axisLabel: {
-        formatter: '{value} °C'
+        formatter: '{value}'
       }
     },
     series: [
       {
-        name: 'Distribuição Normal',
+        name: 'Quantidade de primeiras contribuições semanais',
         type: 'line',
-        data: [10, 11, 13, 11, 12, 12, 9],
-        markPoint: {
-          data: [
-            { type: 'max', name: 'A' },
-            { type: 'min', name: 'B' }
-          ]
+        smooth: true,
+        showSymbol: false,
+        data: rep.weekly_distribuition?.map(distribuition => distribuition.total),
+        markArea: {
+          data: [[{
+            name: 'Normalização (6 meses)',
+            xAxis: rep.weekly_distribuition[0].week
+          }, {
+            xAxis: loadAbsoluteMoment(rep.weekly_distribuition[0].week, "WW GGGG").add(6, 'months').format("WW GGGG")
+          }]]
+        },
+        dimensions: [
+          { name: 'timestamp', type: 'time' }],
+        lineStyle: {
+          normal: {
+            width: '2',
+            color: 'gray'
+          }
         },
         markLine: {
+          label: {
+            show: true,
+            formatter: rep.newcomer_labels![0].name
+          },
           data: [
-            { type: 'average', name: 'C' }
+            {
+              name: 'Adopted the pratice', xAxis: loadAbsoluteMoment(rep.newcomer_labels!![0].created_at).format('WW GGGG'),
+              lineStyle: {
+                normal: {
+                  type: 'dashed',
+                  color: 'red'
+                }
+              }
+            }
           ]
         }
       },
-      {
-        name: 'Distribuição Semanal',
-        type: 'line',
-        data: [1, -2, 2, 5, 3, 2, 0],
-        markPoint: {
-          data: [
-            { name: 'D', value: -2, xAxis: 1, yAxis: -1.5 }
-          ]
-        },
-        markLine: {
-          data: [
-            { type: 'average', name: '3' },
-            [{
-              symbol: 'none',
-              x: '90%',
-              yAxis: 'max'
-            }, {
-              symbol: 'circle',
-              label: {
-                position: 'start',
-                formatter: 'F'
-              },
-              type: 'max',
-              name: 'G'
-            }]
-          ]
-        }
-      }
+
     ]
   };
 
 
-  const chart = new Chart(800, 600);
+  const chart = new Chart(1500, 800);
   chart.renderToFileSync(option, 'resources/charts/render-to-file.png');
   res.status(HttpStatus.OK).end();
 }

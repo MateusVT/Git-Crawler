@@ -55,6 +55,8 @@
     "esm": "*",
     "express": "^4.17.1",
     "express-validator": "^6.6.1",
+    "github": "^14.0.0",
+    "github-api-tags-full": "^7.1.0",
     "helmet": "^3.22.0",
     "http-status-codes": "^1.4.0",
     "jade": "^1.11.0",
