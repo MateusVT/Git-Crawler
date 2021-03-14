@@ -8,6 +8,7 @@ import fs from 'fs';
 import { loadAbsoluteMoment, loadMoment, now, nowLocale } from "../../utils/Moment"
 // import * as echarts from 'echarts'
 // const genEchart = require('fish-node-echarts');
+const { Chart } = require('echarts-ssr');
 
 let tokenIndex = 0
 const OAuthTokens = ["f3cd0d299db11989d29eccafc6720394d04134ce", "cd30d422fbeaa59f3e73d632d0ffb3fe2dd68e9f", '7c262c81d42dab7f0e94c2be6745a64176009e10', 'e9342f8b22062fed28023334a786dbb81a8aa676', '69b60039acaf5583b58657284ef3cc4de6dfe04a', "e39c5da13998c763af72700799d11af8b4f7bd34", "aba49913a2df51e5cab4a9c663325f30ffedbd17"] //Laplace, Wiese, Claudia, My Token
@@ -300,98 +301,97 @@ function save(name: string, data: any) {
 
 export async function graph(req: Request, res: Response) {
 
-//   var option = {
+  var option = {
 
-//     title: {
-//       text: 'Gráfico',
-//       subtext: 'Repositório'
-//     },
-//     renderAsImage: true,
-//     tooltip: {
-//       trigger: 'axis'
-//     },
-//     legend: {
-//       data: ['Distribuição', 'Distribuição Semanal']
-//     },
-//     toolbox: {
-//       show: true,
-//       feature: {
-//         dataZoom: {
-//           yAxisIndex: 'none'
-//         },
-//         dataView: { readOnly: false },
-//         magicType: { type: ['line', 'bar'] },
-//         restore: {},
-//         saveAsImage: {}
-//       }
-//     },
-//     xAxis: {
-//       type: 'category',
-//       boundaryGap: false,
-//       data: ['Week1', 'Week2', 'Week3', 'Week3', 'Week4', 'Week5', 'Week6']
-//     },
-//     yAxis: {
-//       type: 'value',
-//       axisLabel: {
-//         formatter: '{value} °C'
-//       }
-//     },
-//     series: [
-//       {
-//         name: 'Distribuição Normal',
-//         type: 'line',
-//         data: [10, 11, 13, 11, 12, 12, 9],
-//         markPoint: {
-//           data: [
-//             { type: 'max', name: 'A' },
-//             { type: 'min', name: 'B' }
-//           ]
-//         },
-//         markLine: {
-//           data: [
-//             { type: 'average', name: 'C' }
-//           ]
-//         }
-//       },
-//       {
-//         name: 'Distribuição Semanal',
-//         type: 'line',
-//         data: [1, -2, 2, 5, 3, 2, 0],
-//         markPoint: {
-//           data: [
-//             { name: 'D', value: -2, xAxis: 1, yAxis: -1.5 }
-//           ]
-//         },
-//         markLine: {
-//           data: [
-//             { type: 'average', name: '3' },
-//             [{
-//               symbol: 'none',
-//               x: '90%',
-//               yAxis: 'max'
-//             }, {
-//               symbol: 'circle',
-//               label: {
-//                 position: 'start',
-//                 formatter: 'F'
-//               },
-//               type: 'max',
-//               name: 'G'
-//             }]
-//           ]
-//         }
-//       }
-//     ]
-//   };
+    title: {
+      text: 'Gráfico',
+      subtext: 'Repositório'
+    },
+    renderAsImage: true,
+    tooltip: {
+      trigger: 'axis'
+    },
+    legend: {
+      data: ['Distribuição', 'Distribuição Semanal']
+    },
+    toolbox: {
+      show: true,
+      feature: {
+        dataZoom: {
+          yAxisIndex: 'none'
+        },
+        dataView: { readOnly: false },
+        magicType: { type: ['line', 'bar'] },
+        restore: {},
+        saveAsImage: {}
+      }
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: ['Week1', 'Week2', 'Week3', 'Week3', 'Week4', 'Week5', 'Week6']
+    },
+    yAxis: {
+      type: 'value',
+      axisLabel: {
+        formatter: '{value} °C'
+      }
+    },
+    series: [
+      {
+        name: 'Distribuição Normal',
+        type: 'line',
+        data: [10, 11, 13, 11, 12, 12, 9],
+        markPoint: {
+          data: [
+            { type: 'max', name: 'A' },
+            { type: 'min', name: 'B' }
+          ]
+        },
+        markLine: {
+          data: [
+            { type: 'average', name: 'C' }
+          ]
+        }
+      },
+      {
+        name: 'Distribuição Semanal',
+        type: 'line',
+        data: [1, -2, 2, 5, 3, 2, 0],
+        markPoint: {
+          data: [
+            { name: 'D', value: -2, xAxis: 1, yAxis: -1.5 }
+          ]
+        },
+        markLine: {
+          data: [
+            { type: 'average', name: '3' },
+            [{
+              symbol: 'none',
+              x: '90%',
+              yAxis: 'max'
+            }, {
+              symbol: 'circle',
+              label: {
+                position: 'start',
+                formatter: 'F'
+              },
+              type: 'max',
+              name: 'G'
+            }]
+          ]
+        }
+      }
+    ]
+  };
 
-//   let filename = await genEchart({
-//     width:500,
-//     height:500,
-//     option,
-//     pathname:'resources/chart',
-//     filename:'test.jpg',
-//     type:'jpg'
-// });
-  // res.render('index', { title: 'Express', data: JSON.stringify(chartOptions) });
+
+  const chart = new Chart(800, 600);
+  chart.renderToFileSync(option, 'resources/charts/render-to-file.png');
   res.status(HttpStatus.OK).end();
 }
+
+
+
+// https://www.npmjs.com/package/echarts-ssr#quick-example
+// https://echarts.apache.org/examples/en/index.html

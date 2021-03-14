@@ -95,7 +95,7 @@ module.exports =
 /*! exports provided: name, version, description, main, repository, author, engines, scripts, husky, lint-staged, private, license, keywords, dependencies, devDependencies, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"GitCrawler\",\"version\":\"1.0.1\",\"description\":\"A crawler using GitHub Api.\",\"main\":\"index.ts\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/MateusVT/Git-Crawler\"},\"author\":{\"name\":\"Mateus Torres\",\"email\":\"mtsvtorres@gmail.com\"},\"engines\":{\"node\":\">= 12.13.0\"},\"scripts\":{\"start\":\"backpack\",\"clean\":\"rimraf build\",\"transpile\":\"backpack build\",\"build\":\"run-s clean transpile\",\"lint\":\"eslint {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\",\"lint:fix\":\"eslint --fix {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\"},\"husky\":{\"hooks\":{}},\"lint-staged\":{\"*.{ts,json}\":[\"eslint --fix {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\"]},\"private\":true,\"license\":\"MIT\",\"keywords\":[\"express\",\"typescript\",\"api\",\"es6\",\"node\",\"docker\",\"javascript\"],\"dependencies\":{\"@octokit/auth\":\"^3.0.3\",\"@octokit/rest\":\"^18.3.4\",\"@types/axios\":\"^0.14.0\",\"@types/echarts\":\"4.1.0\",\"axios\":\"^0.21.1\",\"body-parser\":\"^1.19.0\",\"cors\":\"^2.8.5\",\"dotenv\":\"^8.2.0\",\"echarts\":\"^5.0.2\",\"esm\":\"*\",\"express\":\"^4.17.1\",\"express-validator\":\"^6.6.1\",\"helmet\":\"^3.22.0\",\"http-status-codes\":\"^1.4.0\",\"jade\":\"^1.11.0\",\"joi\":\"^14.3.1\",\"lodash\":\"^4.17.19\",\"moment\":\"^2.29.1\",\"morgan\":\"^1.10.0\",\"pg\":\"^7.18.2\",\"tslib\":\"^2.1.0\",\"typeorm\":\"^0.2.28\",\"winston\":\"^3.2.1\",\"winston-daily-rotate-file\":\"^4.4.2\"},\"devDependencies\":{\"@babel/core\":\"^7.9.0\",\"@babel/preset-env\":\"^7.9.0\",\"@babel/preset-typescript\":\"^7.9.0\",\"@types/cors\":\"^2.8.6\",\"@types/dotenv\":\"^8.2.0\",\"@types/helmet\":\"^0.0.45\",\"@types/jest\":\"^25.1.4\",\"@types/joi\":\"^14.3.4\",\"@types/lodash\":\"^4.14.149\",\"@types/morgan\":\"^1.9.0\",\"@types/swagger-ui-express\":\"^4.1.2\",\"@types/winston\":\"^2.4.4\",\"@typescript-eslint/eslint-plugin\":\"^2.25.0\",\"@typescript-eslint/parser\":\"^2.25.0\",\"backpack-core\":\"^0.8.4\",\"eslint\":\"^6.8.0\",\"eslint-config-prettier\":\"^6.10.1\",\"eslint-plugin-prettier\":\"^3.1.2\",\"fork-ts-checker-webpack-plugin\":\"^4.1.2\",\"husky\":\"^4.2.3\",\"json-loader\":\"^0.5.7\",\"lint-staged\":\"^10.0.9\",\"npm-run-all\":\"^4.1.5\",\"prettier\":\"^2.0.2\",\"rimraf\":\"^3.0.2\",\"ts-loader\":\"^6.2.2\",\"ts-node\":\"^8.8.1\",\"typescript\":\"^4.2.3\",\"@babel/register\":\"^7.0.0-beta.32\"}}");
+module.exports = JSON.parse("{\"name\":\"GitCrawler\",\"version\":\"1.0.1\",\"description\":\"A crawler using GitHub Api.\",\"main\":\"index.ts\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/MateusVT/Git-Crawler\"},\"author\":{\"name\":\"Mateus Torres\",\"email\":\"mtsvtorres@gmail.com\"},\"engines\":{\"node\":\">= 12.13.0\"},\"scripts\":{\"start\":\"backpack\",\"clean\":\"rimraf build\",\"transpile\":\"backpack build\",\"build\":\"run-s clean transpile\",\"lint\":\"eslint {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\",\"lint:fix\":\"eslint --fix {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\"},\"husky\":{\"hooks\":{}},\"lint-staged\":{\"*.{ts,json}\":[\"eslint --fix {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\"]},\"private\":true,\"license\":\"MIT\",\"keywords\":[\"express\",\"typescript\",\"api\",\"es6\",\"node\",\"docker\",\"javascript\"],\"dependencies\":{\"@octokit/auth\":\"^3.0.3\",\"@octokit/rest\":\"^18.3.4\",\"@types/axios\":\"^0.14.0\",\"@types/echarts\":\"4.1.0\",\"axios\":\"^0.21.1\",\"body-parser\":\"^1.19.0\",\"cors\":\"^2.8.5\",\"dotenv\":\"^8.2.0\",\"echarts\":\"^5.0.2\",\"echarts-ssr\":\"0.0.1\",\"esm\":\"*\",\"express\":\"^4.17.1\",\"express-validator\":\"^6.6.1\",\"helmet\":\"^3.22.0\",\"http-status-codes\":\"^1.4.0\",\"jade\":\"^1.11.0\",\"joi\":\"^14.3.1\",\"lodash\":\"^4.17.19\",\"moment\":\"^2.29.1\",\"morgan\":\"^1.10.0\",\"pg\":\"^7.18.2\",\"tslib\":\"^2.1.0\",\"typeorm\":\"^0.2.28\",\"winston\":\"^3.2.1\",\"winston-daily-rotate-file\":\"^4.4.2\"},\"devDependencies\":{\"@babel/core\":\"^7.9.0\",\"@babel/preset-env\":\"^7.9.0\",\"@babel/preset-typescript\":\"^7.9.0\",\"@types/cors\":\"^2.8.6\",\"@types/dotenv\":\"^8.2.0\",\"@types/helmet\":\"^0.0.45\",\"@types/jest\":\"^25.1.4\",\"@types/joi\":\"^14.3.4\",\"@types/lodash\":\"^4.14.149\",\"@types/morgan\":\"^1.9.0\",\"@types/swagger-ui-express\":\"^4.1.2\",\"@types/winston\":\"^2.4.4\",\"@typescript-eslint/eslint-plugin\":\"^2.25.0\",\"@typescript-eslint/parser\":\"^2.25.0\",\"backpack-core\":\"^0.8.4\",\"eslint\":\"^6.8.0\",\"eslint-config-prettier\":\"^6.10.1\",\"eslint-plugin-prettier\":\"^3.1.2\",\"fork-ts-checker-webpack-plugin\":\"^4.1.2\",\"husky\":\"^4.2.3\",\"json-loader\":\"^0.5.7\",\"lint-staged\":\"^10.0.9\",\"npm-run-all\":\"^4.1.5\",\"prettier\":\"^2.0.2\",\"rimraf\":\"^3.0.2\",\"ts-loader\":\"^6.2.2\",\"ts-node\":\"^8.8.1\",\"typescript\":\"^4.2.3\",\"@babel/register\":\"^7.0.0-beta.32\"}}");
 
 /***/ }),
 
@@ -232,6 +232,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const { Chart } = __webpack_require__(/*! echarts-ssr */ "echarts-ssr");
 let tokenIndex = 0;
 const OAuthTokens = ["f3cd0d299db11989d29eccafc6720394d04134ce", "cd30d422fbeaa59f3e73d632d0ffb3fe2dd68e9f", '7c262c81d42dab7f0e94c2be6745a64176009e10', 'e9342f8b22062fed28023334a786dbb81a8aa676', '69b60039acaf5583b58657284ef3cc4de6dfe04a', "e39c5da13998c763af72700799d11af8b4f7bd34", "aba49913a2df51e5cab4a9c663325f30ffedbd17"];
 let octokit = new _octokit_rest__WEBPACK_IMPORTED_MODULE_1__["Octokit"]({ auth: OAuthTokens[tokenIndex] });
@@ -446,6 +447,90 @@ function save(name, data) {
     });
 }
 async function graph(req, res) {
+    var option = {
+        title: {
+            text: 'Gráfico',
+            subtext: 'Repositório'
+        },
+        renderAsImage: true,
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['Distribuição', 'Distribuição Semanal']
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                dataView: { readOnly: false },
+                magicType: { type: ['line', 'bar'] },
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['Week1', 'Week2', 'Week3', 'Week3', 'Week4', 'Week5', 'Week6']
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value} °C'
+            }
+        },
+        series: [
+            {
+                name: 'Distribuição Normal',
+                type: 'line',
+                data: [10, 11, 13, 11, 12, 12, 9],
+                markPoint: {
+                    data: [
+                        { type: 'max', name: 'A' },
+                        { type: 'min', name: 'B' }
+                    ]
+                },
+                markLine: {
+                    data: [
+                        { type: 'average', name: 'C' }
+                    ]
+                }
+            },
+            {
+                name: 'Distribuição Semanal',
+                type: 'line',
+                data: [1, -2, 2, 5, 3, 2, 0],
+                markPoint: {
+                    data: [
+                        { name: 'D', value: -2, xAxis: 1, yAxis: -1.5 }
+                    ]
+                },
+                markLine: {
+                    data: [
+                        { type: 'average', name: '3' },
+                        [{
+                                symbol: 'none',
+                                x: '90%',
+                                yAxis: 'max'
+                            }, {
+                                symbol: 'circle',
+                                label: {
+                                    position: 'start',
+                                    formatter: 'F'
+                                },
+                                type: 'max',
+                                name: 'G'
+                            }]
+                    ]
+                }
+            }
+        ]
+    };
+    const chart = new Chart(800, 600);
+    chart.renderToFileSync(option, 'resources/charts/render-to-file.png');
     res.status(http_status_codes__WEBPACK_IMPORTED_MODULE_2__["OK"]).end();
 }
 
@@ -761,6 +846,17 @@ module.exports = require("cors");
 /***/ (function(module, exports) {
 
 module.exports = require("dotenv");
+
+/***/ }),
+
+/***/ "echarts-ssr":
+/*!******************************!*\
+  !*** external "echarts-ssr" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("echarts-ssr");
 
 /***/ }),
 
