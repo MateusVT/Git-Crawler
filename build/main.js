@@ -95,7 +95,7 @@ module.exports =
 /*! exports provided: name, version, description, main, repository, author, engines, scripts, husky, lint-staged, private, license, keywords, dependencies, devDependencies, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"GitCrawler\",\"version\":\"1.0.1\",\"description\":\"A crawler using GitHub Api.\",\"main\":\"index.ts\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/MateusVT/Git-Crawler\"},\"author\":{\"name\":\"Mateus Torres\",\"email\":\"mtsvtorres@gmail.com\"},\"engines\":{\"node\":\">= 12.13.0\"},\"scripts\":{\"start\":\"backpack\",\"clean\":\"rimraf build\",\"transpile\":\"backpack build\",\"build\":\"run-s clean transpile\",\"lint\":\"eslint {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\",\"lint:fix\":\"eslint --fix {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\"},\"husky\":{\"hooks\":{}},\"lint-staged\":{\"*.{ts,json}\":[\"eslint --fix {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\"]},\"private\":true,\"license\":\"MIT\",\"keywords\":[\"express\",\"typescript\",\"api\",\"es6\",\"node\",\"docker\",\"javascript\"],\"dependencies\":{\"@octokit/auth\":\"^3.0.3\",\"@octokit/rest\":\"^18.3.4\",\"@types/axios\":\"^0.14.0\",\"@types/echarts\":\"4.1.0\",\"axios\":\"^0.21.1\",\"body-parser\":\"^1.19.0\",\"cors\":\"^2.8.5\",\"dotenv\":\"^8.2.0\",\"echarts\":\"^5.0.2\",\"echarts-ssr\":\"0.0.1\",\"esm\":\"*\",\"express\":\"^4.17.1\",\"express-validator\":\"^6.6.1\",\"github\":\"^14.0.0\",\"github-api-tags-full\":\"^7.1.0\",\"helmet\":\"^3.22.0\",\"http-status-codes\":\"^1.4.0\",\"jade\":\"^1.11.0\",\"joi\":\"^14.3.1\",\"lodash\":\"^4.17.19\",\"moment\":\"^2.29.1\",\"morgan\":\"^1.10.0\",\"pg\":\"^7.18.2\",\"tslib\":\"^2.1.0\",\"typeorm\":\"^0.2.28\",\"winston\":\"^3.2.1\",\"winston-daily-rotate-file\":\"^4.4.2\"},\"devDependencies\":{\"@babel/core\":\"^7.9.0\",\"@babel/preset-env\":\"^7.9.0\",\"@babel/preset-typescript\":\"^7.9.0\",\"@types/cors\":\"^2.8.6\",\"@types/dotenv\":\"^8.2.0\",\"@types/helmet\":\"^0.0.45\",\"@types/jest\":\"^25.1.4\",\"@types/joi\":\"^14.3.4\",\"@types/lodash\":\"^4.14.149\",\"@types/morgan\":\"^1.9.0\",\"@types/swagger-ui-express\":\"^4.1.2\",\"@types/winston\":\"^2.4.4\",\"@typescript-eslint/eslint-plugin\":\"^2.25.0\",\"@typescript-eslint/parser\":\"^2.25.0\",\"backpack-core\":\"^0.8.4\",\"eslint\":\"^6.8.0\",\"eslint-config-prettier\":\"^6.10.1\",\"eslint-plugin-prettier\":\"^3.1.2\",\"fork-ts-checker-webpack-plugin\":\"^4.1.2\",\"husky\":\"^4.2.3\",\"json-loader\":\"^0.5.7\",\"lint-staged\":\"^10.0.9\",\"npm-run-all\":\"^4.1.5\",\"prettier\":\"^2.0.2\",\"rimraf\":\"^3.0.2\",\"ts-loader\":\"^6.2.2\",\"ts-node\":\"^8.8.1\",\"typescript\":\"^4.2.3\",\"@babel/register\":\"^7.0.0-beta.32\"}}");
+module.exports = JSON.parse("{\"name\":\"GitCrawler\",\"version\":\"1.0.1\",\"description\":\"A crawler using GitHub Api.\",\"main\":\"index.ts\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/MateusVT/Git-Crawler\"},\"author\":{\"name\":\"Mateus Torres\",\"email\":\"mtsvtorres@gmail.com\"},\"engines\":{\"node\":\">= 15.12.0\"},\"scripts\":{\"start\":\"backpack\",\"clean\":\"rimraf build\",\"transpile\":\"backpack build\",\"build\":\"run-s clean transpile\",\"lint\":\"eslint {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\",\"lint:fix\":\"eslint --fix {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\"},\"husky\":{\"hooks\":{}},\"lint-staged\":{\"*.{ts,json}\":[\"eslint --fix {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\"]},\"private\":true,\"license\":\"MIT\",\"keywords\":[\"express\",\"typescript\",\"api\",\"es6\",\"node\",\"docker\",\"javascript\"],\"dependencies\":{\"@huchenme/github-trending\":\"^2.4.2\",\"@octokit/auth\":\"^3.0.3\",\"@octokit/rest\":\"^18.3.4\",\"@types/axios\":\"^0.14.0\",\"@types/echarts\":\"4.1.0\",\"@types/express\":\"^4.17.11\",\"@types/tough-cookie\":\"^4.0.0\",\"async-foreach\":\"^0.1.3\",\"axios\":\"^0.21.1\",\"axios-cookiejar-support\":\"^1.0.1\",\"body-parser\":\"^1.19.0\",\"cors\":\"^2.8.5\",\"dotenv\":\"^8.2.0\",\"echarts\":\"^5.0.2\",\"echarts-ssr\":\"0.0.1\",\"esm\":\"*\",\"express\":\"^4.17.1\",\"express-validator\":\"^6.6.1\",\"fetch\":\"^1.1.0\",\"form-data\":\"^4.0.0\",\"genstats\":\"^0.0.1\",\"github\":\"^14.0.0\",\"github-api-tags-full\":\"^7.1.0\",\"helmet\":\"^3.22.0\",\"http-status-codes\":\"^1.4.0\",\"jade\":\"^1.11.0\",\"joi\":\"^14.3.1\",\"lodash\":\"^4.17.19\",\"mann-whitney-utest\":\"^1.0.5\",\"moment\":\"^2.29.1\",\"morgan\":\"^1.10.0\",\"pg\":\"^7.18.2\",\"tough-cookie\":\"^4.0.0\",\"tslib\":\"^2.1.0\",\"typeorm\":\"^0.2.28\",\"winston\":\"^3.2.1\",\"winston-daily-rotate-file\":\"^4.4.2\"},\"devDependencies\":{\"@babel/core\":\"^7.9.0\",\"@babel/preset-env\":\"^7.9.0\",\"@babel/preset-typescript\":\"^7.9.0\",\"@babel/register\":\"^7.0.0-beta.32\",\"@types/cors\":\"^2.8.6\",\"@types/dotenv\":\"^8.2.0\",\"@types/form-data\":\"^2.5.0\",\"@types/helmet\":\"^0.0.45\",\"@types/jest\":\"^25.1.4\",\"@types/joi\":\"^14.3.4\",\"@types/lodash\":\"^4.14.149\",\"@types/morgan\":\"^1.9.0\",\"@types/node-fetch\":\"^2.5.8\",\"@types/swagger-ui-express\":\"^4.1.2\",\"@types/winston\":\"^2.4.4\",\"@typescript-eslint/eslint-plugin\":\"^2.25.0\",\"@typescript-eslint/parser\":\"^2.25.0\",\"backpack-core\":\"^0.8.4\",\"eslint\":\"^6.8.0\",\"eslint-config-prettier\":\"^6.10.1\",\"eslint-plugin-prettier\":\"^3.1.2\",\"fork-ts-checker-webpack-plugin\":\"^4.1.2\",\"husky\":\"^4.2.3\",\"json-loader\":\"^0.5.7\",\"lint-staged\":\"^10.0.9\",\"npm-run-all\":\"^4.1.5\",\"prettier\":\"^2.0.2\",\"rimraf\":\"^3.0.2\",\"ts-loader\":\"^6.2.2\",\"ts-node\":\"^8.8.1\",\"typescript\":\"^4.2.3\"}}");
 
 /***/ }),
 
@@ -143,6 +143,7 @@ app.use(morgan__WEBPACK_IMPORTED_MODULE_4___default()('dev'));
 app.use(body_parser__WEBPACK_IMPORTED_MODULE_0___default.a.json());
 app.use(body_parser__WEBPACK_IMPORTED_MODULE_0___default.a.urlencoded({ extended: true }));
 app.use('/', _routes_routes__WEBPACK_IMPORTED_MODULE_8__["default"]);
+app.set('port', 4000);
 Object(_routes_static__WEBPACK_IMPORTED_MODULE_9__["default"])(_routes_routes__WEBPACK_IMPORTED_MODULE_8__["default"]);
 app.use(_middlewares_genericErrorHandler__WEBPACK_IMPORTED_MODULE_6__["default"]);
 app.use(_middlewares_notFoundHandler__WEBPACK_IMPORTED_MODULE_7__["default"]);
@@ -209,13 +210,13 @@ module.exports = JSON.parse("{\"portInUse\":\"Port is already in use.\",\"invali
 /*!****************************************!*\
   !*** ./controllers/execute/execute.ts ***!
   \****************************************/
-/*! exports provided: execute, graph */
+/*! exports provided: execute, limit */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "execute", function() { return execute; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "graph", function() { return graph; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "limit", function() { return limit; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "tslib");
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(tslib__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _octokit_rest__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @octokit/rest */ "@octokit/rest");
@@ -233,49 +234,61 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const { Chart } = __webpack_require__(/*! echarts-ssr */ "echarts-ssr");
-let tokenIndex = 0;
-const OAuthTokens = ["e7b65a656067c6ee2c4ed5dd2a0500b9ca4e5210 ", "cd30d422fbeaa59f3e73d632d0ffb3fe2dd68e9f", '7c262c81d42dab7f0e94c2be6745a64176009e10', 'e9342f8b22062fed28023334a786dbb81a8aa676', "f3cd0d299db11989d29eccafc6720394d04134ce", '69b60039acaf5583b58657284ef3cc4de6dfe04a', "e39c5da13998c763af72700799d11af8b4f7bd34", "aba49913a2df51e5cab4a9c663325f30ffedbd17"];
+let tokenIndex = 1;
+const OAuthTokens = ["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", "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"];
 let octokit = new _octokit_rest__WEBPACK_IMPORTED_MODULE_1__["Octokit"]({ auth: OAuthTokens[tokenIndex] });
 const newcomer_labels = loadNewCommerLabels();
-const repositories = loadRepositoriesSample();
+const repositories = loadRepositoriesSampleByLanguage();
 async function execute(req, res) {
     let limitRemaining = await getRateLimitRemaining();
-    console.log("[Start] Limit Remaining: " + limitRemaining);
-    const promisses = await repositories.map(async (repo) => {
-        repo.script_execution = { start_at: Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["nowLocale"])().format("LT L") };
-        let repo_first_contribuitions = [];
-        let repo_labels = [];
-        let repo_newcomer_labels = [];
-        let repo_newcomer_labels_date = [];
-        let weekly_distribuition = [];
-        if (limitRemaining >= 10) {
-            repo_first_contribuitions = await getAllFirstContributions(repo.owner, repo.name);
-            console.log();
-            repo_labels = await getAllLabels(repo.owner, repo.name);
-            console.log();
-            repo_newcomer_labels = await findNewcomerLabelsOnRepository(repo.owner, repo.name, repo_labels);
-            console.log();
-            repo_newcomer_labels_date = await getFirstOcurrenciesNewComerLabels(repo.owner, repo.name, repo_newcomer_labels);
-            console.log();
-            weekly_distribuition = await getWeeklyDistribuition(repo_first_contribuitions);
-            console.log();
-        }
-        else {
-            tokenIndex++;
-            console.log("Token Changed! - " + OAuthTokens[tokenIndex]);
-            octokit = new _octokit_rest__WEBPACK_IMPORTED_MODULE_1__["Octokit"]({ auth: OAuthTokens[tokenIndex] });
-            limitRemaining = await getRateLimitRemaining();
-        }
-        repo.first_contribuitions = repo_first_contribuitions;
-        repo.weekly_distribuition = weekly_distribuition;
-        repo.labels = repo_labels;
-        repo.newcomer_labels = repo_newcomer_labels_date;
-        repo.script_execution.finished_at = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["nowLocale"])().format("LT L");
-        save(`${repo.owner}-${repo.nameconcat}`.replace(/\//g, ''), repo);
-    });
-    await Promise.all(promisses);
-    console.log("[End] Limit Remaining: " + limitRemaining);
+    const languages = ["c", "cplusplus", "csharp", "go", "java", "javascript", "php", "python", "ruby", "typescript"];
+    languages.reduce((promisse, language) => promisse.then(async (_) => {
+        console.log("Started Language: " + language);
+        await repositories[language].reduce((promisse, repo) => promisse.then(_ => {
+            const alreadyCrawled = fs__WEBPACK_IMPORTED_MODULE_4___default.a.readdirSync(`resources/output/${language}`);
+            if (alreadyCrawled.includes(`${repo.owner}-${repo.name}.json`.replace(/\//g, ''))) {
+                console.log("Skipped: " + `${repo.owner}-${repo.name}`);
+                return;
+            }
+            else {
+                return run(repo, language);
+            }
+        }), Promise.resolve());
+    }), Promise.resolve());
     res.status(http_status_codes__WEBPACK_IMPORTED_MODULE_2__["OK"]).end();
+}
+async function run(repo, language) {
+    repo.script_execution = { start_at: Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["nowLocale"])().format("LT L") };
+    let repo_infos;
+    let repo_first_contribuitions = [];
+    let repo_labels = [];
+    let repo_newcomer_labels = [];
+    let repo_newcomer_labels_date = [];
+    let weekly_distribuition = [];
+    repo_infos = await getRepoInfos(repo.owner, repo.name);
+    console.log();
+    repo_first_contribuitions = await getAllFirstContributions(repo.owner, repo.name);
+    console.log();
+    repo_labels = await getAllLabels(repo.owner, repo.name);
+    console.log();
+    repo_newcomer_labels = await findNewcomerLabelsOnRepository(repo.owner, repo.name, repo_labels);
+    console.log();
+    repo_newcomer_labels_date = await getFirstOcurrenciesNewComerLabels(repo.owner, repo.name, repo_newcomer_labels);
+    console.log();
+    weekly_distribuition = await getWeeklyDistribuition(repo_first_contribuitions);
+    console.log();
+    repo.created_at = repo_infos;
+    repo.first_contribuitions = repo_first_contribuitions;
+    repo.weekly_distribuition = fullFillDistribuition(weekly_distribuition, repo_infos);
+    repo.labels = repo_labels;
+    repo.newcomer_labels = repo_newcomer_labels_date.sort();
+    repo.script_execution.finished_at = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["nowLocale"])().format("LT L");
+    save(`${repo.owner}-${repo.name}`.replace(/\//g, ''), repo, language);
+    generateGraph(`${repo.owner}-${repo.name}`.replace(/\//g, ''), repo, language);
+}
+async function getRepoInfos(owner, repo) {
+    const repoInfos = (await octokit.rest.repos.get({ owner: owner, repo: repo })).data;
+    return repoInfos.created_at;
 }
 async function getAllFirstContributions(owner, repo) {
     var e_1, _a;
@@ -349,7 +362,7 @@ async function getFirstOcurrenciesNewComerLabels(owner, name, newcomer_labels) {
     console.log("- COLLECTING FIRST OCURRENCY OF LABELS " + newcomer_labels.toString() + " FROM PROJECT " + owner + "/" + name + " -");
     console.log("<-start for each {" + i + "}->");
     const promisses = await newcomer_labels.map(async (label) => {
-        const issues = await octokit.issues.listForRepo({ repo: name, owner: owner, sort: "created", direction: "asc", label: label, per_page: 1 });
+        const issues = await octokit.issues.listForRepo({ repo: name, owner: owner, sort: "created", direction: "asc", state: "all", labels: label, per_page: 1 });
         console.log("URL: " + issues.url);
         const issue = issues.data[0];
         if (issue != undefined) {
@@ -362,7 +375,9 @@ async function getFirstOcurrenciesNewComerLabels(owner, name, newcomer_labels) {
     });
     console.log("<-end for each->");
     await Promise.all(promisses);
-    return newcomer_labels_date;
+    return newcomer_labels_date.sort((a, b) => {
+        return Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(a.created_at).diff(b.created_at);
+    });
 }
 function findNewcomerLabelsOnRepository(owner, name, repo_labels) {
     const repo_newcomer_labels = [];
@@ -383,12 +398,73 @@ function loadNewCommerLabels() {
     return all_newcomer_labels.map(label => label.toLocaleLowerCase());
 }
 function loadRepositoriesSample() {
-    const all_repositories = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_3__["readMock"])("resources/repositories/all-repositories.json");
+    const all_repositories = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_3__["readMock"])("resources/repositories/c/curl-curl.json");
     const temp_repositories = [];
     temp_repositories.push(all_repositories[0]);
     return all_repositories;
 }
-async function pingRepositories() {
+function loadRepositoriesSampleByLanguage(type) {
+    const c = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_3__["readMock"])("resources/repositories/c.json");
+    const csharp = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_3__["readMock"])("resources/repositories/c#.json");
+    const cplusplus = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_3__["readMock"])("resources/repositories/c++.json");
+    const go = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_3__["readMock"])("resources/repositories/go.json");
+    const java = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_3__["readMock"])("resources/repositories/java.json");
+    const javascript = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_3__["readMock"])("resources/repositories/javascript.json");
+    const php = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_3__["readMock"])("resources/repositories/php.json");
+    const python = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_3__["readMock"])("resources/repositories/python.json");
+    const ruby = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_3__["readMock"])("resources/repositories/ruby.json");
+    const typescript = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_3__["readMock"])("resources/repositories/typescript.json");
+    let all_repositories;
+    if (type == "top-15") {
+        all_repositories = {
+            c: c.slice(0, 15),
+            cplusplus: cplusplus.slice(0, 15),
+            csharp: csharp.slice(0, 15),
+            go: go.slice(0, 15),
+            java: java.slice(0, 15),
+            javascript: javascript.slice(0, 15),
+            php: php.slice(0, 15),
+            python: python.slice(0, 15),
+            ruby: ruby.slice(0, 15),
+            typescript: typescript.slice(0, 15),
+        };
+    }
+    else if (type == "top-15-random") {
+        all_repositories = {
+            c: c.sort(() => Math.random() - Math.random()).slice(0, 15),
+            cplusplus: cplusplus.sort(() => Math.random() - Math.random()).slice(0, 15),
+            csharp: csharp.sort(() => Math.random() - Math.random()).slice(0, 15),
+            go: go.sort(() => Math.random() - Math.random()).slice(0, 15),
+            java: java.sort(() => Math.random() - Math.random()).slice(0, 15),
+            javascript: javascript.sort(() => Math.random() - Math.random()).slice(0, 15),
+            php: php.sort(() => Math.random() - Math.random()).slice(0, 15),
+            python: python.sort(() => Math.random() - Math.random()).slice(0, 15),
+            ruby: ruby.sort(() => Math.random() - Math.random()).slice(0, 15),
+            typescript: typescript.sort(() => Math.random() - Math.random()).slice(0, 15),
+        };
+    }
+    else {
+        all_repositories = {
+            c: c,
+            cplusplus: cplusplus,
+            csharp: csharp,
+            go: go,
+            java: java,
+            javascript: javascript,
+            php: php,
+            python: python,
+            ruby: ruby,
+            typescript: typescript,
+        };
+    }
+    return all_repositories;
+}
+function loadRepositoriesSampleDataByLanguage(language) {
+    const dir = `resources/output/${language}/`;
+    const repositories = fs__WEBPACK_IMPORTED_MODULE_4___default.a.readdirSync(dir);
+    console.log(repositories);
+}
+async function pingRepositories(repositories, language) {
     const renamedRepos = [];
     const notRenamedRepos = [];
     const promisses = await repositories.map(async (repository) => {
@@ -401,16 +477,16 @@ async function pingRepositories() {
         }
     });
     await Promise.all(promisses);
-    save("renamed-repositories", renamedRepos);
-    save("not-renamed-repositories", notRenamedRepos);
+    save("renamed-repositories", renamedRepos, language);
+    save("not-renamed-repositories", notRenamedRepos, language);
 }
-function cleanSampleRepositories() {
+function cleanSampleRepositories(repositories, language) {
     const renamedRepos = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_3__["readMock"])("resources/output/renamed-repositories.json");
     const names = renamedRepos.map(repo => repo.name);
     const cleanSample = repositories.filter(repository => {
         return !names.includes(repository.name);
     });
-    save("all-repositories-clean", cleanSample);
+    save("all-repositories-clean", cleanSample, language);
 }
 function getWeeklyDistribuition(first_contribuitions) {
     const contribuitions_date = first_contribuitions.map(contribuition => {
@@ -434,39 +510,44 @@ function getWeeklyDistribuition(first_contribuitions) {
     });
     return weeklyDistribuition.reverse();
 }
-function normalizeDistribuition(weeklyDistribuition) {
-    const firstPR = weeklyDistribuition[0].week;
-    const lastPR = weeklyDistribuition[weeklyDistribuition.length - 1].week;
-    console.log(Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(firstPR, "WW GGGG").format("L LT"));
-    console.log(Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(lastPR, "WW GGGG").format("L LT"));
-    for (var m = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(firstPR, "WW GGGG"); m.isBefore(Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(lastPR, "WW GGGG")); m.add(1, 'week')) {
-        const this_week = m.format('WW GGGG');
-        if (!weeklyDistribuition.some(distribution => distribution.week === this_week)) {
-            weeklyDistribuition.push({ week: this_week, total: 0, dates: [] });
+function fullFillDistribuition(weeklyDistribuition, created_at) {
+    const fullFillDistribution = [...weeklyDistribuition];
+    for (var created = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(created_at); created.isBefore(Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["nowLocale"])()); created.add(1, 'week')) {
+        const this_week = created.format('WW GGGG');
+        if (!weeklyDistribuition.some(distribution => distribution.week == this_week)) {
+            fullFillDistribution.push({ week: this_week, total: 0, dates: [] });
         }
     }
-    return weeklyDistribuition;
+    return fullFillDistribution.sort((a, b) => (Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(a.week, 'WW GGGG').valueOf() > Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(b.week, 'WW GGGG').valueOf()) ?
+        1 :
+        ((Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(b.week, 'WW GGGG').valueOf() > Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(a.week, 'WW GGGG').valueOf())
+            ? -1 : 0));
+}
+function normalizeDistribuition(weeklyDistribuition) {
+    const firstPR = weeklyDistribuition[0].week;
+    const lastPR = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(firstPR, "WW GGGG").add(6, 'months').format("WW GGGG");
+    const indexOfLast = weeklyDistribuition.map(d => d.week).indexOf(lastPR);
+    return weeklyDistribuition.splice(0, indexOfLast);
 }
 async function getRateLimitRemaining() {
     const rateLimit = await octokit.rateLimit.get();
     const rateLimitData = rateLimit.data;
-    return rateLimitData.rate.remaining;
+    return rateLimitData;
 }
-function save(name, data) {
-    fs__WEBPACK_IMPORTED_MODULE_4___default.a.writeFile(`resources/output/${name}.json`, JSON.stringify(data), function (err) {
+function save(name, data, language) {
+    fs__WEBPACK_IMPORTED_MODULE_4___default.a.writeFile(`resources/output/${language}/${name}.json`, JSON.stringify(data), function (err) {
         if (err) {
             console.log(err);
         }
     });
 }
-async function graph(req, res) {
-    var _a, _b, _c, _d, _e;
-    let rep = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_3__["readMock"])("resources/output/expressjs-expressjsexpress.json");
-    rep.weekly_distribuition = normalizeDistribuition(rep.weekly_distribuition);
-    if (!((_a = rep.weekly_distribuition) === null || _a === void 0 ? void 0 : _a.find(distribuition => distribuition.week == Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(rep.newcomer_labels[0].created_at).format('WW GGGG')))) {
-        (_b = rep.weekly_distribuition) === null || _b === void 0 ? void 0 : _b.push({ week: Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(rep.newcomer_labels[0].created_at).format('WW GGGG'), dates: [], total: null });
+function generateGraph(name, rep, language) {
+    var _a, _b, _c, _d;
+    rep.weekly_distribuition = fullFillDistribuition(rep.weekly_distribuition, rep.created_at);
+    if (rep.newcomer_labels && rep.newcomer_labels.length > 0 && !((_a = rep.weekly_distribuition) === null || _a === void 0 ? void 0 : _a.find(distribuition => distribuition.week == Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(rep.newcomer_labels[0].created_at).format('WW GGGG')))) {
+        rep.weekly_distribuition.push({ week: Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(rep.newcomer_labels[0].created_at).format('WW GGGG'), dates: [], total: 0 });
     }
-    (_c = rep.weekly_distribuition) === null || _c === void 0 ? void 0 : _c.sort((a, b) => (Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(a.week, 'WW GGGG').valueOf() > Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(b.week, 'WW GGGG').valueOf()) ?
+    (_b = rep.weekly_distribuition) === null || _b === void 0 ? void 0 : _b.sort((a, b) => (Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(a.week, 'WW GGGG').valueOf() > Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(b.week, 'WW GGGG').valueOf()) ?
         1 :
         ((Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(b.week, 'WW GGGG').valueOf() > Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(a.week, 'WW GGGG').valueOf())
             ? -1 : 0));
@@ -496,9 +577,11 @@ async function graph(req, res) {
         xAxis: {
             type: 'category',
             boundaryGap: true,
-            data: (_d = rep.weekly_distribuition) === null || _d === void 0 ? void 0 : _d.map(distribuition => distribuition.week),
+            data: (_c = rep.weekly_distribuition) === null || _c === void 0 ? void 0 : _c.map(distribuition => distribuition.week),
             markLine: {
-                data: [{ name: 'First Date Newcomer Label', yAxis: Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(rep.newcomer_labels[0].created_at).format('WW GGGG') }]
+                data: rep.newcomer_labels && rep.newcomer_labels.length > 0 ?
+                    [{ name: 'First Date Newcomer Label', yAxis: Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(rep.newcomer_labels[0].created_at).format('WW[S] GGGG[A]') }]
+                    : []
             }
         },
         yAxis: {
@@ -509,11 +592,11 @@ async function graph(req, res) {
         },
         series: [
             {
-                name: 'Quantidade de primeiras contribuições semanais',
+                name: 'Quantidade de primeiras contribuições por semana',
                 type: 'line',
                 smooth: true,
                 showSymbol: false,
-                data: (_e = rep.weekly_distribuition) === null || _e === void 0 ? void 0 : _e.map(distribuition => distribuition.total),
+                data: (_d = rep.weekly_distribuition) === null || _d === void 0 ? void 0 : _d.map(distribuition => distribuition.total),
                 markArea: {
                     data: [[{
                                 name: 'Normalização (6 meses)',
@@ -531,7 +614,7 @@ async function graph(req, res) {
                         color: 'gray'
                     }
                 },
-                markLine: {
+                markLine: rep.newcomer_labels && rep.newcomer_labels.length > 0 ? {
                     label: {
                         show: true,
                         formatter: rep.newcomer_labels[0].name
@@ -548,13 +631,286 @@ async function graph(req, res) {
                             }
                         }
                     ]
-                }
+                } : {}
             },
         ]
     };
     const chart = new Chart(1500, 800);
-    chart.renderToFileSync(option, 'resources/charts/render-to-file.png');
-    res.status(http_status_codes__WEBPACK_IMPORTED_MODULE_2__["OK"]).json(option);
+    chart.renderToFileSync(option, `resources/output/${language}/${name}.png`);
+}
+async function limit(req, res) {
+    res.status(http_status_codes__WEBPACK_IMPORTED_MODULE_2__["OK"]).json(await getRateLimitRemaining());
+}
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+/***/ }),
+
+/***/ "./controllers/execute/statistics.ts":
+/*!*******************************************!*\
+  !*** ./controllers/execute/statistics.ts ***!
+  \*******************************************/
+/*! exports provided: execute */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "execute", function() { return execute; });
+/* harmony import */ var http_status_codes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! http-status-codes */ "http-status-codes");
+/* harmony import */ var http_status_codes__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(http_status_codes__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_handleMock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/handleMock */ "./utils/handleMock.ts");
+/* harmony import */ var _utils_Moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/Moment */ "./utils/Moment.ts");
+/* harmony import */ var _utils_mannwhitneyu_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/mannwhitneyu.js */ "./utils/mannwhitneyu.js");
+/* harmony import */ var _utils_mannwhitneyu_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_utils_mannwhitneyu_js__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+async function execute(req, res) {
+    const repository = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_1__["readMock"])("resources/output/c/curl-curl.json");
+    const weeklyContributions = normalizeDistribuition(fullFillDistribuition(repository.weekly_distribuition, repository.created_at));
+    const splitDate = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(repository.newcomer_labels[0].created_at);
+    const distributionBefore = weeklyContributions.filter(distrution => Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(distrution.week, "WW GGGG").isBefore(splitDate));
+    const distributionAfter = weeklyContributions.filter(distrution => Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(distrution.week, "WW GGGG").isAfter(splitDate));
+    console.log(mann1(distributionBefore, distributionAfter));
+    console.log(mann2(distributionBefore, distributionAfter));
+    console.log(mann3(distributionBefore, distributionAfter));
+    res.status(http_status_codes__WEBPACK_IMPORTED_MODULE_0__["OK"]).json();
+}
+function fullFillDistribuition(weeklyDistribuition, created_at) {
+    const fullFillDistribution = [...weeklyDistribuition];
+    for (var created = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(created_at); created.isBefore(Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["nowLocale"])()); created.add(1, 'week')) {
+        const this_week = created.format('WW GGGG');
+        if (!weeklyDistribuition.some(distribution => distribution.week == this_week)) {
+            fullFillDistribution.push({ week: this_week, total: 0, dates: [] });
+        }
+    }
+    return fullFillDistribution.sort((a, b) => (Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(a.week, 'WW GGGG').valueOf() > Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(b.week, 'WW GGGG').valueOf()) ?
+        1 :
+        ((Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(b.week, 'WW GGGG').valueOf() > Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(a.week, 'WW GGGG').valueOf())
+            ? -1 : 0));
+}
+function normalizeDistribuition(weeklyDistribuition) {
+    const firstPR = weeklyDistribuition[0].week;
+    const lastPR = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(firstPR, "WW GGGG").add(6, 'months');
+    const indexOfLast = weeklyDistribuition.map(d => d.week).findIndex(week => lastPR.isBefore(Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(week, "WW GGGG")));
+    return weeklyDistribuition.splice(indexOfLast, weeklyDistribuition.length);
+}
+function nearestWeek(splitDate, weekly_distribuition) {
+    let nearestWeek = "";
+    weekly_distribuition.forEach(distribution => {
+        let diff = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(distribution.week, "WW GGGG").diff(splitDate, 'days');
+        if (diff > 0) {
+            if (nearestWeek) {
+                if (Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(distribution.week, "WW GGGG").diff(Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(nearestWeek, "WW GGGG"), 'days') < 0) {
+                    nearestWeek = distribution.week;
+                }
+            }
+            else {
+                nearestWeek = distribution.week;
+            }
+        }
+    });
+    return nearestWeek;
+}
+function mann1(before, after) {
+    let qtdBefore = before.map(d => d.total);
+    let qtdAfter = after.map(d => d.total);
+    let mwu = __webpack_require__(/*! mann-whitney-utest */ "mann-whitney-utest");
+    let samples = [qtdBefore, qtdAfter];
+    var u = mwu.test(samples);
+    if (mwu.significant(u, samples)) {
+        return 'The data is significant! [' + u + "] Correct: " + mwu.check(u, samples);
+    }
+    else {
+        return 'The data is not significant. [' + u + "] Correct: " + mwu.check(u, samples);
+    }
+}
+function mann2(before, after) {
+    var genstats = __webpack_require__(/*! genstats */ "genstats");
+    let qtdBefore = before.map(d => d.total);
+    let qtdAfter = after.map(d => d.total);
+    return genstats.wilcoxon(qtdBefore, qtdAfter);
+}
+function mann3(before, after) {
+    let qtdBefore = before.map(d => d.total);
+    let qtdAfter = after.map(d => d.total);
+    var t = Object(_utils_mannwhitneyu_js__WEBPACK_IMPORTED_MODULE_3__["test"])(qtdBefore, qtdAfter);
+    return t;
+}
+
+
+/***/ }),
+
+/***/ "./controllers/execute/tests.ts":
+/*!**************************************!*\
+  !*** ./controllers/execute/tests.ts ***!
+  \**************************************/
+/*! exports provided: execute, loadRepositoriesSampleDataByLanguage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "execute", function() { return execute; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadRepositoriesSampleDataByLanguage", function() { return loadRepositoriesSampleDataByLanguage; });
+/* harmony import */ var http_status_codes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! http-status-codes */ "http-status-codes");
+/* harmony import */ var http_status_codes__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(http_status_codes__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_handleMock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/handleMock */ "./utils/handleMock.ts");
+/* harmony import */ var _utils_Moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/Moment */ "./utils/Moment.ts");
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! fs */ "fs");
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+const { Chart } = __webpack_require__(/*! echarts-ssr */ "echarts-ssr");
+async function execute(req, res) {
+    const repository = Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_1__["readMock"])("resources/output/c/curl-curl.json");
+    res.status(http_status_codes__WEBPACK_IMPORTED_MODULE_0__["OK"]).json(fullFillDistribuition(repository.weekly_distribuition, repository.created_at));
+}
+async function loadRepositoriesSampleDataByLanguage(req, res) {
+    const helpWantedVariations = ["status/help-wanted", "Help wanted", "help wanted", "Help Wanted", "help-wanted", "disposition/help wanted",
+        "HelpWanted", "Help-Wanted", "state: help wanted (PR)", "status/help-wanted", "status: help wanted"];
+    const languages = ["c", "cplusplus", "csharp", "go", "java", "javascript", "php", "python", "ruby", "typescript"];
+    languages.forEach(language => {
+        const dir = `resources/output/${language}/`;
+        const fileRepositories = fs__WEBPACK_IMPORTED_MODULE_3___default.a.readdirSync(dir).filter(file => file.includes(".json"));
+        const repositories = fileRepositories.map(repository => Object(_utils_handleMock__WEBPACK_IMPORTED_MODULE_1__["readMock"])(`${dir}/${repository}`));
+        const repositoriesWithoutHelpWanted = repositories.filter(repository => {
+            const new_comer_labels = repository.newcomer_labels.map(label => label.name.toLowerCase());
+            return !new_comer_labels.some(label => helpWantedVariations.includes(label));
+        });
+        repositoriesWithoutHelpWanted.forEach(repo => {
+            repo.has_newcomer_labels = repo.newcomer_labels.length > 0;
+            generateGraph(`${repo.owner}-${repo.name}`.replace(/\//g, ''), repo, language);
+        });
+    });
+    res.status(http_status_codes__WEBPACK_IMPORTED_MODULE_0__["OK"]).json("finish");
+}
+function generateGraph(name, rep, language) {
+    var _a, _b, _c, _d;
+    if (rep.newcomer_labels && rep.newcomer_labels.length > 0 &&
+        !((_a = rep.weekly_distribuition) === null || _a === void 0 ? void 0 : _a.find(distribuition => distribuition.week == Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(rep.newcomer_labels[0].created_at).format('WW GGGG')))) {
+        rep.weekly_distribuition.push({ week: Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(rep.newcomer_labels[0].created_at).format('WW GGGG'), dates: [], total: 0 });
+    }
+    (_b = rep.weekly_distribuition) === null || _b === void 0 ? void 0 : _b.sort((a, b) => (Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(a.week, 'WW GGGG').valueOf() > Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(b.week, 'WW GGGG').valueOf()) ?
+        1 :
+        ((Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(b.week, 'WW GGGG').valueOf() > Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(a.week, 'WW GGGG').valueOf())
+            ? -1 : 0));
+    var option = {
+        grid: {
+            top: 70,
+            bottom: 60,
+            left: '2%',
+            right: '2%',
+        },
+        title: {
+            text: 'Gráfico de Distribuição de Ingresso Semanal de Novatos',
+            subtext: rep.nameconcat,
+            left: 'center',
+            padding: 0
+        },
+        legend: {
+            y: 'bottom',
+            icon: 'line',
+            color: 'blue'
+        },
+        backgroundColor: 'white',
+        renderAsImage: true,
+        toolbox: {
+            show: false
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: true,
+            data: (_c = rep.weekly_distribuition) === null || _c === void 0 ? void 0 : _c.map(distribuition => distribuition.week),
+            markLine: {
+                data: rep.newcomer_labels && rep.newcomer_labels.length > 0 ?
+                    [{ name: 'First Date Newcomer Label', yAxis: Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(rep.newcomer_labels[0].created_at).format('WW[S] GGGG[A]') }]
+                    : []
+            }
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value}'
+            }
+        },
+        series: [
+            {
+                name: 'Quantidade de primeiras contribuições por semana',
+                type: 'line',
+                smooth: true,
+                showSymbol: false,
+                data: (_d = rep.weekly_distribuition) === null || _d === void 0 ? void 0 : _d.map(distribuition => distribuition.total),
+                markArea: {
+                    data: [[{
+                                name: 'Normalização (6 meses)',
+                                xAxis: rep.weekly_distribuition[0].week
+                            }, {
+                                xAxis: Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(rep.weekly_distribuition[0].week, "WW GGGG").add(6, 'months').format("WW GGGG")
+                            }]]
+                },
+                dimensions: [
+                    { name: 'timestamp', type: 'time' }
+                ],
+                lineStyle: {
+                    normal: {
+                        width: '2',
+                        color: 'gray'
+                    }
+                },
+                markLine: rep.newcomer_labels && rep.newcomer_labels.length > 0 ? {
+                    label: {
+                        show: true,
+                        formatter: rep.newcomer_labels[0].name
+                    },
+                    data: [
+                        {
+                            name: 'Adopted the pratice',
+                            xAxis: Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(rep.newcomer_labels[0].created_at).format('WW GGGG'),
+                            lineStyle: {
+                                normal: {
+                                    type: 'dashed',
+                                    color: 'red'
+                                }
+                            }
+                        }
+                    ]
+                } : {}
+            },
+        ]
+    };
+    if (rep.newcomer_labels.length > 0) {
+        const split_position = rep.weekly_distribuition.findIndex(it => it.week == Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(rep.newcomer_labels[0].created_at).format('WW GGGG'));
+        rep.weekly_distribuition_before = rep.weekly_distribuition.slice(0, split_position).map(distribuition => distribuition.total);
+        rep.weekly_distribuition_after = rep.weekly_distribuition.slice(split_position, rep.weekly_distribuition.length).map(distribuition => distribuition.total);
+        save(`${rep.owner}-${rep.name}`.replace(/\//g, ''), rep, language);
+    }
+}
+function save(name, data, language) {
+    fs__WEBPACK_IMPORTED_MODULE_3___default.a.writeFile(`resources/output-without-helpwanted/${language}/${name}.json`, JSON.stringify(data), function (err) {
+        console.log("saved: " + name);
+        if (err) {
+            console.log(err);
+        }
+    });
+}
+function fullFillDistribuition(weeklyDistribuition, created_at) {
+    const lastPR = weeklyDistribuition[weeklyDistribuition.length - 1].week;
+    const fullFillDistribution = [...weeklyDistribuition];
+    for (var created = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(created_at); created.isBefore(Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["nowLocale"])()); created.add(1, 'week')) {
+        const this_week = created.format('WW GGGG');
+        if (!weeklyDistribuition.some(distribution => distribution.week == this_week)) {
+            fullFillDistribution.push({ week: this_week, total: 0, dates: [] });
+        }
+    }
+    return fullFillDistribution.sort((a, b) => (Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(a.week, 'WW GGGG').valueOf() > Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(b.week, 'WW GGGG').valueOf()) ?
+        1 :
+        ((Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(b.week, 'WW GGGG').valueOf() > Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_2__["loadAbsoluteMoment"])(a.week, 'WW GGGG').valueOf())
+            ? -1 : 0));
 }
 
 
@@ -753,10 +1109,16 @@ router.get('/routes', _controllers_server__WEBPACK_IMPORTED_MODULE_1__["routes"]
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _controllers_execute_execute__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../controllers/execute/execute */ "./controllers/execute/execute.ts");
+/* harmony import */ var _controllers_execute_statistics__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../controllers/execute/statistics */ "./controllers/execute/statistics.ts");
+/* harmony import */ var _controllers_execute_tests__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../controllers/execute/tests */ "./controllers/execute/tests.ts");
+
+
 
 function generateStaticRoutes(router) {
     router.get('/execute', _controllers_execute_execute__WEBPACK_IMPORTED_MODULE_0__["execute"]);
-    router.get('/graph', _controllers_execute_execute__WEBPACK_IMPORTED_MODULE_0__["graph"]);
+    router.get('/statistics', _controllers_execute_statistics__WEBPACK_IMPORTED_MODULE_1__["execute"]);
+    router.get('/test', _controllers_execute_tests__WEBPACK_IMPORTED_MODULE_2__["loadRepositoriesSampleDataByLanguage"]);
+    router.get('/limit', _controllers_execute_execute__WEBPACK_IMPORTED_MODULE_0__["limit"]);
 }
 /* harmony default export */ __webpack_exports__["default"] = (generateStaticRoutes);
 
@@ -825,6 +1187,214 @@ function readMock(filePath) {
     return JSON.parse(file);
 }
 
+
+/***/ }),
+
+/***/ "./utils/mannwhitneyu.js":
+/*!*******************************!*\
+  !*** ./utils/mannwhitneyu.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+(function (exports) {
+
+    var rank = {
+        /*
+         * Standart ranking
+         *
+         * The MIT License, Copyright (c) 2014 Ben Magyar
+         */
+        standard: function (array, key) {
+            // sort the array
+            array = array.sort(function (a, b) {
+                var x = a[key];
+                var y = b[key];
+                return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+            });
+            // assign a naive ranking
+            for (var i = 1; i < array.length + 1; i++) {
+                array[i - 1]['rank'] = i;
+            }
+            return array;
+        },
+        /*
+         * Fractional ranking
+         *
+         * The MIT License, Copyright (c) 2014 Ben Magyar
+         */
+        fractional: function (array, key) {
+            array = this.standard(array, key);
+            // now apply fractional
+            var pos = 0;
+            while (pos < array.length) {
+                var sum = 0;
+                var i = 0;
+                for (i = 0; array[pos + i + 1] && (array[pos + i][key] === array[pos + i + 1][key]); i++) {
+                    sum += array[pos + i]['rank'];
+                }
+                sum += array[pos + i]['rank'];
+                var endPos = pos + i + 1;
+                for (pos; pos < endPos; pos++) {
+                    array[pos]['rank'] = sum / (i + 1);
+                }
+                pos = endPos;
+            }
+            return array;
+        },
+        rank: function (x, y) {
+            var nx = x.length,
+                ny = y.length,
+                combined = [],
+                ranked;
+            while (nx--) {
+                combined.push({
+                    set: 'x',
+                    val: x[nx]
+                });
+            }
+            while (ny--) {
+                combined.push({
+                    set: 'y',
+                    val: y[ny]
+                });
+            }
+            ranked = this.fractional(combined, 'val');
+            return ranked
+        }
+    };
+
+    /*
+    * Error function
+    *
+    * The MIT License, Copyright (c) 2013 jStat
+    */
+    var erf = function erf(x) {
+        var cof = [-1.3026537197817094, 6.4196979235649026e-1, 1.9476473204185836e-2, -9.561514786808631e-3, -9.46595344482036e-4, 3.66839497852761e-4,
+            4.2523324806907e-5, -2.0278578112534e-5, -1.624290004647e-6,
+            1.303655835580e-6, 1.5626441722e-8, -8.5238095915e-8,
+            6.529054439e-9, 5.059343495e-9, -9.91364156e-10, -2.27365122e-10, 9.6467911e-11, 2.394038e-12, -6.886027e-12, 8.94487e-13, 3.13092e-13, -1.12708e-13, 3.81e-16, 7.106e-15, -1.523e-15, -9.4e-17, 1.21e-16, -2.8e-17
+        ];
+        var j = cof.length - 1;
+        var isneg = false;
+        var d = 0;
+        var dd = 0;
+        var t, ty, tmp, res;
+
+        if (x < 0) {
+            x = -x;
+            isneg = true;
+        }
+
+        t = 2 / (2 + x);
+        ty = 4 * t - 2;
+
+        for (; j > 0; j--) {
+            tmp = d;
+            d = ty * d - dd + cof[j];
+            dd = tmp;
+        }
+
+        res = t * Math.exp(-x * x + 0.5 * (cof[0] + ty * d) - dd);
+        return isneg ? res - 1 : 1 - res;
+    };
+
+    /*
+    * Normal distribution CDF
+    *
+    * The MIT License, Copyright (c) 2013 jStat
+    */
+    var dnorm = function (x, mean, std) {
+        return 0.5 * (1 + erf((x - mean) / Math.sqrt(2 * std * std)));
+    }
+
+    var statistic = function (x, y) {
+        var ranked = rank.rank(x, y),
+            nr = ranked.length,
+            nx = x.length,
+            ny = y.length,
+            ranksums = {
+                x: 0,
+                y: 0
+            },
+            i = 0, t = 0, nt = 1, tcf, ux, uy;
+
+        while (i < nr) {
+            if (i > 0) {
+                if (ranked[i].val == ranked[i - 1].val) {
+                    nt++;
+                } else {
+                    if (nt > 1) {
+                        t += Math.pow(nt, 3) - nt
+                        nt = 1;
+                    }
+                }
+            }
+            ranksums[ranked[i].set] += ranked[i].rank
+            i++;
+        }
+        tcf = 1 - (t / (Math.pow(nr, 3) - nr))
+        ux = nx * ny + (nx * (nx + 1) / 2) - ranksums.x;
+        uy = nx * ny - ux;
+
+        return {
+            tcf: tcf,
+            ux: ux,
+            uy: uy,
+            big: Math.max(ux, uy),
+            small: Math.min(ux, uy)
+        }
+    }
+
+    exports.test = function (x, y, alt, corr) {
+        // set default value for alternative
+        alt = typeof alt !== 'undefined' ? alt : 'two-sided';
+        // set default value for continuity
+        corr = typeof corr !== 'undefined' ? corr : true;
+        var nx = x.length, // x's size
+            ny = y.length, // y's size
+            f = 1,
+            u, mu, std, z, p;
+
+        // test statistic
+        u = statistic(x, y);
+
+        // mean compute and correct if given
+        if (corr) {
+            mu = (nx * ny / 2) + 0.5;
+        } else {
+            mu = nx * ny / 2;
+        }
+
+        // compute standard deviation using tie correction factor
+        std = Math.sqrt(u.tcf * nx * ny * (nx + ny + 1) / 12);
+
+        // compute z according to given alternative
+        if (alt == 'less') {
+            z = (u.ux - mu) / std;
+        } else if (alt == 'greater') {
+            z = (u.uy - mu) / std;
+        } else if (alt == 'two-sided') {
+            z = Math.abs((u.big - mu) / std);
+        } else {
+            console.log('Unknown alternative argument');
+        }
+
+        // factor to correct two sided p-value
+        if (alt == 'two-sided') {
+            f = 2;
+        }
+
+        // compute p-value using CDF of standard normal
+        p = dnorm(-z, 0, 1) * f;
+
+        return { p: p, U: u.small };
+    }
+
+})( false ? undefined : exports);
 
 /***/ }),
 
@@ -905,6 +1475,17 @@ module.exports = require("fs");
 
 /***/ }),
 
+/***/ "genstats":
+/*!***************************!*\
+  !*** external "genstats" ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("genstats");
+
+/***/ }),
+
 /***/ "helmet":
 /*!*************************!*\
   !*** external "helmet" ***!
@@ -924,6 +1505,17 @@ module.exports = require("helmet");
 /***/ (function(module, exports) {
 
 module.exports = require("http-status-codes");
+
+/***/ }),
+
+/***/ "mann-whitney-utest":
+/*!*************************************!*\
+  !*** external "mann-whitney-utest" ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("mann-whitney-utest");
 
 /***/ }),
 

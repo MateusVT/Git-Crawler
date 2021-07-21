@@ -6,66 +6,92 @@ import { Contribuition, Label, Repository, WeeklyDistribuition } from '../../typ
 import { readMock } from '../../utils/handleMock';
 import fs from 'fs';
 import { loadAbsoluteMoment, now, nowLocale } from "../../utils/Moment"
-// import * as echarts from 'echarts'
-// const genEchart = require('fish-node-echarts');
 const { Chart } = require('echarts-ssr');
 
-let tokenIndex = 0
-const OAuthTokens = ["cd30d422fbeaa59f3e73d632d0ffb3fe2dd68e9f", '7c262c81d42dab7f0e94c2be6745a64176009e10', 'e9342f8b22062fed28023334a786dbb81a8aa676', "f3cd0d299db11989d29eccafc6720394d04134ce", '69b60039acaf5583b58657284ef3cc4de6dfe04a', "e39c5da13998c763af72700799d11af8b4f7bd34", "aba49913a2df51e5cab4a9c663325f30ffedbd17"] //Laplace, Wiese, Claudia, My Token
+let tokenIndex = 1
+const OAuthTokens = ["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", "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"]//My, Laplace
+
 let octokit: Octokit = new Octokit({ auth: OAuthTokens[tokenIndex] })
 const newcomer_labels = loadNewCommerLabels()//Load dataset of newcomer labels
-const repositories = loadRepositoriesSample()//Load repositories sample
-
+const repositories = loadRepositoriesSampleByLanguage()//Load repositories sample
+// const repositories = loadRepositoriesSample()//Load repositories sample
 
 export async function execute(req: Request, res: Response) {
   let limitRemaining = await getRateLimitRemaining()
-  // getWeeklyDistribuition()
-  console.log("[Start] Limit Remaining: " + limitRemaining)
 
-  const promisses = await repositories.map(async repo => {
-    repo.script_execution = { start_at: nowLocale().format("LT L") }
-    let repo_first_contribuitions: Contribuition[] = []
-    let repo_labels: string[] = []
-    let repo_newcomer_labels: string[] = []
-    let repo_newcomer_labels_date: Label[] = []
-    let weekly_distribuition: WeeklyDistribuition[] = []
+  // console.log("[Start] Limit Remaining: ", limitRemaining)
+  const languages = ["c", "cplusplus", "csharp", "go", "java", "javascript", "php", "python", "ruby", "typescript"] as const
 
-    if (limitRemaining >= 10) {
-      repo_first_contribuitions = await getAllFirstContributions(repo.owner!, repo.name!);//Return a list of all contributors with the date of theirs first contributions
-      console.log()
+  languages.reduce(
+    (promisse, language) =>
+      promisse.then(async _ => {
 
-      repo_labels = await getAllLabels(repo.owner!, repo.name!);//Return all labels from the given repository
-      console.log()
+        console.log("Started Language: " + language)
+        await repositories[language].reduce(
+          (promisse, repo) =>
+            promisse.then(_ => {
+              const alreadyCrawled = fs.readdirSync(`resources/output/${language}`)
+              if (alreadyCrawled.includes(`${repo.owner}-${repo.name}.json`.replace(/\//g, ''))) {
+                console.log("Skipped: " + `${repo.owner}-${repo.name}`)
+                return
+              } else {
+                return run(repo, language)
+              }
+            }),
+          Promise.resolve())
 
-      repo_newcomer_labels = await findNewcomerLabelsOnRepository(repo.owner!, repo.name!, repo_labels);//Find all newcomer labels on the repositorie (based on our dataset)
-      console.log()
+      }),
+    Promise.resolve())
 
-      repo_newcomer_labels_date = await getFirstOcurrenciesNewComerLabels(repo.owner!, repo.name!, repo_newcomer_labels);//Find all newcomer labels on the repositorie (based on our dataset)
-      console.log()
+  // console.log("[End] Limit Remaining: ", await getRateLimitRemaining())
 
-      weekly_distribuition = await getWeeklyDistribuition(repo_first_contribuitions);//Find all newcomer labels on the repositorie (based on our dataset)
-      console.log()
-    } else {
-      tokenIndex++
-      console.log("Token Changed! - " + OAuthTokens[tokenIndex])
-      octokit = new Octokit({ auth: OAuthTokens[tokenIndex] })
-      limitRemaining = await getRateLimitRemaining()
-    }
-
-    repo.first_contribuitions = repo_first_contribuitions
-    repo.weekly_distribuition = weekly_distribuition
-    repo.labels = repo_labels
-    repo.newcomer_labels = repo_newcomer_labels_date
-    repo.script_execution.finished_at = nowLocale().format("LT L")
-
-    save(`${repo.owner}-${repo.nameconcat}`.replace(/\//g, ''), repo)
-  })
-
-  await Promise.all(promisses);
-
-  console.log("[End] Limit Remaining: " + limitRemaining)
-  // res.status(HttpStatus.OK).json(getWeeklyDistribuition());
   res.status(HttpStatus.OK).end();
+}
+
+async function run(repo: Repository, language: string) {
+  repo.script_execution = { start_at: nowLocale().format("LT L") }
+  let repo_infos: string
+  let repo_first_contribuitions: Contribuition[] = []
+  let repo_labels: string[] = []
+  let repo_newcomer_labels: string[] = []
+  let repo_newcomer_labels_date: Label[] = []
+  let weekly_distribuition: WeeklyDistribuition[] = []
+
+  repo_infos = await getRepoInfos(repo.owner!, repo.name!);//Return a list of all contributors with the date of theirs first contributions
+  console.log()
+
+  repo_first_contribuitions = await getAllFirstContributions(repo.owner!, repo.name!);//Return a list of all contributors with the date of theirs first contributions
+  console.log()
+
+  repo_labels = await getAllLabels(repo.owner!, repo.name!);//Return all labels from the given repository
+  console.log()
+
+  repo_newcomer_labels = await findNewcomerLabelsOnRepository(repo.owner!, repo.name!, repo_labels);//Find all newcomer labels on the repositorie (based on our dataset)
+  console.log()
+
+  repo_newcomer_labels_date = await getFirstOcurrenciesNewComerLabels(repo.owner!, repo.name!, repo_newcomer_labels);//Find all newcomer labels on the repositorie (based on our dataset)
+  console.log()
+
+  weekly_distribuition = await getWeeklyDistribuition(repo_first_contribuitions);//Find all newcomer labels on the repositorie (based on our dataset)
+  console.log()
+
+  repo.created_at = repo_infos
+  repo.first_contribuitions = repo_first_contribuitions
+  repo.weekly_distribuition = fullFillDistribuition(weekly_distribuition, repo_infos)
+  repo.labels = repo_labels
+  repo.newcomer_labels = repo_newcomer_labels_date.sort()
+  repo.script_execution.finished_at = nowLocale().format("LT L")
+
+  save(`${repo.owner}-${repo.name}`.replace(/\//g, ''), repo, language)
+  generateGraph(`${repo.owner}-${repo.name}`.replace(/\//g, ''), repo, language)
+}
+
+//Collect general infos about the repo
+async function getRepoInfos(owner: string, repo: string) {
+
+  const repoInfos = (await octokit.rest.repos.get({ owner: owner, repo: repo })).data
+  return repoInfos.created_at
+
 }
 
 //Find the date of the first contribution of all contributors of the project.
@@ -136,7 +162,7 @@ async function getFirstOcurrenciesNewComerLabels(owner: string, name: string, ne
   console.log("- COLLECTING FIRST OCURRENCY OF LABELS " + newcomer_labels.toString() + " FROM PROJECT " + owner + "/" + name + " -")
   console.log("<-start for each {" + i + "}->")
   const promisses = await newcomer_labels.map(async (label) => {
-    const issues = await octokit.issues.listForRepo({ repo: name, owner: owner, sort: "created", direction: "asc", label: label, per_page: 1 })
+    const issues = await octokit.issues.listForRepo({ repo: name, owner: owner, sort: "created", direction: "asc", state: "all", labels: label, per_page: 1 })
     console.log("URL: " + issues.url)
     const issue = issues.data[0]
     if (issue != undefined) {
@@ -150,7 +176,10 @@ async function getFirstOcurrenciesNewComerLabels(owner: string, name: string, ne
   console.log("<-end for each->")
 
   await Promise.all(promisses);
-  return newcomer_labels_date
+
+  return newcomer_labels_date.sort((a, b) => {
+    return loadAbsoluteMoment(a.created_at).diff(b.created_at);
+  });
 }
 
 //Find all newcomer labels detected on the project bases on are newcomer label dataset.
@@ -182,14 +211,93 @@ function loadNewCommerLabels() {
 
 //Loads the sample.
 function loadRepositoriesSample() {
-  const all_repositories: Repository[] = readMock("resources/repositories/all-repositories.json")
+  const all_repositories: Repository[] = readMock("resources/repositories/c/curl-curl.json")
+  // const all_repositories: Repository[] = readMock("resources/repositories/all-repositories.json")
   const temp_repositories: Repository[] = []
   temp_repositories.push(all_repositories[0])
   return all_repositories
 }
 
+//Loads the samples by language.
+function loadRepositoriesSampleByLanguage(type?: string) {
+
+  const c: Repository[] = readMock("resources/repositories/c.json")
+  const csharp: Repository[] = readMock("resources/repositories/c#.json")
+  const cplusplus: Repository[] = readMock("resources/repositories/c++.json")
+  const go: Repository[] = readMock("resources/repositories/go.json")
+  const java: Repository[] = readMock("resources/repositories/java.json")
+  const javascript: Repository[] = readMock("resources/repositories/javascript.json")
+  const php: Repository[] = readMock("resources/repositories/php.json")
+  const python: Repository[] = readMock("resources/repositories/python.json")
+  const ruby: Repository[] = readMock("resources/repositories/ruby.json")
+  const typescript: Repository[] = readMock("resources/repositories/typescript.json")
+
+  let all_repositories
+
+  if (type == "top-15") {
+    all_repositories = {
+      c: c.slice(0, 15),
+      cplusplus: cplusplus.slice(0, 15),
+      csharp: csharp.slice(0, 15),
+      go: go.slice(0, 15),
+      java: java.slice(0, 15),
+      javascript: javascript.slice(0, 15),
+      php: php.slice(0, 15),
+      python: python.slice(0, 15),
+      ruby: ruby.slice(0, 15),
+      typescript: typescript.slice(0, 15),
+    }
+  } else if (type == "top-15-random") {
+    all_repositories = {
+      c: c.sort(() => Math.random() - Math.random()).slice(0, 15),
+      cplusplus: cplusplus.sort(() => Math.random() - Math.random()).slice(0, 15),
+      csharp: csharp.sort(() => Math.random() - Math.random()).slice(0, 15),
+      go: go.sort(() => Math.random() - Math.random()).slice(0, 15),
+      java: java.sort(() => Math.random() - Math.random()).slice(0, 15),
+      javascript: javascript.sort(() => Math.random() - Math.random()).slice(0, 15),
+      php: php.sort(() => Math.random() - Math.random()).slice(0, 15),
+      python: python.sort(() => Math.random() - Math.random()).slice(0, 15),
+      ruby: ruby.sort(() => Math.random() - Math.random()).slice(0, 15),
+      typescript: typescript.sort(() => Math.random() - Math.random()).slice(0, 15),
+    }
+
+  } else {
+
+    all_repositories = {
+      c: c,
+      cplusplus: cplusplus,
+      csharp: csharp,
+      go: go,
+      java: java,
+      javascript: javascript,
+      php: php,
+      python: python,
+      ruby: ruby,
+      typescript: typescript,
+    }
+
+  }
+
+  return all_repositories
+}
+
+//Loads the samples data by language.
+function loadRepositoriesSampleDataByLanguage(language?: string) {
+  const dir = `resources/output/${language}/`
+  // const repositories: Repository[] = readMock(`resources/output/${language}.json`)
+  const repositories = fs.readdirSync(dir)
+  console.log(repositories)
+  // readdir(dir, (err, files) => {
+  //   files.forEach(file => {
+  //     console.log(file);
+  //   });
+  // });
+  // return repositories
+}
+
+
 //Verify if the list of repositories still up to date based on their names.
-async function pingRepositories() {
+async function pingRepositories(repositories: Repository[], language: string) {
 
   const renamedRepos: Repository[] = []
   const notRenamedRepos: Repository[] = []
@@ -204,19 +312,19 @@ async function pingRepositories() {
 
   await Promise.all(promisses);
 
-  save("renamed-repositories", renamedRepos)
-  save("not-renamed-repositories", notRenamedRepos)
+  save("renamed-repositories", renamedRepos, language)
+  save("not-renamed-repositories", notRenamedRepos, language)
 
 }
 
 //Remove from the sample all repositories that have been moved ou renamed.
-function cleanSampleRepositories() {
+function cleanSampleRepositories(repositories: Repository[], language: string) {
   const renamedRepos: Repository[] = readMock("resources/output/renamed-repositories.json")
   const names = renamedRepos.map(repo => repo.name)
   const cleanSample = repositories.filter(repository => {
     return !names.includes(repository.name);
   })
-  save("all-repositories-clean", cleanSample)
+  save("all-repositories-clean", cleanSample, language)
 
 }
 
@@ -248,19 +356,31 @@ function getWeeklyDistribuition(first_contribuitions: Contribuition[]) {
 }
 
 
-function normalizeDistribuition(weeklyDistribuition: WeeklyDistribuition[]) {
-  const firstPR = weeklyDistribuition[0].week
-  const lastPR = weeklyDistribuition[weeklyDistribuition.length - 1].week
-  console.log(loadAbsoluteMoment(firstPR, "WW GGGG").format("L LT"))
-  console.log(loadAbsoluteMoment(lastPR, "WW GGGG").format("L LT"))
+function fullFillDistribuition(weeklyDistribuition: WeeklyDistribuition[], created_at: string) {
 
-  for (var m = loadAbsoluteMoment(firstPR, "WW GGGG"); m.isBefore(loadAbsoluteMoment(lastPR, "WW GGGG")); m.add(1, 'week')) {
-    const this_week = m.format('WW GGGG')
-    if (!weeklyDistribuition.some(distribution => distribution.week === this_week)) {
-      weeklyDistribuition.push({ week: this_week, total: 0, dates: [] })
+  const fullFillDistribution = [...weeklyDistribuition]
+
+  for (var created = loadAbsoluteMoment(created_at); created.isBefore(nowLocale()); created.add(1, 'week')) {
+    const this_week = created.format('WW GGGG')
+    if (!weeklyDistribuition.some(distribution => distribution.week == this_week)) {
+      fullFillDistribution.push({ week: this_week, total: 0, dates: [] })
     }
   }
-  return weeklyDistribuition
+  return fullFillDistribution.sort((a, b) =>
+    (loadAbsoluteMoment(a.week, 'WW GGGG').valueOf() > loadAbsoluteMoment(b.week, 'WW GGGG').valueOf()) ?
+      1 :
+      ((loadAbsoluteMoment(b.week, 'WW GGGG').valueOf() > loadAbsoluteMoment(a.week, 'WW GGGG').valueOf())
+        ? -1 : 0))
+
+}
+
+function normalizeDistribuition(weeklyDistribuition: WeeklyDistribuition[]) {
+
+  const firstPR = weeklyDistribuition[0].week
+  const lastPR = loadAbsoluteMoment(firstPR, "WW GGGG").add(6, 'months').format("WW GGGG")
+  const indexOfLast = weeklyDistribuition.map(d => d.week).indexOf(lastPR)
+
+  return weeklyDistribuition.splice(0, indexOfLast)
 
 }
 
@@ -268,27 +388,27 @@ function normalizeDistribuition(weeklyDistribuition: WeeklyDistribuition[]) {
 async function getRateLimitRemaining() {
   const rateLimit = await octokit.rateLimit.get()
   const rateLimitData = rateLimit.data
-  return rateLimitData.rate.remaining
+  return rateLimitData
 }
 
 //Save a JSON file at 'resources/output'
-function save(name: string, data: any) {
-  fs.writeFile(`resources/output/${name}.json`, JSON.stringify(data), function (err) {
+function save(name: string, data: any, language: string) {
+  fs.writeFile(`resources/output/${language}/${name}.json`, JSON.stringify(data), function (err) {
     if (err) {
       console.log(err);
     }
   });
 }
 
-export async function graph(req: Request, res: Response) {
+function generateGraph(name: string, rep: Repository, language: string) {
 
-  let rep: Repository = readMock("resources/output/expressjs-expressjsexpress.json")
+  rep.weekly_distribuition! = fullFillDistribuition(rep.weekly_distribuition!, rep.created_at!)
 
-  rep.weekly_distribuition! = normalizeDistribuition(rep.weekly_distribuition!)
-
-  if (!rep.weekly_distribuition?.find(distribuition => distribuition.week == loadAbsoluteMoment(rep.newcomer_labels!![0].created_at).format('WW GGGG'))) {
-    rep.weekly_distribuition?.push({ week: loadAbsoluteMoment(rep.newcomer_labels!![0].created_at).format('WW GGGG'), dates: [], total: null })
+  if (rep.newcomer_labels && rep.newcomer_labels.length > 0 && !rep.weekly_distribuition?.find(distribuition => distribuition.week == loadAbsoluteMoment(rep.newcomer_labels!![0].created_at).format('WW GGGG'))) {
+    rep.weekly_distribuition.push({ week: loadAbsoluteMoment(rep.newcomer_labels!![0].created_at).format('WW GGGG'), dates: [], total: 0 })
   }
+
+  //TODO remove this sort
   rep.weekly_distribuition?.sort((a, b) =>
     (loadAbsoluteMoment(a.week, 'WW GGGG').valueOf() > loadAbsoluteMoment(b.week, 'WW GGGG').valueOf()) ?
       1 :
@@ -306,7 +426,6 @@ export async function graph(req: Request, res: Response) {
     title: {
       text: 'Gráfico de Distribuição de Ingresso Semanal de Novatos',
       subtext: rep.nameconcat,
-
       left: 'center',
       padding: 0
     },
@@ -325,7 +444,9 @@ export async function graph(req: Request, res: Response) {
       boundaryGap: true,
       data: rep.weekly_distribuition?.map(distribuition => distribuition.week),
       markLine: {
-        data: [{ name: 'First Date Newcomer Label', yAxis: loadAbsoluteMoment(rep.newcomer_labels!![0].created_at).format('WW GGGG') }]
+        data: rep.newcomer_labels && rep.newcomer_labels.length > 0 ?
+          [{ name: 'First Date Newcomer Label', yAxis: loadAbsoluteMoment(rep.newcomer_labels[0].created_at).format('WW[S] GGGG[A]') }]
+          : []
       }
 
     },
@@ -337,7 +458,7 @@ export async function graph(req: Request, res: Response) {
     },
     series: [
       {
-        name: 'Quantidade de primeiras contribuições semanais',
+        name: 'Quantidade de primeiras contribuições por semana',
         type: 'line',
         smooth: true,
         showSymbol: false,
@@ -358,10 +479,10 @@ export async function graph(req: Request, res: Response) {
             color: 'gray'
           }
         },
-        markLine: {
+        markLine: rep.newcomer_labels && rep.newcomer_labels.length > 0 ? {
           label: {
             show: true,
-            formatter: rep.newcomer_labels![0].name
+            formatter: rep.newcomer_labels!![0].name
           },
           data: [
             {
@@ -374,7 +495,7 @@ export async function graph(req: Request, res: Response) {
               }
             }
           ]
-        }
+        } : {}
       },
 
     ]
@@ -382,10 +503,18 @@ export async function graph(req: Request, res: Response) {
 
 
   const chart = new Chart(1500, 800);
-  chart.renderToFileSync(option, 'resources/charts/render-to-file.png');
-  res.status(HttpStatus.OK).end();
+  chart.renderToFileSync(option, `resources/output/${language}/${name}.png`);
 }
 
+export async function limit(req: Request, res: Response) {
+
+  res.status(HttpStatus.OK).json(await getRateLimitRemaining())
+
+}
+
+function sleep(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 
 // https://www.npmjs.com/package/echarts-ssr#quick-example

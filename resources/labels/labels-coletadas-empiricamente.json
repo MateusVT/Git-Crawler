@@ -93,6 +93,7 @@
         "stat:contributions welcome",
         "status: ideal-for-contribution",
         "status: PRs welcome",
-        "you can help"
+        "you can help",
+        ":books: good-first-issue"
     ]
 }

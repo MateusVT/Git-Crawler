@@ -301,13 +301,6 @@
         "nameconcat": "facebook/litho"
     },
     {
-        "owner": "b3log",
-        "name": "symphony",
-        "url": "http://www.github.com/b3log/symphony",
-        "language": "Java",
-        "nameconcat": "b3log/symphony"
-    },
-    {
         "owner": "dianping",
         "name": "cat",
         "url": "http://www.github.com/dianping/cat",

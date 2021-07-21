@@ -308,20 +308,6 @@
         "nameconcat": "microsoft/PTVS"
     },
     {
-        "owner": "StockSharp",
-        "name": "StockSharp",
-        "url": "http://www.github.com/StockSharp/StockSharp",
-        "language": "C#",
-        "nameconcat": "StockSharp/StockSharp"
-    },
-    {
-        "owner": "Unity-Technologies",
-        "name": "ScriptableRenderPipeline",
-        "url": "http://www.github.com/Unity-Technologies/ScriptableRenderPipeline",
-        "language": "C#",
-        "nameconcat": "Unity-Technologies/ScriptableRenderPipeline"
-    },
-    {
         "owner": "abpframework",
         "name": "abp",
         "url": "http://www.github.com/abpframework/abp",
