@@ -8,12 +8,9 @@ import genericErrorHandler from './middlewares/genericErrorHandler';
 import notFoundHandler from './middlewares/notFoundHandler';
 import router from './routes/routes';
 import generateStaticRoutes from './routes/static';
-// import path from 'path';
 
 const { name, version } = config;
 const app: express.Application = express();
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
 
 app.locals.name = name;
 app.locals.version = version;

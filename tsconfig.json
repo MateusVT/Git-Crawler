@@ -39,6 +39,9 @@
       "node",
       "express"
     ],
+    "typeRoots": [
+      "../node_modules/@types"
+    ],
     "allowSyntheticDefaultImports": true,
     "paths": {
       "*": [
