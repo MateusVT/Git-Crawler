@@ -246,7 +246,7 @@ async function execute(req, res) {
     }
     let limitRemaining = await getRateLimitRemaining();
     console.log("[Start] Limit Remaining: ", limitRemaining);
-    const languages = ["c", "cplusplus", "csharp", "go", "java"];
+    const languages = ["c", "cplusplus", "csharp"];
     languages.reduce((promisse, language) => promisse.then(async (_) => {
         console.log("Started Language: " + language);
         await repositories[language].reduce((promisse, repo) => promisse.then(_ => {
