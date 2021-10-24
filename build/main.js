@@ -95,7 +95,7 @@ module.exports =
 /*! exports provided: name, version, description, main, repository, author, engines, scripts, husky, lint-staged, private, license, keywords, dependencies, devDependencies, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"GitCrawler\",\"version\":\"1.0.1\",\"description\":\"A crawler using GitHub Api.\",\"main\":\"index.ts\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/MateusVT/Git-Crawler\"},\"author\":{\"name\":\"Mateus Torres\",\"email\":\"mtsvtorres@gmail.com\"},\"engines\":{\"node\":\">= 15.12.0\"},\"scripts\":{\"start\":\"backpack\",\"clean\":\"rimraf build\",\"transpile\":\"backpack build\",\"build\":\"run-s clean transpile\",\"lint\":\"eslint {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\",\"lint:fix\":\"eslint --fix {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\"},\"husky\":{\"hooks\":{}},\"lint-staged\":{\"*.{ts,json}\":[\"eslint --fix {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\"]},\"private\":true,\"license\":\"MIT\",\"keywords\":[\"express\",\"typescript\",\"api\",\"es6\",\"node\",\"docker\",\"javascript\"],\"dependencies\":{\"@huchenme/github-trending\":\"^2.4.2\",\"@octokit/auth\":\"^3.0.3\",\"@octokit/rest\":\"^18.3.4\",\"@types/axios\":\"^0.14.0\",\"@types/echarts\":\"4.1.0\",\"@types/express\":\"^4.17.11\",\"@types/tough-cookie\":\"^4.0.0\",\"async-foreach\":\"^0.1.3\",\"axios\":\"^0.21.1\",\"axios-cookiejar-support\":\"^1.0.1\",\"body-parser\":\"^1.19.0\",\"cors\":\"^2.8.5\",\"dotenv\":\"^8.2.0\",\"echarts\":\"^5.0.2\",\"echarts-ssr\":\"0.0.1\",\"esm\":\"*\",\"express\":\"^4.17.1\",\"express-validator\":\"^6.6.1\",\"fetch\":\"^1.1.0\",\"form-data\":\"^4.0.0\",\"genstats\":\"^0.0.1\",\"github\":\"^14.0.0\",\"github-api-tags-full\":\"^7.1.0\",\"helmet\":\"^3.22.0\",\"http-status-codes\":\"^1.4.0\",\"jade\":\"^1.11.0\",\"joi\":\"^14.3.1\",\"lodash\":\"^4.17.19\",\"moment\":\"^2.29.1\",\"morgan\":\"^1.10.0\",\"pg\":\"^7.18.2\",\"tough-cookie\":\"^4.0.0\",\"tslib\":\"^2.1.0\",\"typeorm\":\"^0.2.28\",\"winston\":\"^3.2.1\",\"winston-daily-rotate-file\":\"^4.4.2\"},\"devDependencies\":{\"@babel/core\":\"^7.9.0\",\"@babel/preset-env\":\"^7.9.0\",\"@babel/preset-typescript\":\"^7.9.0\",\"@babel/register\":\"^7.0.0-beta.32\",\"@types/cors\":\"^2.8.6\",\"@types/dotenv\":\"^8.2.0\",\"@types/form-data\":\"^2.5.0\",\"@types/helmet\":\"^0.0.45\",\"@types/jest\":\"^25.1.4\",\"@types/joi\":\"^14.3.4\",\"@types/lodash\":\"^4.14.149\",\"@types/morgan\":\"^1.9.0\",\"@types/node\":\"^16.11.4\",\"@types/node-fetch\":\"^2.5.8\",\"@types/swagger-ui-express\":\"^4.1.2\",\"@types/winston\":\"^2.4.4\",\"@typescript-eslint/eslint-plugin\":\"^2.25.0\",\"@typescript-eslint/parser\":\"^2.25.0\",\"backpack-core\":\"^0.8.4\",\"eslint\":\"^6.8.0\",\"eslint-config-prettier\":\"^6.10.1\",\"eslint-plugin-prettier\":\"^3.1.2\",\"fork-ts-checker-webpack-plugin\":\"^4.1.2\",\"husky\":\"^4.2.3\",\"json-loader\":\"^0.5.7\",\"lint-staged\":\"^10.0.9\",\"npm-run-all\":\"^4.1.5\",\"prettier\":\"^2.0.2\",\"rimraf\":\"^3.0.2\",\"ts-loader\":\"^6.2.2\",\"ts-node\":\"^8.8.1\",\"typescript\":\"^4.2.3\"}}");
+module.exports = JSON.parse("{\"name\":\"GitCrawler\",\"version\":\"1.0.1\",\"description\":\"A script for collecting data from open source projects using the GitHub API\",\"main\":\"index.ts\",\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/MateusVT/Git-Crawler\"},\"author\":{\"name\":\"Mateus Torres\",\"email\":\"mtsvtorres@gmail.com\"},\"engines\":{\"node\":\">= 15.12.0\"},\"scripts\":{\"start\":\"backpack\",\"clean\":\"rimraf build\",\"transpile\":\"backpack build\",\"build\":\"run-s clean transpile\",\"lint\":\"eslint {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\",\"lint:fix\":\"eslint --fix {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\"},\"husky\":{\"hooks\":{}},\"lint-staged\":{\"*.{ts,json}\":[\"eslint --fix {src,scripts,test}/**/*.{ts,json} --no-error-on-unmatched-pattern\"]},\"private\":true,\"license\":\"MIT\",\"keywords\":[\"express\",\"typescript\",\"api\",\"es6\",\"node\",\"docker\",\"javascript\"],\"dependencies\":{\"@huchenme/github-trending\":\"^2.4.2\",\"@octokit/auth\":\"^3.0.3\",\"@octokit/rest\":\"^18.3.4\",\"@types/axios\":\"^0.14.0\",\"@types/echarts\":\"4.1.0\",\"@types/express\":\"^4.17.11\",\"@types/tough-cookie\":\"^4.0.0\",\"async-foreach\":\"^0.1.3\",\"axios\":\"^0.21.1\",\"axios-cookiejar-support\":\"^1.0.1\",\"body-parser\":\"^1.19.0\",\"cors\":\"^2.8.5\",\"dotenv\":\"^8.2.0\",\"echarts\":\"^5.0.2\",\"echarts-ssr\":\"0.0.1\",\"esm\":\"*\",\"express\":\"^4.17.1\",\"express-validator\":\"^6.6.1\",\"fetch\":\"^1.1.0\",\"form-data\":\"^4.0.0\",\"genstats\":\"^0.0.1\",\"github\":\"^14.0.0\",\"github-api-tags-full\":\"^7.1.0\",\"helmet\":\"^3.22.0\",\"http-status-codes\":\"^1.4.0\",\"jade\":\"^1.11.0\",\"joi\":\"^14.3.1\",\"lodash\":\"^4.17.19\",\"moment\":\"^2.29.1\",\"morgan\":\"^1.10.0\",\"pg\":\"^7.18.2\",\"tough-cookie\":\"^4.0.0\",\"tslib\":\"^2.1.0\",\"typeorm\":\"^0.2.28\",\"winston\":\"^3.2.1\",\"winston-daily-rotate-file\":\"^4.4.2\"},\"devDependencies\":{\"@babel/core\":\"^7.9.0\",\"@babel/preset-env\":\"^7.9.0\",\"@babel/preset-typescript\":\"^7.9.0\",\"@babel/register\":\"^7.0.0-beta.32\",\"@types/cors\":\"^2.8.6\",\"@types/dotenv\":\"^8.2.0\",\"@types/form-data\":\"^2.5.0\",\"@types/helmet\":\"^0.0.45\",\"@types/jest\":\"^25.1.4\",\"@types/joi\":\"^14.3.4\",\"@types/lodash\":\"^4.14.149\",\"@types/morgan\":\"^1.9.0\",\"@types/node\":\"^16.11.4\",\"@types/node-fetch\":\"^2.5.8\",\"@types/swagger-ui-express\":\"^4.1.2\",\"@types/winston\":\"^2.4.4\",\"@typescript-eslint/eslint-plugin\":\"^2.25.0\",\"@typescript-eslint/parser\":\"^2.25.0\",\"backpack-core\":\"^0.8.4\",\"eslint\":\"^6.8.0\",\"eslint-config-prettier\":\"^6.10.1\",\"eslint-plugin-prettier\":\"^3.1.2\",\"fork-ts-checker-webpack-plugin\":\"^4.1.2\",\"husky\":\"^4.2.3\",\"json-loader\":\"^0.5.7\",\"lint-staged\":\"^10.0.9\",\"npm-run-all\":\"^4.1.5\",\"prettier\":\"^2.0.2\",\"rimraf\":\"^3.0.2\",\"ts-loader\":\"^6.2.2\",\"ts-node\":\"^8.8.1\",\"typescript\":\"^4.2.3\"}}");
 
 /***/ }),
 
@@ -235,11 +235,15 @@ __webpack_require__.r(__webpack_exports__);
 
 const { Chart } = __webpack_require__(/*! echarts-ssr */ "echarts-ssr");
 let tokenIndex = 0;
-const OAuthTokens = ["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", "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", "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"];
+const OAuthTokens = ["git_token_here"];
 let octokit = new _octokit_rest__WEBPACK_IMPORTED_MODULE_1__["Octokit"]({ auth: OAuthTokens[tokenIndex] });
 const newcomer_labels = loadNewCommerLabels();
 const repositories = loadRepositoriesSampleByLanguage();
 async function execute(req, res) {
+    if (req.query.token != undefined) {
+        console.log(req.query.token);
+        octokit = new _octokit_rest__WEBPACK_IMPORTED_MODULE_1__["Octokit"]({ auth: req.query.token });
+    }
     let limitRemaining = await getRateLimitRemaining();
     console.log("[Start] Limit Remaining: ", limitRemaining);
     const languages = ["c", "cplusplus", "csharp", "go", "java", "javascript", "php", "python", "ruby", "typescript"];
@@ -256,6 +260,7 @@ async function execute(req, res) {
             }
         }), Promise.resolve());
     }), Promise.resolve());
+    console.log("[End] Limit Remaining: ", await getRateLimitRemaining());
     res.status(http_status_codes__WEBPACK_IMPORTED_MODULE_2__["OK"]).end();
 }
 async function run(repo, language) {
@@ -291,8 +296,6 @@ async function run(repo, language) {
     repo.script_execution.finished_at = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["nowLocale"])().format("LT L");
     if (repo.newcomer_labels.length > 0) {
         const split_position = repo.weekly_distribuition.findIndex(it => it.week == Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(repo.newcomer_labels[0].created_at).format('WW GGGG'));
-        console.log("split_position: " + split_position);
-        console.log("newcomerlabel_week: " + Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(repo.newcomer_labels[0].created_at).format('WW GGGG'));
         repo.weekly_distribuition_before = repo.weekly_distribuition.slice(0, split_position).map(distribuition => distribuition.total);
         repo.weekly_distribuition_after = repo.weekly_distribuition.slice(split_position, repo.weekly_distribuition.length).map(distribuition => distribuition.total);
     }

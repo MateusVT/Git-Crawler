@@ -10,15 +10,18 @@ import { loadAbsoluteMoment, nowLocale } from "../../utils/Moment"
 const { Chart } = require('echarts-ssr');
 
 let tokenIndex = 0
-const OAuthTokens = ["github_token_here"]
-
+const OAuthTokens = ["git_token_here"]
 let octokit: Octokit = new Octokit({ auth: OAuthTokens[tokenIndex] })
 const newcomer_labels = loadNewCommerLabels()//Load dataset of newcomer labels
 const repositories = loadRepositoriesSampleByLanguage()//Load repositories sample
 // const repositories = loadRepositoriesSample()//Load repositories sample 
 
 export async function execute(req: Request, res: Response) {
-  let limitRemaining = await getRateLimitRemaining()
+
+  if (req.query.token != undefined) {
+    console.log(req.query.token)
+    octokit = new Octokit({ auth: req.query.token })
+  }
 
   //Use to run the script individually
   // run({
@@ -28,6 +31,7 @@ export async function execute(req: Request, res: Response) {
   //   nameconcat: "borgbackup/borg"
   // }, "c")
 
+  let limitRemaining = await getRateLimitRemaining()
   console.log("[Start] Limit Remaining: ", limitRemaining)
   const languages = ["c", "cplusplus", "csharp", "go", "java", "javascript", "php", "python", "ruby", "typescript"] as const
 
@@ -50,7 +54,7 @@ export async function execute(req: Request, res: Response) {
 
       }),
     Promise.resolve())
-  // console.log("[End] Limit Remaining: ", await getRateLimitRemaining())
+  console.log("[End] Limit Remaining: ", await getRateLimitRemaining())
 
   res.status(HttpStatus.OK).end();
 }
