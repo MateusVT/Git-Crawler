@@ -1,7 +1,7 @@
 {
   "name": "GitCrawler",
   "version": "1.0.1",
-  "description": "A crawler using GitHub Api.",
+  "description": "A script for collecting data from open source projects using the GitHub API",
   "main": "index.ts",
   "repository": {
     "type": "git",

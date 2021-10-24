@@ -10,17 +10,17 @@ import { loadAbsoluteMoment, nowLocale } from "../../utils/Moment"
 const { Chart } = require('echarts-ssr');
 
 let tokenIndex = 0
-const OAuthTokens = ["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", "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", "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"]//My, Secondary
+const OAuthTokens = ["github_token_here"]
 
 let octokit: Octokit = new Octokit({ auth: OAuthTokens[tokenIndex] })
 const newcomer_labels = loadNewCommerLabels()//Load dataset of newcomer labels
 const repositories = loadRepositoriesSampleByLanguage()//Load repositories sample
-// const repositories = loadRepositoriesSample()//Load repositories sample
+// const repositories = loadRepositoriesSample()//Load repositories sample 
 
 export async function execute(req: Request, res: Response) {
   let limitRemaining = await getRateLimitRemaining()
 
-  //Run individually
+  //Use to run the script individually
   // run({
   //   owner: "borgbackup", name: "borg",
   //   url: "http://www.github.com/borgbackup/borg",
@@ -97,10 +97,7 @@ async function run(repo: Repository, language: string) {
   repo.script_execution.finished_at = nowLocale().format("LT L")
 
   if (repo.newcomer_labels.length > 0) {
-    
     const split_position = repo.weekly_distribuition.findIndex(it => it.week == loadAbsoluteMoment(repo.newcomer_labels![0].created_at).format('WW GGGG'))
-    console.log("split_position: "+ split_position)
-    console.log("newcomerlabel_week: "+ loadAbsoluteMoment(repo.newcomer_labels![0].created_at).format('WW GGGG'))
     repo.weekly_distribuition_before = repo.weekly_distribuition.slice(0, split_position).map(distribuition => distribuition.total)
     repo.weekly_distribuition_after = repo.weekly_distribuition.slice(split_position, repo.weekly_distribuition!.length).map(distribuition => distribuition.total)
   }
@@ -409,7 +406,7 @@ function generateGraph(name: string, rep: Repository, language: string) {
 
   //Add one log in the week of first use of the label in order to not broke the graph
   if (rep.newcomer_labels && rep.newcomer_labels.length > 0 &&
-     !rep.weekly_distribuition?.find(distribuition => distribuition.week == loadAbsoluteMoment(rep.newcomer_labels!![0].created_at).format('WW GGGG'))) {
+    !rep.weekly_distribuition?.find(distribuition => distribuition.week == loadAbsoluteMoment(rep.newcomer_labels!![0].created_at).format('WW GGGG'))) {
     rep.weekly_distribuition!.push({ week: loadAbsoluteMoment(rep.newcomer_labels!![0].created_at).format('WW GGGG'), dates: [], total: 0 })
   }
 
