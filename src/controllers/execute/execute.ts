@@ -14,7 +14,8 @@ const OAuthTokens = ["git_token_here"]
 let octokit: Octokit = new Octokit({ auth: OAuthTokens[tokenIndex] })
 const newcomer_labels = loadNewCommerLabels()//Load dataset of newcomer labels
 const repositories = loadRepositoriesSampleByLanguage()//Load repositories sample
-// const repositories = loadRepositoriesSample()//Load repositories sample 
+// const repositoriesData = loadRepositoriesSamplesData()//Load repositories data sample 
+const languages = ["c", "cplusplus", "csharp", "go", "java", "javascript", "php", "python", "ruby", "typescript"] as const
 
 export async function execute(req: Request, res: Response) {
 
@@ -33,8 +34,6 @@ export async function execute(req: Request, res: Response) {
 
   let limitRemaining = await getRateLimitRemaining()
   console.log("[Start] Limit Remaining: ", limitRemaining)
-  const languages = ["ruby"] as const
-  // const languages = ["c", "cplusplus", "csharp", "go", "java", "javascript", "php", "python", "ruby", "typescript"] as const
 
   languages.reduce(
     (promisse, language) =>
@@ -100,6 +99,7 @@ async function run(repo: Repository, language: string) {
   repo.labels = repo_labels
   repo.newcomer_labels = repo_newcomer_labels_date.sort()
   repo.script_execution.finished_at = nowLocale().format("LT L")
+  repo.newcomer_labels.length > 0 ? repo.has_newcomer_labels = true : repo.has_newcomer_labels = false
 
   if (repo.newcomer_labels.length > 0) {
     const split_position = repo.weekly_distribuition.findIndex(it => it.week == loadAbsoluteMoment(repo.newcomer_labels![0].created_at).format('WW GGGG'))
@@ -109,6 +109,10 @@ async function run(repo: Repository, language: string) {
 
   save(`${repo.owner}-${repo.name}`.replace(/\//g, ''), repo, language)
   generateGraph(`${repo.owner}-${repo.name}`.replace(/\//g, ''), repo, language)
+}
+
+export async function treatment(req: Request, res: Response) {
+  loadRepositoriesSamplesData()
 }
 
 //Collect general infos about the repo
@@ -240,62 +244,51 @@ function loadRepositoriesSampleByLanguage(type?: string) {
   const ruby: Repository[] = readFileFrom("resources/input/repositories-by-language/ruby.json")
   const typescript: Repository[] = readFileFrom("resources/input/repositories-by-language/typescript.json")
 
-  let all_repositories
-
-  if (type == "top-15") {
-    all_repositories = {
-      c: c.slice(0, 15),
-      cplusplus: cplusplus.slice(0, 15),
-      csharp: csharp.slice(0, 15),
-      go: go.slice(0, 15),
-      java: java.slice(0, 15),
-      javascript: javascript.slice(0, 15),
-      php: php.slice(0, 15),
-      python: python.slice(0, 15),
-      ruby: ruby.slice(0, 15),
-      typescript: typescript.slice(0, 15),
-    }
-  } else if (type == "top-15-random") {
-    all_repositories = {
-      c: c.sort(() => Math.random() - Math.random()).slice(0, 15),
-      cplusplus: cplusplus.sort(() => Math.random() - Math.random()).slice(0, 15),
-      csharp: csharp.sort(() => Math.random() - Math.random()).slice(0, 15),
-      go: go.sort(() => Math.random() - Math.random()).slice(0, 15),
-      java: java.sort(() => Math.random() - Math.random()).slice(0, 15),
-      javascript: javascript.sort(() => Math.random() - Math.random()).slice(0, 15),
-      php: php.sort(() => Math.random() - Math.random()).slice(0, 15),
-      python: python.sort(() => Math.random() - Math.random()).slice(0, 15),
-      ruby: ruby.sort(() => Math.random() - Math.random()).slice(0, 15),
-      typescript: typescript.sort(() => Math.random() - Math.random()).slice(0, 15),
-    }
-
-  } else {
-    all_repositories = {
-      c: c,
-      cplusplus: cplusplus,
-      csharp: csharp,
-      go: go,
-      java: java,
-      javascript: javascript,
-      php: php,
-      python: python,
-      ruby: ruby,
-      typescript: typescript,
-    }
+  const all_repositories = {
+    c: c,
+    cplusplus: cplusplus,
+    csharp: csharp,
+    go: go,
+    java: java,
+    javascript: javascript,
+    php: php,
+    python: python,
+    ruby: ruby,
+    typescript: typescript,
   }
+
 
   return all_repositories
 }
 
 //Loads the samples data by language.
-function loadRepositoriesSampleDataByLanguage(language?: string) {
-  const dir = `resources/output/repositories-data-by-language/${language}/`
-  const repositories = fs.readdirSync(dir)
-  // readdir(dir, (err, files) => {
-  //   files.forEach(file => {
-  //     console.log(file);
-  //   });
-  // });
+function loadRepositoriesSamplesData() {
+  const languages = ["c", "cplusplus", "csharp", "go", "java", "javascript", "php", "python", "ruby", "typescript"] as const
+  languages.forEach(language => {
+
+    const dir = `resources/output/${language}/`
+    const fileRepositories = fs.readdirSync(dir).filter(file => file.includes(".json"))
+    const repositories: Repository[] = fileRepositories.map(repository => readFileFrom(`${dir}/${repository}`))
+
+    repositories.forEach(repo => {
+      console.log(repo.nameconcat)
+      if (repo.newcomer_labels && repo.newcomer_labels.length > 0) {
+        repo.has_newcomer_labels = true;
+      } else {
+        repo.has_newcomer_labels = false;
+      }
+      save(`${repo.owner}-${repo.name}`.replace(/\//g, ''), repo, language)
+    })
+
+    // const repositoriesWithoutHelpWanted = repositories.filter(repository => {
+    //     const new_comer_labels = repository.newcomer_labels!!.map(label => label.name.toLowerCase())
+    //     return !new_comer_labels.some(label => helpWantedVariations.includes(label))
+    // })
+    // repositoriesWithoutHelpWanted.forEach(repo => {
+    //     repo.has_newcomer_labels = repo.newcomer_labels!!.length > 0;
+    //     generateGraph(`${repo.owner}-${repo.name}`.replace(/\//g, ''), repo, language)
+    // })
+  })
   return repositories
 }
 
