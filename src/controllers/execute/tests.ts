@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { Repository, WeeklyDistribution } from '../../types/types';
 import * as HttpStatus from 'http-status-codes';
 import { readFileFrom } from '../../utils/handleFile';
-import { loadAbsoluteMoment, Moment, nowLocale } from '../../utils/Moment';
+import { loadAbsoluteMoment, Moment, nowLocale } from '../../utils/moment';
 import fs from 'fs';
 import { Octokit } from '@octokit/rest';
 const { Chart } = require('echarts-ssr');

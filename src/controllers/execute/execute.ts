@@ -6,7 +6,7 @@ import * as HttpStatus from 'http-status-codes';
 import { Contribution, Label, Repository, WeeklyDistribution } from '../../types/types';
 import { readFileFrom } from '../../utils/handleFile';
 import fs from 'fs';
-import { loadAbsoluteMoment, nowLocale } from "../../utils/Moment"
+import { loadAbsoluteMoment, nowLocale } from "../../utils/moment"
 const { Chart } = require('echarts-ssr');
 
 let tokenIndex = 0
@@ -33,7 +33,7 @@ export async function execute(req: Request, res: Response) {
 
   let limitRemaining = await getRateLimitRemaining()
   console.log("[Start] Limit Remaining: ", limitRemaining)
-  const languages = ["c", "cplusplus", "csharp"] as const
+  const languages = ["typescript"] as const
 
   languages.reduce(
     (promisse, language) =>
