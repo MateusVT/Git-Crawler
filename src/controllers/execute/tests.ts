@@ -16,15 +16,22 @@ export async function execute(req: Request, res: Response) {
 }
 
 
-let tokenIndex = 0
-const OAuthTokens = ["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", "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"]//My, Laplace
-
-let octokit: Octokit = new Octokit({ auth: OAuthTokens[tokenIndex] })
-
-
 export async function replaceHelpWantedVariationsInRepositoriesData(req: Request, res: Response) {
-    const helpWantedVariations = ["status/help-wanted", "Help wanted", "help wanted", "Help Wanted", "help-wanted", "disposition/help wanted",
-        "HelpWanted", "Help-Wanted", "state: help wanted (PR)", "status/help-wanted", "status: help wanted"]
+    const helpWantedVariations = [
+        "status/help-wanted",
+        "help needed",
+        "Help wanted",
+        "help wanted",
+        "Help Wanted",
+        "help-wanted",
+        "disposition/help wanted",
+        "HelpWanted",
+        "Help-Wanted",
+        "state: help wanted (PR)",
+        "status: help wanted",
+        "Type: help-wanted",
+        "type/help-wanted"
+    ]
     const languages = ["c", "cplusplus", "csharp", "go", "java", "javascript", "php", "python", "ruby", "typescript"]
 
     languages.forEach(language => {
