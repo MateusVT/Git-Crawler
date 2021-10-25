@@ -33,7 +33,7 @@ export async function execute(req: Request, res: Response) {
 
   let limitRemaining = await getRateLimitRemaining()
   console.log("[Start] Limit Remaining: ", limitRemaining)
-  const languages = ["typescript"] as const
+  const languages = ["c", "cplusplus", "csharp", "go", "java", "javascript", "php", "python", "ruby", "typescript"] as const
 
   languages.reduce(
     (promisse, language) =>
