@@ -1,4 +1,5 @@
-[{
+[
+    {
         "owner": "hashicorp",
         "name": "vagrant",
         "url": "http://www.github.com/hashicorp/vagrant",
@@ -361,18 +362,5 @@
         "url": "http://www.github.com/education/classroom",
         "language": "Ruby",
         "nameconcat": "education/classroom"
-    },
-    {
-        "owner": "Homebrew",
-        "name": "homebrew-cask",
-        "url": "http://www.github.com/Homebrew/homebrew-cask",
-        "language": "Ruby",
-        "nameconcat": "Homebrew/homebrew-cask"
-    },
-    {
-        "owner": "Homebrew",
-        "name": "homebrew-core",
-        "url": "http://www.github.com/Homebrew/homebrew-core",
-        "language": "Ruby",
-        "nameconcat": "Homebrew/homebrew-core"
-    }]
+    }
+]
