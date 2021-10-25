@@ -226,7 +226,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_handleFile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/handleFile */ "./utils/handleFile.ts");
 /* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! fs */ "fs");
 /* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _utils_Moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/Moment */ "./utils/Moment.ts");
+/* harmony import */ var _utils_moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../utils/moment */ "./utils/moment.ts");
 
 
 
@@ -246,7 +246,7 @@ async function execute(req, res) {
     }
     let limitRemaining = await getRateLimitRemaining();
     console.log("[Start] Limit Remaining: ", limitRemaining);
-    const languages = ["c", "cplusplus", "csharp"];
+    const languages = ["c", "cplusplus", "csharp", "go", "java", "javascript", "php", "python", "ruby", "typescript"];
     languages.reduce((promisse, language) => promisse.then(async (_) => {
         console.log("Started Language: " + language);
         await repositories[language].reduce((promisse, repo) => promisse.then(_ => {
@@ -264,7 +264,7 @@ async function execute(req, res) {
     res.status(http_status_codes__WEBPACK_IMPORTED_MODULE_2__["OK"]).end();
 }
 async function run(repo, language) {
-    repo.script_execution = { start_at: Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["nowLocale"])().format("LT L") };
+    repo.script_execution = { start_at: Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["nowLocale"])().format("LT L") };
     let repo_infos;
     let repo_first_contribuitions = [];
     let repo_labels = [];
@@ -293,9 +293,9 @@ async function run(repo, language) {
     repo.weekly_distribuition = fullFillDistribuition(weekly_distribuition, repo.created_at);
     repo.labels = repo_labels;
     repo.newcomer_labels = repo_newcomer_labels_date.sort();
-    repo.script_execution.finished_at = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["nowLocale"])().format("LT L");
+    repo.script_execution.finished_at = Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["nowLocale"])().format("LT L");
     if (repo.newcomer_labels.length > 0) {
-        const split_position = repo.weekly_distribuition.findIndex(it => it.week == Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(repo.newcomer_labels[0].created_at).format('WW GGGG'));
+        const split_position = repo.weekly_distribuition.findIndex(it => it.week == Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(repo.newcomer_labels[0].created_at).format('WW GGGG'));
         repo.weekly_distribuition_before = repo.weekly_distribuition.slice(0, split_position).map(distribuition => distribuition.total);
         repo.weekly_distribuition_after = repo.weekly_distribuition.slice(split_position, repo.weekly_distribuition.length).map(distribuition => distribuition.total);
     }
@@ -386,7 +386,7 @@ async function getFirstOcurrenciesNewComerLabels(owner, name, newcomer_labels) {
     });
     await Promise.all(promisses);
     return newcomer_labels_date.sort((a, b) => {
-        return Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(a.created_at).diff(b.created_at);
+        return Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(a.created_at).diff(b.created_at);
     });
 }
 function findNewcomerLabelsInRepository(owner, name, repo_labels) {
@@ -499,7 +499,7 @@ function getWeeklyDistribution(first_contribuitions) {
     });
     const weeklyDistribution = [];
     contribuitions_date.forEach(date => {
-        let weekLabel = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(date).format('WW GGGG');
+        let weekLabel = Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(date).format('WW GGGG');
         let log = weeklyDistribution.find(it => it.week == weekLabel);
         if (log) {
             log.dates.push(date);
@@ -517,20 +517,20 @@ function getWeeklyDistribution(first_contribuitions) {
 }
 function fullFillDistribuition(weeklyDistribution, created_at) {
     const fullFillDistribution = [...weeklyDistribution];
-    for (var created = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(created_at); created.isBefore(Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["nowLocale"])()); created.add(1, 'week')) {
+    for (var created = Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(created_at); created.isBefore(Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["nowLocale"])()); created.add(1, 'week')) {
         const this_week = created.format('WW GGGG');
         if (!weeklyDistribution.some(distribution => distribution.week == this_week)) {
             fullFillDistribution.push({ week: this_week, total: 0, dates: [] });
         }
     }
-    return fullFillDistribution.sort((a, b) => (Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(a.week, 'WW GGGG').valueOf() > Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(b.week, 'WW GGGG').valueOf()) ?
+    return fullFillDistribution.sort((a, b) => (Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(a.week, 'WW GGGG').valueOf() > Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(b.week, 'WW GGGG').valueOf()) ?
         1 :
-        ((Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(b.week, 'WW GGGG').valueOf() > Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(a.week, 'WW GGGG').valueOf())
+        ((Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(b.week, 'WW GGGG').valueOf() > Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(a.week, 'WW GGGG').valueOf())
             ? -1 : 0));
 }
 function normalizeDistribuition(weeklyDistribution) {
     const firstPR = weeklyDistribution[0].week;
-    const lastPR = Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(firstPR, "WW GGGG").add(6, 'months').format("WW GGGG");
+    const lastPR = Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(firstPR, "WW GGGG").add(6, 'months').format("WW GGGG");
     const indexOfLast = weeklyDistribution.map(d => d.week).indexOf(lastPR);
     return weeklyDistribution.splice(0, indexOfLast);
 }
@@ -551,12 +551,12 @@ function saveJson(name, data) {
 function generateGraph(name, rep, language) {
     var _a, _b, _c, _d;
     if (rep.newcomer_labels && rep.newcomer_labels.length > 0 &&
-        !((_a = rep.weekly_distribuition) === null || _a === void 0 ? void 0 : _a.find(distribuition => distribuition.week == Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(rep.newcomer_labels[0].created_at).format('WW GGGG')))) {
-        rep.weekly_distribuition.push({ week: Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(rep.newcomer_labels[0].created_at).format('WW GGGG'), dates: [], total: 0 });
+        !((_a = rep.weekly_distribuition) === null || _a === void 0 ? void 0 : _a.find(distribuition => distribuition.week == Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(rep.newcomer_labels[0].created_at).format('WW GGGG')))) {
+        rep.weekly_distribuition.push({ week: Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(rep.newcomer_labels[0].created_at).format('WW GGGG'), dates: [], total: 0 });
     }
-    (_b = rep.weekly_distribuition) === null || _b === void 0 ? void 0 : _b.sort((a, b) => (Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(a.week, 'WW GGGG').valueOf() > Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(b.week, 'WW GGGG').valueOf()) ?
+    (_b = rep.weekly_distribuition) === null || _b === void 0 ? void 0 : _b.sort((a, b) => (Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(a.week, 'WW GGGG').valueOf() > Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(b.week, 'WW GGGG').valueOf()) ?
         1 :
-        ((Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(b.week, 'WW GGGG').valueOf() > Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(a.week, 'WW GGGG').valueOf())
+        ((Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(b.week, 'WW GGGG').valueOf() > Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(a.week, 'WW GGGG').valueOf())
             ? -1 : 0));
     var option = {
         grid: {
@@ -587,7 +587,7 @@ function generateGraph(name, rep, language) {
             data: (_c = rep.weekly_distribuition) === null || _c === void 0 ? void 0 : _c.map(distribuition => distribuition.week),
             markLine: {
                 data: rep.newcomer_labels && rep.newcomer_labels.length > 0 ?
-                    [{ name: 'First Date Newcomer Label', yAxis: Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(rep.newcomer_labels[0].created_at).format('WW[S] GGGG[A]') }]
+                    [{ name: 'First Date Newcomer Label', yAxis: Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(rep.newcomer_labels[0].created_at).format('WW[S] GGGG[A]') }]
                     : []
             }
         },
@@ -609,7 +609,7 @@ function generateGraph(name, rep, language) {
                                 name: 'Tratamento (6 meses)',
                                 xAxis: rep.weekly_distribuition[0].week
                             }, {
-                                xAxis: Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(rep.weekly_distribuition[0].week, "WW GGGG").add(6, 'months').format("WW GGGG")
+                                xAxis: Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(rep.weekly_distribuition[0].week, "WW GGGG").add(6, 'months').format("WW GGGG")
                             }]]
                 },
                 dimensions: [
@@ -628,7 +628,7 @@ function generateGraph(name, rep, language) {
                     },
                     data: [
                         {
-                            name: 'Adopted the pratice', xAxis: Object(_utils_Moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(rep.newcomer_labels[0].created_at).format('WW GGGG'),
+                            name: 'Adopted the pratice', xAxis: Object(_utils_moment__WEBPACK_IMPORTED_MODULE_5__["loadAbsoluteMoment"])(rep.newcomer_labels[0].created_at).format('WW GGGG'),
                             lineStyle: {
                                 normal: {
                                     type: 'dashed',
@@ -862,9 +862,30 @@ function generateStaticRoutes(router) {
 
 /***/ }),
 
-/***/ "./utils/Moment.ts":
+/***/ "./utils/handleFile.ts":
+/*!*****************************!*\
+  !*** ./utils/handleFile.ts ***!
+  \*****************************/
+/*! exports provided: readFileFrom */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "readFileFrom", function() { return readFileFrom; });
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! fs */ "fs");
+/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_0__);
+
+function readFileFrom(filePath) {
+    const file = Object(fs__WEBPACK_IMPORTED_MODULE_0__["readFileSync"])(filePath, 'utf8');
+    return JSON.parse(file);
+}
+
+
+/***/ }),
+
+/***/ "./utils/moment.ts":
 /*!*************************!*\
-  !*** ./utils/Moment.ts ***!
+  !*** ./utils/moment.ts ***!
   \*************************/
 /*! exports provided: configureMomentjs, loadAbsoluteMoment, loadDuration, loadMoment, now, nowLocale */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -902,27 +923,6 @@ function nowLocale() {
     return moment__WEBPACK_IMPORTED_MODULE_1__["utc"](moment__WEBPACK_IMPORTED_MODULE_1__["now"]()).local();
 }
 
-
-
-/***/ }),
-
-/***/ "./utils/handleFile.ts":
-/*!*****************************!*\
-  !*** ./utils/handleFile.ts ***!
-  \*****************************/
-/*! exports provided: readFileFrom */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "readFileFrom", function() { return readFileFrom; });
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! fs */ "fs");
-/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_0__);
-
-function readFileFrom(filePath) {
-    const file = Object(fs__WEBPACK_IMPORTED_MODULE_0__["readFileSync"])(filePath, 'utf8');
-    return JSON.parse(file);
-}
 
 
 /***/ }),
