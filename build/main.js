@@ -235,7 +235,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const { Chart } = __webpack_require__(/*! echarts-ssr */ "echarts-ssr");
 let tokenIndex = 0;
-const OAuthTokens = ["git_token_here"];
+const OAuthTokens = ["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"];
 let octokit = new _octokit_rest__WEBPACK_IMPORTED_MODULE_1__["Octokit"]({ auth: OAuthTokens[tokenIndex] });
 const newcomer_labels = loadNewCommerLabels();
 const repositories = loadRepositoriesSampleByLanguage();
