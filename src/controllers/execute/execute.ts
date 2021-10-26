@@ -112,7 +112,7 @@ async function run(repo: Repository, language: string) {
 }
 
 export async function treatment(req: Request, res: Response) {
-
+  removeHelpWantedVariations()
 }
 
 //Remove all help-wanted variations from newcomerlabels set and gerenate payload and graphs again
@@ -131,32 +131,44 @@ export async function removeHelpWantedVariations() {
     "type: help-wanted",
     "type/help-wanted"]
 
+  let cont = 0
   repositories.forEach(repo => {
-    console.log("---------------------------------------")
-    console.log(repo.language + " - " + repo.nameconcat)
-    const removed_help_wanted = repo.newcomer_labels?.filter(label => !helpWantedVariations.includes(label.name.toLowerCase()))
-    repo.newcomer_labels = removed_help_wanted
+    // console.log("---------------------------------------")
+    
+    
+    let help = repo.newcomer_labels?.filter(label => helpWantedVariations.includes(label.name.toLowerCase())).length || 0
+    if (help > 0) {
+      console.log(repo.language + " - " + repo.nameconcat)
+      console.log(repo.newcomer_labels?.filter(label => helpWantedVariations.includes(label.name.toLowerCase())))
+      const removed_help_wanted = repo.newcomer_labels?.filter(label => !helpWantedVariations.includes(label.name.toLowerCase()))
+      let removed = removed_help_wanted?.length || 0
+      if(removed > 0) {
+        cont++
+      }
+    }
+    // const removed_help_wanted = repo.newcomer_labels?.filter(label => !helpWantedVariations.includes(label.name.toLowerCase()))
+    // repo.newcomer_labels = removed_help_wanted
 
-    if (removed_help_wanted && removed_help_wanted.length > 0) {
-      repo.has_newcomer_labels = true
-    } else {
-      repo.has_newcomer_labels = false
+    // if (removed_help_wanted && removed_help_wanted.length > 0) {
+    //   repo.has_newcomer_labels = true
+    // } else {
+    //   repo.has_newcomer_labels = false
 
-    }
-    console.log("removed = " + JSON.stringify(repo.newcomer_labels))
-    console.log("has_newcomer_labels = " + repo.has_newcomer_labels )
-    let language = repo.language!
-    if(language == "C++"){
-      language = "cplusplus"
-    }
-    if(language == "C#"){
-      language = "csharp"
-    }
-    save(`${repo.owner}-${repo.name}`.replace(/\//g, ''), repo, language)
-    generateGraph(`${repo.owner}-${repo.name}`.replace(/\//g, ''), repo, language)
-    console.log("---------------------------------------")
+    // }
+    // console.log("removed = " + JSON.stringify(repo.newcomer_labels))
+    // console.log("has_newcomer_labels = " + repo.has_newcomer_labels )
+    // let language = repo.language!
+    // if(language == "C++"){
+    //   language = "cplusplus"
+    // }
+    // if(language == "C#"){
+    //   language = "csharp"
+    // }
+    // save(`${repo.owner}-${repo.name}`.replace(/\//g, ''), repo, language)
+    // generateGraph(`${repo.owner}-${repo.name}`.replace(/\//g, ''), repo, language)
+    // console.log("---------------------------------------")
   })
-
+  console.log(cont)
 }
 
 //Collect general infos about the repo
