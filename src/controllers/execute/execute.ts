@@ -112,7 +112,51 @@ async function run(repo: Repository, language: string) {
 }
 
 export async function treatment(req: Request, res: Response) {
-  loadRepositoriesSamplesData()
+
+}
+
+//Remove all help-wanted variations from newcomerlabels set and gerenate payload and graphs again
+export async function removeHelpWantedVariations() {
+  const repositories = loadRepositoriesSamplesData()
+
+  const helpWantedVariations = [
+    "status/help-wanted",
+    "help needed",
+    "help wanted",
+    "help-wanted",
+    "disposition/help wanted",
+    "helpwanted",
+    "state: help wanted (pr)",
+    "status: help wanted",
+    "type: help-wanted",
+    "type/help-wanted"]
+
+  repositories.forEach(repo => {
+    console.log("---------------------------------------")
+    console.log(repo.language + " - " + repo.nameconcat)
+    const removed_help_wanted = repo.newcomer_labels?.filter(label => !helpWantedVariations.includes(label.name.toLowerCase()))
+    repo.newcomer_labels = removed_help_wanted
+
+    if (removed_help_wanted && removed_help_wanted.length > 0) {
+      repo.has_newcomer_labels = true
+    } else {
+      repo.has_newcomer_labels = false
+
+    }
+    console.log("removed = " + JSON.stringify(repo.newcomer_labels))
+    console.log("has_newcomer_labels = " + repo.has_newcomer_labels )
+    let language = repo.language!
+    if(language == "C++"){
+      language = "cplusplus"
+    }
+    if(language == "C#"){
+      language = "csharp"
+    }
+    save(`${repo.owner}-${repo.name}`.replace(/\//g, ''), repo, language)
+    generateGraph(`${repo.owner}-${repo.name}`.replace(/\//g, ''), repo, language)
+    console.log("---------------------------------------")
+  })
+
 }
 
 //Collect general infos about the repo
@@ -264,30 +308,14 @@ function loadRepositoriesSampleByLanguage(type?: string) {
 //Loads the samples data by language.
 function loadRepositoriesSamplesData() {
   const languages = ["c", "cplusplus", "csharp", "go", "java", "javascript", "php", "python", "ruby", "typescript"] as const
+  let repositories: Repository[] = []
   languages.forEach(language => {
 
     const dir = `resources/output/${language}/`
     const fileRepositories = fs.readdirSync(dir).filter(file => file.includes(".json"))
-    const repositories: Repository[] = fileRepositories.map(repository => readFileFrom(`${dir}/${repository}`))
+    const repositoriesByLanguage: Repository[] = fileRepositories.map(repository => readFileFrom(`${dir}/${repository}`))
+    repositories.push(...repositoriesByLanguage)
 
-    repositories.forEach(repo => {
-      console.log(repo.nameconcat)
-      if (repo.newcomer_labels && repo.newcomer_labels.length > 0) {
-        repo.has_newcomer_labels = true;
-      } else {
-        repo.has_newcomer_labels = false;
-      }
-      save(`${repo.owner}-${repo.name}`.replace(/\//g, ''), repo, language)
-    })
-
-    // const repositoriesWithoutHelpWanted = repositories.filter(repository => {
-    //     const new_comer_labels = repository.newcomer_labels!!.map(label => label.name.toLowerCase())
-    //     return !new_comer_labels.some(label => helpWantedVariations.includes(label))
-    // })
-    // repositoriesWithoutHelpWanted.forEach(repo => {
-    //     repo.has_newcomer_labels = repo.newcomer_labels!!.length > 0;
-    //     generateGraph(`${repo.owner}-${repo.name}`.replace(/\//g, ''), repo, language)
-    // })
   })
   return repositories
 }
